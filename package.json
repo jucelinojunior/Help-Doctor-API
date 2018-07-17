@@ -1,0 +1,33 @@
+{
+  "name": "api-maria-hill",
+  "version": "1.0.0",
+  "description": "API de métricas de usuários e campanhas",
+  "main": "index.js",
+  "repository": "https://github.com/squidit/api-maria-hill.git",
+  "author": "Lucas Santos <lhs.santoss@gmail.com>",
+  "license": "ISC",
+  "scripts": {
+    "start": "node index.js",
+    "test": "ava --color -v -T 300000",
+    "coverage": "nyc --reporter=lcov --reporter=text --reporter-dir ./coverage --clean --cache --instrument ava",
+    "lint": "standard"
+  },
+  "private": true,
+  "dependencies": {
+    "boom": "^7.2.0",
+    "dotenv": "^5.0.1",
+    "good": "^8.1.1",
+    "good-console": "^7.1.0",
+    "good-squeeze": "^5.1.0",
+    "got": "^8.3.1",
+    "hapi": "^17.4.0",
+    "joi": "^13.3.0",
+    "mongodb": "^3.0.8"
+  },
+  "devDependencies": {
+    "ava": "^0.25.0",
+    "nock": "^9.2.5",
+    "sinon": "^5.0.7",
+    "standard": "^11.0.1"
+  }
+}
