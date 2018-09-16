@@ -1,0 +1,6 @@
+module.exports = {
+	CONVULSIONS_ATTACKS: 2,
+	CONVULSION: 1,
+	IN_QUEUE: 1,
+	DONE_QUEUE: 2
+}
