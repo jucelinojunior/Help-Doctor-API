@@ -1,7 +1,7 @@
 const QUEUE = require('../enums/queue.js');
 const client = require('../../config/dbConnect.js').connect();
 module.exports = {
-	method: 'PUT',
+	method: 'DELETE',
 	path: '/screening/{id}',
 	handler: function(request, h) {
 		
