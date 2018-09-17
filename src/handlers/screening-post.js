@@ -13,14 +13,14 @@ module.exports = {
 	method: 'POST',
 	path: '/screening',
 	handler: function(request, h) {
-		return request;
-		return client.query('SELECT TB_APPOINTMENT.*,TB_PATIENT.*,TB_TYPE_PRONOUNCER.*,TB_PRONOUNCER.hospital_id,TB_TYPE_PRONOUNCER.id AS type_pronouncer_id,TB_PATIENT.id AS user_id  FROM TB_APPOINTMENT INNER JOIN TB_PATIENT ON TB_PATIENT.id = TB_APPOINTMENT.user_id INNER JOIN TB_PRONOUNCER ON TB_APPOINTMENT.pronouncer_id = TB_PRONOUNCER.id INNER JOIN TB_TYPE_PRONOUNCER ON TB_PRONOUNCER.type_pronouncer = TB_TYPE_PRONOUNCER.id WHERE TB_APPOINTMENT.id = $1 LIMIT 1',[request.body.id]).then((res) => {
+
+		return client.query('SELECT TB_APPOINTMENT.*,TB_PATIENT.*,TB_TYPE_PRONOUNCER.*,TB_PRONOUNCER.hospital_id,TB_TYPE_PRONOUNCER.id AS type_pronouncer_id,TB_PATIENT.id AS user_id  FROM TB_APPOINTMENT INNER JOIN TB_PATIENT ON TB_PATIENT.id = TB_APPOINTMENT.user_id INNER JOIN TB_PRONOUNCER ON TB_APPOINTMENT.pronouncer_id = TB_PRONOUNCER.id INNER JOIN TB_TYPE_PRONOUNCER ON TB_PRONOUNCER.type_pronouncer = TB_TYPE_PRONOUNCER.id WHERE TB_APPOINTMENT.id = $1 LIMIT 1',[request.payload.id]).then((res) => {
 
 			const appointment = res.rows[0];
 			var vals = [
-			appointment.hospital_id,
-			appointment.user_id,
-			QUEUE.IN_QUEUE
+				appointment.hospital_id,
+				appointment.user_id,
+				QUEUE.IN_QUEUE
 			];
 
 			if(appointment.type_pronouncer_id == PRONOUNCER.APPOINTMENT) 
@@ -41,6 +41,5 @@ module.exports = {
 		}).catch((err) => {
 			return err;	
 		});
-		
 	}
 }
