@@ -1,2 +1,7 @@
-# api-maria-hill
-API para o tcc
+# Help Doctor API
+API para consumo do help doctor
+
+# Endpoints
+
+## Autorização
+`[POST] /oauth/authorization`
