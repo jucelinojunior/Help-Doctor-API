@@ -16,6 +16,5 @@ module.exports = {
     //  Criptografa o password passado com o salt do usuario
 
     //  Se o password passado e criptografado for igual ao password do documento (que ja esta criptografado) então é sucesso
-
 	}
 }

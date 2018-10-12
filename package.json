@@ -8,12 +8,14 @@
   "license": "ISC",
   "scripts": {
     "start": "node index.js",
+    "start-dev": "nodemon index.js",
     "test": "ava --color -v -T 300000",
     "coverage": "nyc --reporter=lcov --reporter=text --reporter-dir ./coverage --clean --cache --instrument ava",
     "lint": "standard"
   },
   "private": true,
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "boom": "^7.2.0",
     "dotenv": "^5.0.1",
     "good": "^8.1.1",
@@ -23,11 +25,14 @@
     "hapi": "^17.4.0",
     "joi": "^13.3.0",
     "mongodb": "^3.0.8",
-    "pg": "^7.4.3"
+    "node-pre-gyp": "^0.11.0",
+    "pg": "^7.4.3",
+    "sequelize": "^4.39.0"
   },
   "devDependencies": {
     "ava": "^0.25.0",
     "nock": "^9.2.5",
+    "nodemon": "^1.18.4",
     "sinon": "^5.0.7",
     "standard": "^11.0.1",
     "xlsx-to-json": "^0.3.0"
