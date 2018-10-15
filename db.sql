@@ -206,3 +206,14 @@ INSERT INTO public.hospital(
 INSERT INTO public.roles(
             name)
     VALUES ( 'ADMIN');
+
+insert into actions (name) values ('create-user');
+insert into roles_has_actions (role_id, action_id) values (1,1);
+
+-- SELECT * FROM users as users
+-- inner join users_has_roles as users_has_roles ON users_has_roles.user_id = users.id
+-- inner join roles as roles ON roles.id = users_has_roles.role_id
+-- inner join roles_has_actions as roles_has_actions ON roles_has_actions.role_id = roles.id
+-- inner join actions as actions ON actions.id = roles_has_actions.action_id
+
+-- where personal_document = '38724313823'

@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize')
 const Roles = require('./roles')
+const Actions = require('./actions')
 const Address = require('./address')
 // const UsersHasRoles = require('./users_has_roles')
 const User = global.sequelize.define('users', {
@@ -60,4 +61,12 @@ Roles.belongsToMany(User, {
   foreignKey: 'user_id',
   contraints: false
 })
+
+// Actions.belongsToMany(Roles, {
+//   as: 'roles',
+//   through: 'roles_has_actions',
+//   foreignKey: 'action_id',
+//   contraints: false
+// })
+
 module.exports = User

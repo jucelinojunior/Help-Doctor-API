@@ -1,6 +1,12 @@
 const userService = require('../services/user.service')
 const bcrypt = require('bcrypt-nodejs')
-const Boom = require('Boom')
+const crypto = require('crypto')
+const base64url = require('base64url')
+const {
+  APP_DOMAIN,
+  APP_SECRET
+} = process.env
+// const Boom = require('boom')
 /**
  * Especificação de uma autorização - https://www.oauth.com/oauth2-servers/access-tokens/password-grant/
  * Response de uma token - https://www.oauth.com/oauth2-servers/access-tokens/access-token-response/
@@ -12,19 +18,40 @@ module.exports = {
   handler: async (request, reply) => {
     console.log(request.payload)
     const {username, password} = request.payload
-    const {grant_type} = request.query
-    console.log(grant_type)
-    if (grant_type === 'password') {
+    const grantType = request.query.grant_type
+
+    if (grantType === 'password') {
       const user = await userService.getUserByDocument(username)
       console.log(user)
       const passwordOfUser = user.password
-      const criptedPassword = bcrypt.hashSync(password, user.salt) 
-      console.log({passwordOfUser})
-      console.log({criptedPassword})
+      const criptedPassword = bcrypt.hashSync(password, user.salt)
+
       if (passwordOfUser === criptedPassword) {
-        return true
+        //  Gera a token
+        const header64 = base64url(JSON.stringify({
+          'typ': 'JWT',
+          'alg': 'HS256'
+        }))
+        const payload = {
+          iss: APP_DOMAIN,
+          exp: 0,
+          sub: user.id,
+          roles: user.roles,
+          user: user
+        }
+        const payload64 = base64url(JSON.stringify(payload))
+
+        const encodedSignature = `${header64}.${payload}`
+        const hmac = crypto.createHmac('sha256', Buffer.from(APP_SECRET).toString('base64'))
+        const signature = hmac.update(encodedSignature).digest('base64')
+        const token = `${header64}.${payload64}.${base64url.fromBase64(signature)}`
+        return {
+          token: token,
+          type: 'Bearer',
+          user: user
+        }
       } else {
-        return Boom.badRequest('Bad authentication')
+        throw Boom.badRequest('Bad authentication')
       }
       return user
     }

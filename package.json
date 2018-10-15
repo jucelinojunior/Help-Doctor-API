@@ -15,8 +15,10 @@
   },
   "private": true,
   "dependencies": {
+    "base64url": "^3.0.0",
     "bcrypt-nodejs": "0.0.3",
     "boom": "^7.2.0",
+    "crypto": "^1.0.1",
     "dotenv": "^5.0.1",
     "good": "^8.1.1",
     "good-console": "^7.1.0",
