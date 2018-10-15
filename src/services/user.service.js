@@ -2,8 +2,6 @@ const User = require('../models/users')
 const Role = require('../models/roles')
 const Action = require('../models/actions')
 const Address = require('../models/address')
-
-const RoleService = require('./role.service')
 const add = async (user) => {
   return User.build(user).save()
 }

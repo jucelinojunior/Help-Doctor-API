@@ -15,7 +15,7 @@ const {
   APP_SECRET
 } = process.env
 
-const schema  = Joi.object({
+const schema = Joi.object({
   grant_type: Joi.string().valid('password').required(),
   username: Joi.string().regex(/\d{11}/).required(),
   password: Joi.string().required()
@@ -31,7 +31,6 @@ module.exports = {
         const user = await userService.getUserByDocument(username)
         const passwordOfUser = user.password
         const criptedPassword = bcrypt.hashSync(password, user.salt)
-
         if (passwordOfUser === criptedPassword) {
           //  Gera a token
           const header64 = base64url(JSON.stringify({
@@ -63,9 +62,8 @@ module.exports = {
       }
     } catch (err) {
       console.error(err)
-      throw Boom.badImplementation('Erro descubra! Veja o log do servidor.');
+      throw Boom.badImplementation('Erro descubra! Veja o log do servidor.')
     }
-    
     //  Recupera o usuario pelo username
 
     //  Criptografa o password passado com o salt do usuario

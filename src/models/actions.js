@@ -24,6 +24,4 @@ const Actions = global.sequelize.define('actions', {
   paranoid: true
 })
 
-
-
 module.exports = Actions

@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node index.js",
     "start-dev": "nodemon index.js",
-    "test": "ava --color -v -T 300000",
+    "test": "ava --inspect node_modules/ava/profile.js tests/**.test.js --color -v -T 300000",
     "coverage": "nyc --reporter=lcov --reporter=text --reporter-dir ./coverage --clean --cache --instrument ava",
     "lint": "standard"
   },
@@ -26,6 +26,7 @@
     "got": "^8.3.1",
     "hapi": "^17.4.0",
     "joi": "^13.3.0",
+    "mock-require": "^3.0.2",
     "mongodb": "^3.0.8",
     "node-pre-gyp": "^0.11.0",
     "pg": "^7.4.3",
@@ -35,7 +36,7 @@
     "ava": "^0.25.0",
     "nock": "^9.2.5",
     "nodemon": "^1.18.4",
-    "sinon": "^5.0.7",
+    "sinon": "^5.1.1",
     "standard": "^11.0.1",
     "xlsx-to-json": "^0.3.0"
   }
