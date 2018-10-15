@@ -43,8 +43,8 @@ const User = global.sequelize.define('users', {
 })
 User.hasOne(Address, {
   as: 'address',
-  foreignKey: 'addressId',
-  targetKey: 'id'
+  foreignKey: 'id',
+  targetKey: 'addressId'
 })
 User.belongsToMany(Roles, {
   as: 'roles',

@@ -20,7 +20,7 @@ const schema  = Joi.object({
 })
 module.exports = {
   method: 'POST',
-  path: '/create/user',
+  path: '/user/create',
   handler: async (request, reply) => {
     //  Faz validação de CPF
     const {payload} = request
@@ -31,9 +31,8 @@ module.exports = {
       birthday: new Date(payload.birthday),
       password: bcrypt.hashSync(payload.password, salt)
     }
-    return userService.getAll()
-    // await userService.add(user)
-    // return user
+    await userService.add(user)
+    return user
   },
   config: {
     validate: {

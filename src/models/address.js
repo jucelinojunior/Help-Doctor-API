@@ -26,8 +26,8 @@ const Address = global.sequelize.define('address', {
   }
 },
 {
-  paranoid: true
-  // freezeTableName: true,
+  paranoid: true,
+  freezeTableName: true,
   // tableName: 'TB_ADDRESS'
 })
 module.exports = Address
