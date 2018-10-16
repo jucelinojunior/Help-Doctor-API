@@ -1,3 +1,5 @@
+const hapiJWT = require('hapi-auth-jwt')
+
 async function register (server) {
   await server.register({
     plugin: require('good'),
@@ -19,6 +21,7 @@ async function register (server) {
       }
     }
   })
+  await server.register([require('hapi-auth-jwt2')])
 }
 
 module.exports = register

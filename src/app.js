@@ -8,14 +8,18 @@ module.exports = async function createServer () {
   try {
     await registerPlugins(server)
     await registerDatabase()
+
+    server.auth.strategy('helpdoctor', 'jwt', {
+      key: Buffer.from(APP_SECRET).toString('base64'),
+      validate: async function (decoded, request, h) {
+        return { isValid: true }
+      },
+      verifyOptions: {
+        algorithms: ['HS256']
+      }
+    })
     registerRoutes(server)
 
-    // server.auth.strategy('helpdoctor-auth', 'jwt', {
-    //   key: new Buffer(APP_SECRET, 'base64'),
-    //   verifyOptions: {
-    //     algorithms: ['HS256']
-    //   }
-    // })
     await server.start()
     console.log(`API is running at ${server.info.uri}`)
   } catch (error) {

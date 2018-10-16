@@ -10,6 +10,7 @@ const crypto = require('crypto')
 const base64url = require('base64url')
 const Boom = require('boom')
 const Joi = require('joi')
+var nJwt = require('njwt')
 const {
   APP_DOMAIN,
   APP_SECRET
@@ -37,16 +38,22 @@ module.exports = {
             'typ': 'JWT',
             'alg': 'HS256'
           }))
+          const permissions = user.roles.reduce((prev, role, index, currentArray) => {
+            console.log(role.actions.map(it => it.name).join(','))
+            prev.push(role.actions.map(it => it.name))
+            return prev
+          }, [])
+          console.log({permissions})
           const expirationTime = new Date().getTime() + 1000 * 60 * 60 * 24
           const payload = {
             iss: APP_DOMAIN,
             exp: expirationTime,
             sub: user.id,
-            roles: user.roles,
+            scope: permissions.join(','),
             user: user
           }
           const payload64 = base64url(JSON.stringify(payload))
-          const encodedSignature = `${header64}.${payload}`
+          const encodedSignature = `${header64}.${payload64}`
           const hmac = crypto.createHmac('sha256', Buffer.from(APP_SECRET).toString('base64'))
           const signature = hmac.update(encodedSignature).digest('base64')
           const token = `${header64}.${payload64}.${base64url.fromBase64(signature)}`

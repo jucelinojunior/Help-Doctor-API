@@ -9,8 +9,10 @@ module.exports = {
   path: '/user/all',
   handler: async (request) => {
     return userService.getAll()
+  },
+  config: {
+    auth: {
+      strategy: 'helpdoctor'
+    }
   }
-  // config: {
-    
-  // }
 }

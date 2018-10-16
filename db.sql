@@ -208,7 +208,9 @@ INSERT INTO public.roles(
     VALUES ( 'ADMIN');
 
 insert into actions (name) values ('create-user');
+insert into actions (name) values ('list-all-users');
 insert into roles_has_actions (role_id, action_id) values (1,1);
+insert into roles_has_actions (role_id, action_id) values (1,2);
 
 -- SELECT * FROM users as users
 -- inner join users_has_roles as users_has_roles ON users_has_roles.user_id = users.id

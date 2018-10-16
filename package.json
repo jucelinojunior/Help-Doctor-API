@@ -25,6 +25,7 @@
     "good-squeeze": "^5.1.0",
     "got": "^8.3.1",
     "hapi": "^17.4.0",
+    "hapi-auth-jwt2": "^8.1.0",
     "joi": "^13.3.0",
     "mock-require": "^3.0.2",
     "mongodb": "^3.0.8",
