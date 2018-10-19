@@ -30,6 +30,9 @@ const User = global.sequelize.define('users', {
   birthday: {
     type: Sequelize.DATEONLY
   },
+  genre: {
+    type: Sequelize.STRING
+  },
   createdAt: {
     type: Sequelize.DATE
   },

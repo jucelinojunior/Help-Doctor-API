@@ -1,4 +1,5 @@
 const Sequelize = require('sequelize')
+
 const {
   POSTGRES_HOST,
   POSTGRES_USERNAME,
@@ -22,4 +23,16 @@ require('./define-models')() // Requere todos os módulos do Sequelize
 
 module.exports = () => {
   global.sequelize.authenticate()
+}
+
+module.exports.connect = () => {
+  const client = new Client({
+    user: POSTGRES_USERNAME,
+    host: POSTGRES_HOST,
+    database: POSTGRES_DATABASE,
+    password: POSTGRES_PASSWORD,
+    port: POSTGRES_PORT,
+  });
+
+  return client;
 }
