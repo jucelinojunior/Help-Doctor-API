@@ -18,6 +18,9 @@ const Address = global.sequelize.define('address', {
   zipcode: {
     type: Sequelize.STRING
   },
+  formatedAddress: {
+    type: Sequelize.STRING
+  },
   number: {
     type: Sequelize.STRING
   },

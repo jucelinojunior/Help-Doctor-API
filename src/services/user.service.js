@@ -59,7 +59,7 @@ const getAll = async () => {
         model: Address,
         as: 'address',
         required: false,
-        attributes: ['id', 'address']
+        attributes: ['id', 'address','formatedaddress']
       }
     ]
   }).map(it => {
