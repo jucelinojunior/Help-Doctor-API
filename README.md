@@ -69,7 +69,7 @@ Os parametros deverá ser passado via post, nos fields
 
 ## Listar fila em um hospital `[GET] /queue/hospital/{hospital_id}`
 
-### Resposta (OBJETO QUEUE)
+### Resposta (ARRAY DE OBJETO QUEUE)
 
 ```
     Array: QUEUE
@@ -77,7 +77,7 @@ Os parametros deverá ser passado via post, nos fields
 
 ## Remover paciente da fila `[DELETE] /queue/remove/{hospital_id}`
 
-### Resposta (OBJETO QUEUE)
+### Resposta (OBJETO APPOINTMENT)
 
 ```
     Objeto: APPOINTMENT
