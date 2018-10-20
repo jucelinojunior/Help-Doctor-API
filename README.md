@@ -69,17 +69,55 @@ Os parametros deverá ser passado via post, nos fields
 
 ## Listar fila em um hospital `[GET] /queue/hospital/{hospital_id}`
 
-### Resposta (ARRAY DE OBJETO QUEUE)
+### Resposta
 
 ```
-    Array: QUEUE
+    [{
+        "id": 1,
+        "name": "afraates",
+        "personal_document": "13650671816",
+        "email": "afraates@gmail.com",
+        "birthday": "1962-07-06T03:00:00.000Z",
+        "address_id": 85,
+        "genre": "M",
+        "phonenumber": "(11) 99620-2147",
+        "createdAt": "2018-10-19T22:14:03.054Z",
+        "updatedAt": "2018-10-19T22:14:03.054Z",
+        "deletedAt": null,
+        "severity": 1,
+        "appointment_id": 1,
+        "start": "2018-10-20T04:41:04.192Z",
+        "queue_id": 4,
+        "neednow": 1 //parametro para prioridade da fila, quanto menor, maior a prioridade, já vem ordernado por maior prioridade
+    }]
 ```
 
-## Remover paciente da fila `[DELETE] /queue/remove/{hospital_id}`
+## Remover paciente da fila `[DELETE] /queue/remove/{queue_id}`
 
-### Resposta (OBJETO APPOINTMENT)
-
+### Resposta
 ```
-    Objeto: APPOINTMENT
+    {
+    	"id": 1,
+	    "pronouncer_id": 1,
+	    "schedule": "2011-11-18T02:00:00.000Z",
+	    "type_id": 1,
+	    "description": "Descrição",
+	    "user_id": 1,
+	    "skin_burn": 0,
+	    "fever": 36,
+	    "convulsion": 0,
+	    "asthma": false,
+	    "vomit": false,
+	    "diarrhea": false,
+	    "heart_attack": false,
+	    "hypovolemic_shock": false,
+	    "apnea": false,
+	    "is_pregnant": false,
+	    "medical_return": false,
+	    "status": 4, //'recepção' : 1,'avaliação' : 2,'na fila': 3,'concluido': 4
+	    "createdAt": "2018-10-19T22:14:03.245Z",
+	    "updatedAt": "2018-10-20T04:41:04.269Z",
+	    "deletedAt": null
+    }
 ```
 
