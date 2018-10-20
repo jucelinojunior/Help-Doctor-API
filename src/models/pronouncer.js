@@ -36,10 +36,10 @@ const Hospital = global.sequelize.define('pronouncer', {
   tableName: 'pronouncer'
 })
 
-Hospital.hasOne(Patient, {
+Hospital.hasMany(Patient, {
   as: 'patient',
   foreignKey: 'id',
-  targetKey: 'patient_id'
+  sourceKey: 'patient_id'
 });
 
 module.exports = Hospital

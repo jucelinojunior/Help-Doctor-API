@@ -1,7 +1,8 @@
 const Sequelize = require('sequelize')
 const User = require('./users')
 const Pronouncer = require('./pronouncer');
-
+const HasPain = require('./has_pain');
+const HasTrauma = require('./has_trauma');
 const Appointment = global.sequelize.define('appointment', {
   id: {
     type: Sequelize.STRING,
@@ -73,16 +74,28 @@ const Appointment = global.sequelize.define('appointment', {
   tableName: 'appointment'
 })
 
-Appointment.hasOne(User, {
+Appointment.hasMany(User, {
   as: 'user',
   foreignKey: 'id',
-  targetKey: 'user_id'
+  sourceKey: 'user_id'
 })
 
-Appointment.hasOne(Pronouncer, {
+Appointment.hasMany(HasPain, {
+  as: 'has_pain',
+  foreignKey: 'appointment_id',
+  sourceKey: 'id'
+})
+
+Appointment.hasMany(HasTrauma, {
+  as: 'has_trauma',
+  foreignKey: 'appointment_id',
+  sourceKey: 'id'
+});
+
+Appointment.hasMany(Pronouncer, {
   as: 'pronouncer',
   foreignKey: 'id',
-  targetKey: 'pronouncer_id'
+  sourceKey: 'pronouncer_id'
 })
 
 module.exports = Appointment

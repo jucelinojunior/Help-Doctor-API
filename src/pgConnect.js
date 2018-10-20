@@ -8,7 +8,8 @@ const {
   POSTGRES_PORT
 } = process.env
 
-module.exports.connect = () => {
+module.exports.connect = function () {
+  
   const client = new Client({
     user: POSTGRES_USERNAME,
     host: POSTGRES_HOST,

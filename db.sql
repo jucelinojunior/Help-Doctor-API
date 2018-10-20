@@ -178,23 +178,50 @@ CREATE TABLE ROLES (
           "createdAt" TIMESTAMP NULL DEFAULT NOW(),
           "updatedAt" TIMESTAMP NULL DEFAULT NOW(),
           "deletedAt" TIMESTAMP DEFAULT NULL,
-          foreign key (hospital_id) references TB_HOSPITAL(id),
-          foreign key (appointment_id) references TB_APPOINTMENT(id)
+          foreign key (hospital_id) references HOSPITAL(id),
+          foreign key (appointment_id) references APPOINTMENT(id)
         );
 
         CREATE TABLE PAIN (
           id SERIAL PRIMARY KEY,
           pain_name VARCHAR(255) NOT NULL,
-          createdAt TIMESTAMP NULL DEFAULT NOW(),
-          updatedAt TIMESTAMP NULL DEFAULT NOW()
+          severity SMALLINT NOT NULL,
+          "createdAt" TIMESTAMP NULL DEFAULT NOW(),
+          "updatedAt" TIMESTAMP NULL DEFAULT NOW(),
+          "deletedAt" TIMESTAMP DEFAULT NULL
         );
+
 
         CREATE TABLE TRAUMA (
           id SERIAL PRIMARY KEY,
+          severity SMALLINT NOT NULL,
           trauma_name VARCHAR(255) NOT NULL,
           trauma_type INT NOT NULL,
-          createdAt TIMESTAMP NULL DEFAULT NOW(),
-          updatedAt TIMESTAMP NULL DEFAULT NOW()
+          "createdAt" TIMESTAMP NULL DEFAULT NOW(),
+          "updatedAt" TIMESTAMP NULL DEFAULT NOW(),
+          "deletedAt" TIMESTAMP DEFAULT NULL
+        );
+
+        CREATE TABLE APPOINTMENT_HAS_TRAUMAS (
+          id SERIAL PRIMARY KEY,
+          appointment_id INT NOT NULl,
+          trauma_id INT NOT NULL,
+          "createdAt" TIMESTAMP NULL DEFAULT NOW(),
+          "updatedAt" TIMESTAMP NULL DEFAULT NOW(),
+          "deletedAt" TIMESTAMP DEFAULT NULL,
+          foreign key (appointment_id) REFERENCES APPOINTMENT(id),
+          foreign key (trauma_id) REFERENCES TRAUMA(id)
+        );
+
+        CREATE TABLE APPOINTMENT_HAS_PAIN (
+          id SERIAL PRIMARY KEY,
+          appointment_id INT NOT NULl,
+          pain_id INT NOT NULL,
+          "createdAt" TIMESTAMP NULL DEFAULT NOW(),
+          "updatedAt" TIMESTAMP NULL DEFAULT NOW(),
+          "deletedAt" TIMESTAMP DEFAULT NULL,
+          foreign key (appointment_id) REFERENCES APPOINTMENT(id),
+          foreign key (pain_id) REFERENCES PAIN(id)
         );
 
         CREATE TABLE USERS_HAS_ROLES (
