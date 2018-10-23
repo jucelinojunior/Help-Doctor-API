@@ -1,5 +1,3 @@
-const hapiJWT = require('hapi-auth-jwt')
-
 async function register (server) {
   await server.register({
     plugin: require('good'),

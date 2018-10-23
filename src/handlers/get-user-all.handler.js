@@ -12,7 +12,8 @@ module.exports = {
   },
   config: {
     auth: {
-      strategy: 'helpdoctor'
+      strategy: 'helpdoctor',
+      scope: ['user.all']
     }
   }
 }
