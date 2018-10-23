@@ -198,6 +198,42 @@ INSERT INTO public.address(
             address, neighborhood, state, zipcode, "number", complement)
     VALUES ('Rua teste','Bairro Teste', 'SP', '04174090', 8, '');
 
+INSERT INTO public.address(
+            address, neighborhood, state, zipcode, "number", complement)
+    VALUES ('Rua teste','Bairro Teste', 'SP', '04174090', 8, '');
+
+INSERT INTO public.users(
+            id, 
+            name,
+            email, 
+            salt, 
+            password, 
+            "addressId", 
+            birthday, 
+            medical_document, 
+            personal_document,
+            responsable_hospital, 
+            "createdAt", 
+            "updatedAt", 
+            "deletedAt"
+          )
+    VALUES (
+      1, 
+      'Administrador',
+      'admin@helpdoctor.com.br',
+      '$2a$10$HfBYhtQZt2iyH2j8K4flXO',
+      '$2a$10$HfBYhtQZt2iyH2j8K4flXOwXXxODlFv/01MuG8gVGXbr4w8NVfDs.',
+      1,
+      '1980-01-01',
+      null, 
+      '12345678923', 
+      null, 
+      '2018-10-12 17:36:33.58',
+      '2018-10-12 17:36:33.58',
+      null);
+
+
+
 INSERT INTO public.hospital(
              name, address)
     VALUES ( 'Hospital teste', 1);
@@ -207,8 +243,10 @@ INSERT INTO public.roles(
             name)
     VALUES ( 'ADMIN');
 
-insert into actions (name) values ('create-user');
+insert into actions (name) values ('user.creat');
+insert into actions (name) values ('user.all');
 insert into roles_has_actions (role_id, action_id) values (1,1);
+insert into roles_has_actions (role_id, action_id) values (1,2);
 
 -- SELECT * FROM users as users
 -- inner join users_has_roles as users_has_roles ON users_has_roles.user_id = users.id

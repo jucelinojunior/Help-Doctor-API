@@ -11,24 +11,36 @@ Rota resposnável por fazer a autorização do usuário, com ela você recebe um
 
 Os parametros deverá ser passado via post, nos fields
 
-### Post
+### Parametros na QUERY
 
 |   Parametro  |    Descrição  |     Tipo    |  Obrigatório |
 |--------------|---------------|-------------|--------------|
 |`grant_type`  |  Tipo de autorização de a cordo como a especificação do oauth2| `string` |  `true` |
+
+### Parametros com requisição via `form-data` ou `x-www-form-urlencodes`
+
+|   Parametro | Descrição | Tipo  | Obrigatório |
+|-------------|-----------|-------|-------------|
 |`username`  |  O usuário da aplicação| `string` |  `true` |
 |`password`  |  A senha do usuário | `string` |  `true` |
 
 
-### Exemplo
+### Exemplo Curl
 ```
  POST /oauth/authorization HTTP/1.1
 
  Host: authorization-server.com.br
  &grant_type=password
- &username=12345678923
- &password=mypassword
+
 ```
+
+### Exemplo CURL
+
+```curl
+curl -X POST -F 'username=12345678912' -F 'password=123' authorization-server.com.br&grant_type=password
+```
+
+> Para logar no sistema, existe um usuário teste que é username: `12345678923` e `password` sucesso1029
 
 
 ### Erros possíveis

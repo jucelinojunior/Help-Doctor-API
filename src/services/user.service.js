@@ -16,7 +16,13 @@ const getUserByDocument = async (personalDocument) => {
         as: 'roles',
         required: false,
         attributes: ['id', 'name'],
-        through: { attributes: [ /* 'user_id' */ ] }
+        through: { attributes: [ /* 'user_id' */ ] },
+        include: {
+          as: 'actions',
+          model: Action,
+          attributes: ['id', 'name'],
+          through: { attributes: [ /* 'user_id' */ ] }
+        }
       },
       {
         model: Address,
@@ -63,7 +69,6 @@ const getAll = async () => {
       }
     ]
   }).map(it => {
-    console.log(it.roles)
     return it
   })
 }
