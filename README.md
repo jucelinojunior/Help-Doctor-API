@@ -37,10 +37,10 @@ Os parametros deverá ser passado via post, nos fields
 ### Exemplo CURL
 
 ```curl
-curl -X POST -F 'username=12345678912' -F 'password=123' authorization-server.com.br&grant_type=password
+curl -X POST -F 'username=admin@helpdoctor.com.br' -F 'password=123' authorization-server.com.br&grant_type=password
 ```
 
-> Para logar no sistema, existe um usuário teste que é username: `12345678923` e `password` sucesso1029
+> Para logar no sistema, existe um usuário teste que é username: `admin@helpdoctor.com.br` e `password` sucesso1029
 
 
 ### Erros possíveis
@@ -50,9 +50,9 @@ curl -X POST -F 'username=12345678912' -F 'password=123' authorization-server.co
 |   `401`       | `Unauthorized` |  `Failed to authenticate` | O usuário forneceu credenciais inválidas |
 | `400` | `Bad Request` | `child \"password\" fails because [\"password\" is required]` | Dentro do payload não foi fornecido uma senha |
 | `400` | `Bad Request` | `child \"username\" fails because [\"password\" is required]` | Dentro do payload não foi fornecido um usuário |
-| `400` | `Bad Request` | `child \"username\" fails because [\"username\" with value \"12345678\" fails to match the required pattern: /\\d{11}/]` | O usuário passado não possui um formato de CPF valido, ou seja, de 11 digitos |
-| `400` | `Bad Request` | `child \"grant_type\" fails because [\"grant_type\" is required]` | Não foi passado um grant_type dentro do payload |
-| `400` | `Bad Request` | `child \"grant_type\" fails because [\"grant_type\" must be one of [password]]` | o `grant_type` passado não é um `grant_type` válido. Ele só aceita o valor `password` |
+| `400` | `Bad Request` | `"child \"username\" fails because [\"username\" must be a valid email]` | O usuário passado passou um email valido |
+| `400` | `Bad Request` | `grant_type is required` | Não foi passado um grant_type na query |
+| `400` | `Bad Request` | `grant_type must be password value` | o `grant_type` passado não é um `grant_type` válido. Ele só aceita o valor `password` |
 | `500` | `Internal Server Error` | `An internal server error occurred` | Ocorreu um erro de implementação no servidor, nesse caso você deve ver o log do servidor |
 
 

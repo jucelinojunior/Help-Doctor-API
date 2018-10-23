@@ -5,10 +5,10 @@ const Address = require('../models/address')
 const add = async (user) => {
   return User.build(user).save()
 }
-const getUserByDocument = async (personalDocument) => {
+const getUserByEmail = async (email) => {
   const users = await User.findAll({
     where: {
-      personal_document: personalDocument
+      email: email
     },
     include: [
       {
@@ -29,14 +29,7 @@ const getUserByDocument = async (personalDocument) => {
         as: 'address',
         required: false,
         attributes: ['id', 'address']
-        // through: { attributes: [] }
       }
-      // {
-      //   model: Action,
-      //   as: 'actions',
-      //   required: false,
-      //   attributes: ['id', 'name']
-      // }
     ]
   })
   const user = users.map(it => {
@@ -76,5 +69,5 @@ const getAll = async () => {
 module.exports = {
   add,
   getAll,
-  getUserByDocument
+  getUserByEmail
 }

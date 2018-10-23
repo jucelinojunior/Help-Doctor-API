@@ -17,8 +17,7 @@ const {
 } = process.env
 
 const schema = Joi.object({
-  grant_type: Joi.string().valid('password').required(),
-  username: Joi.string().regex(/\d{11}/).required(),
+  username: Joi.string().email().required(),
   password: Joi.string().required()
 })
 
@@ -26,10 +25,14 @@ module.exports = {
   method: 'POST',
   path: '/oauth/authorize',
   handler: async (request, reply) => {
-    const {username, password, grant_type: grantType} = request.payload
+    const validGrandTypes = ['password']
+    const {grant_type: grantType} = request.query
+    const { username, password } = request.payload
+    if (!grantType) throw Boom.badRequest('grant_type is required')
+    if (!validGrandTypes.includes(grantType)) throw Boom.badRequest('grant_type must be password value.')
     try {
       if (grantType === 'password') {
-        const user = await userService.getUserByDocument(username)
+        const user = await userService.getUserByEmail(username)
         const passwordOfUser = user.password
         const criptedPassword = bcrypt.hashSync(password, user.salt)
         if (passwordOfUser === criptedPassword) {
