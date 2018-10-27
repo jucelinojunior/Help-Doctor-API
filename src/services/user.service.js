@@ -3,7 +3,8 @@ const Role = require('../models/roles')
 const Action = require('../models/actions')
 const Address = require('../models/address')
 const add = async (user) => {
-  return User.build(user).save()
+  return User
+  
 }
 const getUserByEmail = async (email) => {
   const users = await User.findAll({

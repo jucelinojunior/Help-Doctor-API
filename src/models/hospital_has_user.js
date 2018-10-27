@@ -1,16 +1,17 @@
 const Sequelize = require('sequelize')
-const Address = require('./address')
+const Address = require('./hospital')
+const User = require('./users')
 
-const Hospital = global.sequelize.define('hospital', {
+const Hospital = global.sequelize.define('hospital_has_user', {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
     autoIncrement: true
   },
-  name: {
-    type: Sequelize.STRING
+  hospital_id: {
+    type: Sequelize.INTEGER
   },
-  address: {
+  user_id: {
     type: Sequelize.INTEGER
   },
   createdAt: {
@@ -26,13 +27,19 @@ const Hospital = global.sequelize.define('hospital', {
 {
   paranoid: true,
   // freezeTableName: true,
-   tableName: 'hospital'
+   tableName: 'hospital_has_user'
 })
 
 Hospital.hasMany(Address, {
-    as: 'address_info',
+    as: 'hospital',
     foreignKey: 'id',
-    sourceKey: 'address'
+    sourceKey: 'hospital_id'
+});
+
+Hospital.hasMany(User, {
+    as: 'user',
+    foreignKey: 'id',
+    sourceKey: 'hospital_id'
 });
 
 module.exports = Hospital
