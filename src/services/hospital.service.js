@@ -1,7 +1,7 @@
 const User = require('../models/users')
 const Hospital = require('../models/hospital')
 const Address = require('../models/address')
-
+const Users = require('../models/hospital_has_user')
 const getAll = async (names = "",address = "") => {
   
   var obj = {
@@ -45,6 +45,15 @@ const destroy = async (id) => {
   })
 }
 
+const users = async (id,hospital) => {
+  var user = new Users();
+  return user.update({user_id: id,hospital_id: hospital}).then(() => {
+    return user;
+  });
+
+}
+
+
 const update = async (id,h) => {
   
   const hospital = await Hospital.findOne({
@@ -60,5 +69,6 @@ module.exports = {
   getAll,
   register,
   update,
-  destroy
+  destroy,
+  users
 }

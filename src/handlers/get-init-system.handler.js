@@ -340,8 +340,9 @@ module.exports = {
 					id SERIAL PRIMARY KEY,
 					hospital_id INT NOT NULL,
 					user_id INT NOT NULL,
-					createdAt TIMESTAMP NULL DEFAULT NOW(),
-					updatedAt TIMESTAMP NULL DEFAULT NOW(),
+					"createdAt" TIMESTAMP NULL DEFAULT NOW(),
+					"updatedAt" TIMESTAMP DEFAULT NOW(),
+					"deletedAt" TIMESTAMP DEFAULT NULL,
 					foreign key (hospital_id) references HOSPITAL(id),
 					foreign key (user_id) references USERS(id)
 				);

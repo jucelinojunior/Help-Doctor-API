@@ -197,8 +197,6 @@ ou
 }
 ```
 
-passar um ou outro, opcional
-
 ### Resposta
 ``` 
 [
@@ -219,4 +217,26 @@ passar um ou outro, opcional
 ### Resposta
 ``` 
 1 | 0
+```
+
+
+## usuario nos hospitais `[POST] /hospital/user
+
+``` 
+{
+    "user": id,
+    "hospital": id
+}
+```
+
+### Resposta
+``` 
+{
+    "id": 1,
+    "user_id": 1,
+    "hospital_id": 1,
+    "updatedAt": "2018-10-27T21:46:38.464Z",
+    "createdAt": "2018-10-27T21:46:38.464Z",
+    "deletedAt": null
+}
 ```
