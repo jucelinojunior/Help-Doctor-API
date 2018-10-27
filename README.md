@@ -100,6 +100,13 @@ Os parametros deverá ser passado via post, nos fields
 
 ##Listar hospitais `[GET] /hospital
 
+|   Parametro Query |    Descrição  |     Tipo  
+|--------------|---------------|-------------|
+|`name`  |  Buscar por nome | `String` |
+|`address`  |  Buscar por endereço | `String` |
+
+passar um ou outro, opcional
+
 ### Resposta
 ``` 
 [

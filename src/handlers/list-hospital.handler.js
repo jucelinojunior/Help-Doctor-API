@@ -8,6 +8,12 @@ module.exports = {
   method: 'GET',
   path: '/hospital',
   handler: async (request) => {
+  	if(request.query.name){
+  		return hospitalService.getAll(request.query.name);
+  	}
+  	if(request.query.address) {
+  		return hospitalService.getAll("",request.query.address);
+  	}
     return hospitalService.getAll()
   }
   // config: {
