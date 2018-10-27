@@ -9,14 +9,21 @@ const Hospital = global.sequelize.define('hospital', {
   },
   name: {
     type: Sequelize.STRING
+  },
+  address: {
+    type: Sequelize.INTEGER
   }
 },
 {
   paranoid: true,
   // freezeTableName: true,
-  // tableName: 'TB_HOSPITAL'
+   tableName: 'hospital'
 })
-// Hospital.belongsTo(Address, {
-//   foreignKey: 'address_id'
-// })
+
+Hospital.hasMany(Address, {
+    as: 'address_info',
+    foreignKey: 'id',
+    sourceKey: 'address'
+});
+
 module.exports = Hospital
