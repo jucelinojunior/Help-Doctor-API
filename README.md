@@ -127,6 +127,96 @@ passar um ou outro, opcional
 ]
 ```
 
+##Criar hospitais `[POST] /hospital
+
+``` 
+{
+    "name": "HOSPITAL ALBERT EINSTEIN",
+    "address": 1
+}
+```
+
+ou
+
+``` 
+{
+    "name": "HOSPITAL ALBERT EINSTEIN",
+    "address": {
+        "address": "string",
+        "neighborhood": "string",
+        "state": "string",
+        "number": "string",
+        "complement": "",
+        "zipcode": ""
+    }
+}
+```
+
+passar um ou outro, opcional
+
+### Resposta
+``` 
+[
+    {
+        "id": 1,
+        "name": "HOSPITAL ALBERT EINSTEIN",
+        "address": 1,
+        "createdAt": "2018-10-20T18:56:02.620Z",
+        "updatedAt": "2018-10-20T18:56:02.620Z",
+        "deletedAt": null,
+    }
+]
+```
 
 
+## Atualizar hospitais `[PUT] /hospital/{id}
 
+``` 
+{
+    "name": "HOSPITAL ALBERT EINSTEIN",
+    "address": 1
+}
+```
+
+ou
+
+``` 
+{
+    "name": "HOSPITAL ALBERT EINSTEIN",
+    "address": {
+        id: 1,
+        data: {
+            "address": "string",
+            "neighborhood": "string",
+            "state": "string",
+            "number": "string",
+            "complement": "",
+            "zipcode": ""
+        }
+    }
+}
+```
+
+passar um ou outro, opcional
+
+### Resposta
+``` 
+[
+    {
+        "id": 1,
+        "name": "HOSPITAL ALBERT EINSTEIN",
+        "address": 1,
+        "createdAt": "2018-10-20T18:56:02.620Z",
+        "updatedAt": "2018-10-20T18:56:02.620Z",
+        "deletedAt": null,
+    }
+]
+```
+
+
+## Deletar hospitais `[DELETE] /hospital/{id}
+
+### Resposta
+``` 
+1 | 0
+```

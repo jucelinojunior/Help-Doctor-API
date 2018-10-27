@@ -31,6 +31,34 @@ const getAll = async (names = "",address = "") => {
   return await Hospital.findAll(obj);
 }
 
+const register = async (h) => {
+  const hospital = new Hospital();
+  return hospital.update(h).then(()=>{
+      return hospital;
+    });
+}
+
+const destroy = async (id) => {
+  
+  return await Hospital.destroy({
+    where: {id: id}
+  })
+}
+
+const update = async (id,h) => {
+  
+  const hospital = await Hospital.findOne({
+    where: {id: id}
+  })
+
+  return hospital.update(h).then(()=>{
+      return hospital;
+    });
+}
+
 module.exports = {
-  getAll
+  getAll,
+  register,
+  update,
+  destroy
 }
