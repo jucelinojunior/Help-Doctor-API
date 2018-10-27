@@ -49,9 +49,14 @@ Os parametros deverá ser passado via post, nos fields
 
 ### Post
 
+``` 
+    {id: int}
+``` 
+
 |   Parametro  |    Descrição  |     Tipo    |  Obrigatório |
 |--------------|---------------|-------------|--------------|
 |`id`  |  Enviar o ID da consulta do paciente | `integer` |  `true` |
+
 
 ### Resposta (OBJETO QUEUE)
 ```
@@ -92,32 +97,29 @@ Os parametros deverá ser passado via post, nos fields
     }]
 ```
 
-## Remover paciente da fila `[DELETE] /queue/remove/{queue_id}`
+
+##Listar hospitais `[GET] /hospital
 
 ### Resposta
-```
+``` 
+[
     {
-    	"id": 1,
-	    "pronouncer_id": 1,
-	    "schedule": "2011-11-18T02:00:00.000Z",
-	    "type_id": 1,
-	    "description": "Descrição",
-	    "user_id": 1,
-	    "skin_burn": 0,
-	    "fever": 36,
-	    "convulsion": 0,
-	    "asthma": false,
-	    "vomit": false,
-	    "diarrhea": false,
-	    "heart_attack": false,
-	    "hypovolemic_shock": false,
-	    "apnea": false,
-	    "is_pregnant": false,
-	    "medical_return": false,
-	    "status": 4, //'recepção' : 1,'avaliação' : 2,'na fila': 3,'concluido': 4
-	    "createdAt": "2018-10-19T22:14:03.245Z",
-	    "updatedAt": "2018-10-20T04:41:04.269Z",
-	    "deletedAt": null
+        "id": 1,
+        "name": "HOSPITAL ALBERT EINSTEIN",
+        "address": 1,
+        "createdAt": "2018-10-20T18:56:02.620Z",
+        "updatedAt": "2018-10-20T18:56:02.620Z",
+        "deletedAt": null,
+        "address_info": [
+            {
+                "id": 1,
+                "formatedaddress": "Avenida Alet Einstein, 627 Moumi | São Paulo Telefone: (11) 2151-1233"
+            }
+        ]
     }
+]
 ```
+
+
+
 

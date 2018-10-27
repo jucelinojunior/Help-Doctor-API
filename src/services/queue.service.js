@@ -13,6 +13,8 @@ const Pronouncer = require('../models/pronouncer');
 const Patient = require('../models/patient');
 const Queue = require('../models/queue');
 
+const clientM = require('../pgConnect.js');
+
 const age = function (birthday) {
 	var ageDifMs = Date.now() - birthday.getTime();
    	var ageDate = new Date(ageDifMs); // miliseconds from epoch
@@ -39,14 +41,11 @@ const verifyTrauma = function(appointment,severity) {
 	return false;
 }
 
-module.exports = {
-	method: 'POST',
-	path: '/queue',
-	handler: async (request, h) => {
+const insertQueue = async (idAppointment) => {
 
-		const appointment = await Appointment.findOne({
+	const appointment = await Appointment.findOne({
 			where: {
-				id: request.payload.id
+				id: idAppointment
 			},
 			include: [
 		      {
@@ -126,5 +125,52 @@ module.exports = {
   				return err;
   			});
   		}).catch(err => {return err;});
-	}
+}
+
+const removeInQueue = async (id) => {
+	const queue = await Queue.findOne({
+			where: { id: id }
+		});
+
+		queue.status = QUEUE.DONE_QUEUE;
+		
+		return queue.save().then(()=>{
+			return queue;
+		}).catch(err => {
+			return "erro ao salvar o status da fila";
+		});
+}
+
+const viewQueue = function (hospitalId) {
+	var client = clientM.connect();
+	client.connect();
+	return client.query(`
+		SELECT PATIENT.*,QUEUE.severity,QUEUE.appointment_id,QUEUE."createdAt" as start,QUEUE.id as queue_id,
+		CASE 
+		WHEN QUEUE."createdAt" > (now() AT TIME ZONE 'America/Sao_Paulo' - INTERVAL '120 minutes') AND QUEUE.severity = 1 THEN 4
+		WHEN QUEUE."createdAt" > (now() AT TIME ZONE 'America/Sao_Paulo' - INTERVAL '60 minutes') AND QUEUE.severity = 2 THEN 3
+		WHEN QUEUE."createdAt" > (now() AT TIME ZONE 'America/Sao_Paulo' - INTERVAL '30 minutes') AND QUEUE.severity = 3 THEN 2
+		WHEN QUEUE."createdAt" > (now() AT TIME ZONE 'America/Sao_Paulo' - INTERVAL '2 minutes') AND QUEUE.severity = 4 THEN 1
+		ELSE 0
+		END as needNow
+		FROM QUEUE 
+		INNER JOIN APPOINTMENT ON QUEUE.appointment_id = APPOINTMENT.id 
+		INNER JOIN PRONOUNCER ON APPOINTMENT.pronouncer_id = PRONOUNCER.id
+		INNER JOIN PATIENT ON PRONOUNCER.patient_id = PATIENT.id
+		WHERE QUEUE.hospital_id = $1 and QUEUE.status = $2
+		ORDER BY needNow,start ASC;
+
+		`,[hospitalId,QUEUE.IN_QUEUE]).then((res) => {
+			client.end();
+			return res.rows;
+	}).catch((err) => {
+		client.end();
+		return err;	
+	});
+}
+
+module.exports = {
+	insertQueue,
+	removeInQueue,
+	viewQueue
 }
