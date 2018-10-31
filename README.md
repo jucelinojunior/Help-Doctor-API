@@ -271,6 +271,31 @@ ou
 ]
 ```
 
+
+## cadastrar category medical `[POST] /medical/category
+
+
+
+### Enviar
+``` 
+    {
+        "name": "bakbakbka"
+    }
+```
+
+
+### Resposta
+``` 
+{
+    "id": 2,
+    "name": "bakbakbka",
+    "updatedAt": "2018-10-31T23:57:11.231Z",
+    "createdAt": "2018-10-31T23:57:11.231Z",
+    "deletedAt": null
+}
+```
+
+
 ## Listar todas as roles `[GET] /role
 
 

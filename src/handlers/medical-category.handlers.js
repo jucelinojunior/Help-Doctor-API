@@ -4,10 +4,23 @@
  */
 const userService = require('../services/hospital.service')
 
-module.exports = {
+const list = {
   method: 'GET',
   path: '/medical/category',
   handler: async (request) => {
     return userService.getAllCategories()
   }
+}
+
+const register = {
+  method: 'POST',
+  path: '/medical/category',
+  handler: async (request) => {
+    return userService.registerCategories(request.payload.name);
+  }
+}
+
+module.exports = {
+  list,
+  register
 }
