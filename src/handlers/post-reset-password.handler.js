@@ -1,5 +1,6 @@
 const userService = require('../services/user.service')
 const nodemailer = require('nodemailer');
+const bcrypt = require('bcrypt-nodejs')
 
 module.exports = {
   method: 'POST',
@@ -17,24 +18,35 @@ module.exports = {
             pass: 'senha'
           }
         });
-
+        
+        const pass = Math.floor(Math.random() * 100)+""+Math.floor(Math.random() * 100)+""+Math.floor(Math.random() * 100);
+        
         const mailOptions = {
           from: 'email@gmail.com',
           to: user.email,
           subject: 'Reset de senha',
-          text: 'Nova senha: '+Math.floor(Math.random() * 100)+""+Math.floor(Math.random() * 100)+""+Math.floor(Math.random() * 100)
+          text: 'Nova senha: '+pass
         };
 
-        transporter.sendMail(mailOptions, function(error, info){
+        const salt = bcrypt.genSaltSync(10);
+        user.password = bcrypt.hashSync(pass, salt);
+
+        return user.save().then(()=>{
+
+          transporter.sendMail(mailOptions, function(error, info){
           if (error) {
             console.log(error);
-          } else {
-            console.log('Email sent: ' + info.response);
-          }
+            } else {
+              console.log('Email sent: ' + info.response);
+            }
+          });
+
+          return {errors: false,data: user}
+        
+        }).catch(error => {
+          return {errors: true,data: 'E-mail não encontrado'}
         });
 
-        return {errors: false,data:"enviando..."};
-    
     });
 
   }
