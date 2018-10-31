@@ -206,23 +206,26 @@ module.exports = {
 			CREATE TABLE MEDICAL_CATEGORY (
 				id SERIAL PRIMARY KEY,
 				name VARCHAR(255) NOT NULL,
-				createdAt TIMESTAMP NULL DEFAULT NOW(),
-				updatedAt TIMESTAMP NULL DEFAULT NOW()
+				"createdAt" TIMESTAMP NULL DEFAULT NOW(),
+				"updatedAt" TIMESTAMP DEFAULT NOW(),
+				"deletedAt" TIMESTAMP DEFAULT NULL
 			);
 
 			CREATE TABLE TYPE_PRONOUNCER (
 				id SERIAL PRIMARY KEY,
 				name VARCHAR(255) NOT NULL,
-				createdAt TIMESTAMP NULL DEFAULT NOW(),
-				updatedAt TIMESTAMP NULL DEFAULT NOW()
+				"createdAt" TIMESTAMP NULL DEFAULT NOW(),
+				"updatedAt" TIMESTAMP DEFAULT NOW(),
+				"deletedAt" TIMESTAMP DEFAULT NULL
 			);
 
 			CREATE TABLE USERS_HAS_MEDICAL_CATEGORY (
 				user_id INT NOT NULL,
 				medical_category_id INT NOT NULL,
 				PRIMARY KEY (user_id, medical_category_id),
-				createdAt TIMESTAMP NULL DEFAULT NOW(),
-				updatedAt TIMESTAMP NULL DEFAULT NOW(),
+				"createdAt" TIMESTAMP NULL DEFAULT NOW(),
+				"updatedAt" TIMESTAMP DEFAULT NOW(),
+				"deletedAt" TIMESTAMP DEFAULT NULL,
 				foreign key (user_id) REFERENCES USERS(id),
 				foreign key (medical_category_id) REFERENCES MEDICAL_CATEGORY(id)
 			);

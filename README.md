@@ -252,3 +252,21 @@ ou
     "deletedAt": null
 }
 ```
+
+
+## usuario nos hospitais `[GET] /medical/category
+
+
+
+### Resposta
+``` 
+[
+    {
+        "id": 1,
+        "name": "Clinico geral",
+        "createdAt": "2018-10-31T18:58:53.657Z",
+        "updatedAt": "2018-10-31T18:58:53.657Z",
+        "deletedAt": null
+    }
+]
+```
