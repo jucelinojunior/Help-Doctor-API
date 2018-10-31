@@ -1,12 +1,12 @@
 
 const Sequelize = require('sequelize')
-const RolesHasActions = global.sequelize.define('users_has_roles', {
+const RolesHasActions = global.sequelize.define('roles_has_actions', {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
     autoIncrement: true
   },
-  user_id: {
+  action_id: {
     type: Sequelize.INTEGER
   },
   role_id: {
@@ -23,7 +23,8 @@ const RolesHasActions = global.sequelize.define('users_has_roles', {
   }
 },
 {
-  paranoid: true
+  paranoid: true,
+  tableName: 'roles_has_actions'
 })
 
 module.exports = RolesHasActions
