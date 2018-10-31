@@ -1,13 +1,19 @@
 const Sequelize = require('sequelize')
-var pg = require('pg')
-pg.defaults.ssl = true
+const pg = require('pg')
 const {
+  NODE_ENV,
   POSTGRES_HOST,
   POSTGRES_USERNAME,
   POSTGRES_PASSWORD,
   POSTGRES_DATABASE,
   POSTGRES_PORT
 } = process.env
+let shouldUseSSL = false
+if (NODE_ENV ==='production') {
+  pg.defaults.ssl = true
+  shouldUseSSL = true
+}
+
 console.log(POSTGRES_DATABASE, POSTGRES_USERNAME, POSTGRES_PASSWORD)
 
 global.sequelize = new Sequelize(POSTGRES_DATABASE, POSTGRES_USERNAME, POSTGRES_PASSWORD, {
@@ -17,7 +23,7 @@ global.sequelize = new Sequelize(POSTGRES_DATABASE, POSTGRES_USERNAME, POSTGRES_
   charset: 'utf8mb4',
   logging: true,
   freezeTableName: true,
-  ssl: true
+  ssl: shouldUseSSL
 })
 require('./define-models')() // Requere todos os módulos do Sequelize
 

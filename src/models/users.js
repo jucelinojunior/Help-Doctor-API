@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const Roles = require('./roles')
-const Actions = require('./actions')
 const Address = require('./address')
+const Hospital = require('./hospital')
 // const UsersHasRoles = require('./users_has_roles')
 const User = global.sequelize.define('users', {
   id: {
@@ -33,6 +33,10 @@ const User = global.sequelize.define('users', {
   genre: {
     type: Sequelize.STRING
   },
+  responsable_hospital: {
+    type: Sequelize.INTEGER,
+    allowNull: true
+  },
   createdAt: {
     type: Sequelize.DATE
   },
@@ -57,6 +61,20 @@ User.belongsToMany(Roles, {
   through: 'users_has_roles',
   foreignKey: 'user_id',
   targetKey: 'id',
+  contraints: false
+})
+
+User.belongsToMany(Hospital, {
+  as: 'hospitals',
+  through: 'hospital_has_user',
+  foreignKey: 'user_id',
+  contraints: false
+})
+
+Hospital.belongsToMany(User, {
+  as: 'users',
+  through: 'hospital_has_user',
+  foreignKey: 'hospital_id',
   contraints: false
 })
 
