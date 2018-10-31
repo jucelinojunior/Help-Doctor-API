@@ -2,6 +2,8 @@ const User = require('../models/users')
 const Hospital = require('../models/hospital')
 const Address = require('../models/address')
 const Users = require('../models/hospital_has_user')
+const Categories = require('../models/medical_category')
+
 const getAll = async (names = "",address = "") => {
   
   var obj = {
@@ -65,10 +67,17 @@ const update = async (id,h) => {
     });
 }
 
+const getAllCategories = async () => {
+    return await Categories.findAll({
+
+    });
+}
+
 module.exports = {
   getAll,
   register,
   update,
   destroy,
-  users
+  users,
+  getAllCategories
 }
