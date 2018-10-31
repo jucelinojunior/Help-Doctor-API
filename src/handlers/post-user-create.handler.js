@@ -32,7 +32,6 @@ module.exports = {
       birthday: new Date(payload.birthday),
       password: bcrypt.hashSync(payload.password, salt)
     }
-    console.log(user)
     await userService.add(user)
     return user
   },
