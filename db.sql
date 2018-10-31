@@ -236,13 +236,14 @@ CREATE TABLE ROLES (
         );
 
         CREATE TABLE HOSPITAL_HAS_USER (
-          id SERIAL PRIMARY KEY,
+          id SERIAL NOT NULL,
           hospital_id INT NOT NULL,
           user_id INT NOT NULL,
-          createdAt TIMESTAMP NULL DEFAULT NOW(),
-          updatedAt TIMESTAMP NULL DEFAULT NOW(),
+          "createdAt" TIMESTAMP NULL DEFAULT NOW(),
+          "updatedAt" TIMESTAMP NULL DEFAULT NOW(),
           foreign key (hospital_id) references HOSPITAL(id),
-          foreign key (user_id) references USERS(id)
+          foreign key (user_id) references USERS(id),
+          PRIMARY KEY (id, hospital_id, user_id)
         );
 
 INSERT INTO public.address(
@@ -263,7 +264,8 @@ INSERT INTO public.users(
             birthday, 
             medical_document, 
             personal_document,
-            responsable_hospital, 
+            responsable_hospital,
+            genre,
             "createdAt", 
             "updatedAt", 
             "deletedAt"
@@ -272,13 +274,14 @@ INSERT INTO public.users(
       1, 
       'Administrador',
       'admin@helpdoctor.com.br',
-      '$2a$10$HfBYhtQZt2iyH2j8K4flXO',
-      '$2a$10$HfBYhtQZt2iyH2j8K4flXOwXXxODlFv/01MuG8gVGXbr4w8NVfDs.',
+      '$2a$10$VfGHHzlP0BjjbHWWpg4BhO',
+      '$2a$10$VfGHHzlP0BjjbHWWpg4BhOR/zhjeDbmWjnAgNbvN7omojJMHtnw9a',
       1,
       '1980-01-01',
       null, 
       '12345678923', 
-      null, 
+      null,
+      'M',
       '2018-10-12 17:36:33.58',
       '2018-10-12 17:36:33.58',
       null);
@@ -288,13 +291,15 @@ INSERT INTO public.users(
 INSERT INTO public.hospital(
              name, address)
     VALUES ( 'Hospital teste', 1);
-
+insert into hospital_has_user (user_id, hospital_id) values (1,1);
 
 INSERT INTO public.roles(
             name)
     VALUES ( 'ADMIN');
 
-insert into actions (name) values ('user.creat');
+INSERT INTO users_has_roles (user_id, role_id) VALUES (1,1);
+
+insert into actions (name) values ('user.create');
 insert into actions (name) values ('user.all');
 insert into roles_has_actions (role_id, action_id) values (1,1);
 insert into roles_has_actions (role_id, action_id) values (1,2);

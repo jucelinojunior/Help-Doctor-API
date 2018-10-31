@@ -515,6 +515,66 @@ ou
     1|0
 ```
 
+## [GET] Listar todos os usuários dos sistema `/user/all`
+
+Rota responsável por listar todos os usuários
+> Essa Rota requer que o JWT usado tenha permissão de `user.all` 
+
+### Response
+
+```json
+[
+    {
+        "id": 1,
+        "name": "Administrador",
+        "email": "admin@helpdoctor.com.br",
+        "personal_document": "12345678923",
+        "salt": "$2a$10$VfGHHzlP0BjjbHWWpg4BhO",
+        "addressId": 1,
+        "password": "$2a$10$VfGHHzlP0BjjbHWWpg4BhOR/zhjeDbmWjnAgNbvN7omojJMHtnw9a",
+        "birthday": "1980-01-01T02:00:00.000Z",
+        "genre": "M",
+        "responsable_hospital": null,
+        "createdAt": "2018-10-12T20:36:33.580Z",
+        "updatedAt": "2018-10-12T20:36:33.580Z",
+        "deletedAt": null,
+        "roles": [
+            {
+                "id": 1,
+                "name": "ADMIN",
+                "actions": [
+                    {
+                        "id": 1,
+                        "name": "user.create"
+                    },
+                    {
+                        "id": 2,
+                        "name": "user.all"
+                    }
+                ]
+            }
+        ],
+        "address": {
+            "id": 1,
+            "address": "Rua teste",
+            "formatedaddress": null
+        },
+        "hospitals": [
+            {
+                "name": "Hospital teste",
+                "address": 1
+            }
+        ]
+    }
+]
+```
+
+### Erros Possíveis
+
+| Status Code |     Error    |  Message  |  Motivo   |
+|-------------|--------------|-----------|-----------|
+| `403`       |   `Forbidden`|  `Insufficient scope` | O Usuário não possui a action `user.all` no JWT |
+
 
 
 ## reset da senha `[POST] /user/reset
@@ -533,3 +593,4 @@ na API, precisa ver a rota para colocar o e-mail de envio
 ```
     usuario: object
 ```
+

@@ -2,8 +2,10 @@ const User = require('../models/users')
 const Role = require('../models/roles')
 const Action = require('../models/actions')
 const Address = require('../models/address')
+const Hospital = require('../models/hospital')
+const FailedToAuthenticateError = require('../errors/FailedToAuthenticateError')
 const add = async (user) => {
-  return User.build(user).save();
+  return User.build(user).save()
 }
 const getUserByEmail = async (email) => {
   const users = await User.findAll({
@@ -32,6 +34,7 @@ const getUserByEmail = async (email) => {
       }
     ]
   })
+  if (users.length === 0) throw new FailedToAuthenticateError()
   const user = users.map(it => {
     return it.dataValues
   })[0]
@@ -58,7 +61,17 @@ const getAll = async () => {
         model: Address,
         as: 'address',
         required: false,
-        attributes: ['id', 'address','formatedaddress']
+        attributes: ['id', 'address', 'formatedaddress']
+      },
+      {
+        model: Hospital,
+        as: 'hospitals',
+        through: { attributes: [ /* 'user_id' */ ] },
+        required: false,
+        attributes: [
+          'name',
+          'address'
+        ]
       }
     ]
   }).map(it => {

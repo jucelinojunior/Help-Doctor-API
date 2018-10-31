@@ -16,7 +16,8 @@ const schema  = Joi.object({
   responsable_hospital: Joi.number(),
   addressId: Joi.number().required(),
   birthday: Joi.string().required(),
-  roles_id: Joi.array().min(1).required()
+  roles_id: Joi.array().min(1).required(),
+  genre: Joi.string().required()
 })
 module.exports = {
   method: 'POST',
