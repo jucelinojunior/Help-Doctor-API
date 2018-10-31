@@ -20,6 +20,12 @@ const getActionsByRoles = async (roles = []) => {
   })
 }
 
+const actions = async () => {
+  return await Actions.findAll({
+
+  });
+}
+
 const getAllRoles = async () => {
   
   return await Role.findAll({
@@ -131,5 +137,6 @@ module.exports = {
   getAllRoles,
   getRole,
   userAddRole,
-  userRemoveRole
+  userRemoveRole,
+  actions
 }
