@@ -72,6 +72,15 @@ const roles7 = {
   }
 }
 
+const roles10 = {
+  method: 'GET',
+  path: '/action',
+  handler: async (request, reply) => {
+    return userService.actions();
+  }
+}
+
+
 module.exports = {
   roles,
   roles2,
@@ -81,5 +90,6 @@ module.exports = {
   roles6,
   roles7,
   roles8,
-  roles9
+  roles9,
+  roles10
 }

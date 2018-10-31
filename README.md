@@ -334,6 +334,24 @@ ou
 ]
 ```
 
+## ver actions `[GET] /action
+
+
+### Resposta
+``` 
+
+   [
+    {
+        "id": 1,
+        "name": "create-user",
+        "createdAt": "2018-10-31T20:02:23.751Z",
+        "updatedAt": "2018-10-31T20:02:23.751Z",
+        "deletedAt": null
+    }
+    ]
+```
+
+
 ## ver role `[GET] /role/{id}
 
 
