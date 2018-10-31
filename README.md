@@ -270,3 +270,230 @@ ou
     }
 ]
 ```
+
+## Listar todas as roles `[GET] /role
+
+
+
+### Resposta
+``` 
+[
+    {
+        "id": 1,
+        "name": "ADMIN",
+        "createdAt": "2018-10-31T20:02:23.724Z",
+        "updatedAt": "2018-10-31T20:02:23.724Z",
+        "deletedAt": null,
+        "actions": [
+            {
+                "id": 1,
+                "name": "create-user",
+                "roles_has_actions": {
+                    "id": 1,
+                    "action_id": 1,
+                    "role_id": 1,
+                    "createdAt": "2018-10-31T20:02:24.040Z",
+                    "updatedAt": "2018-10-31T20:02:24.040Z",
+                    "deletedAt": null
+                }
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Atendente",
+        "createdAt": "2018-10-31T20:02:23.747Z",
+        "updatedAt": "2018-10-31T20:02:23.747Z",
+        "deletedAt": null,
+        "actions": []
+    },
+    {
+        "id": 5,
+        "name": "eliterafapg97@gmail.com.br",
+        "createdAt": "2018-10-31T23:06:04.199Z",
+        "updatedAt": "2018-10-31T23:06:29.416Z",
+        "deletedAt": null,
+        "actions": []
+    },
+    {
+        "id": 4,
+        "name": "Médico",
+        "createdAt": "2018-10-31T20:02:23.749Z",
+        "updatedAt": "2018-10-31T20:02:23.749Z",
+        "deletedAt": null,
+        "actions": []
+    },
+    {
+        "id": 3,
+        "name": "Enfermeiro",
+        "createdAt": "2018-10-31T20:02:23.748Z",
+        "updatedAt": "2018-10-31T20:02:23.748Z",
+        "deletedAt": null,
+        "actions": []
+    }
+]
+```
+
+## ver role `[GET] /role/{id}
+
+
+
+### Resposta
+``` 
+
+    {
+        "id": 1,
+        "name": "ADMIN",
+        "createdAt": "2018-10-31T20:02:23.724Z",
+        "updatedAt": "2018-10-31T20:02:23.724Z",
+        "deletedAt": null,
+        "actions": [
+            {
+                "id": 1,
+                "name": "create-user",
+                "roles_has_actions": {
+                    "id": 1,
+                    "action_id": 1,
+                    "role_id": 1,
+                    "createdAt": "2018-10-31T20:02:24.040Z",
+                    "updatedAt": "2018-10-31T20:02:24.040Z",
+                    "deletedAt": null
+                }
+            }
+        ]
+    }
+```
+
+
+## cadastrar role `[POST] /role
+
+
+
+### Enviar
+``` 
+
+    {
+        "name": "ADMIN",
+    }
+```
+
+
+### Resposta
+``` 
+    {
+        "id": 1,
+        "name": "ADMIN",
+        "createdAt": "2018-10-31T20:02:23.724Z",
+        "updatedAt": "2018-10-31T20:02:23.724Z",
+        "deletedAt": null,
+    }
+```
+
+## atualizar role `[PUT] /role/{id}
+
+
+
+### Enviar
+``` 
+    {
+        "name": "ADMIN",
+    }
+```
+
+
+### Resposta
+``` 
+    {
+        "id": 1,
+        "name": "ADMIN",
+        "createdAt": "2018-10-31T20:02:23.724Z",
+        "updatedAt": "2018-10-31T20:02:23.724Z",
+        "deletedAt": null,
+    }
+```
+
+## cadastrar action na role `[POST] /role/action/
+
+
+
+### Enviar
+``` 
+    {
+        "action_id": 1,
+        "role_id": 5
+    }
+```
+
+
+### Resposta
+``` 
+    {
+        "id": 3,
+        "action_id": 1,
+        "role_id": 5,
+        "updatedAt": "2018-10-31T23:33:25.735Z",
+        "createdAt": "2018-10-31T23:33:25.735Z",
+        "deletedAt": null
+    }
+```
+
+## remover action na role `[DELETE] /role/action/
+
+
+
+### Enviar
+``` 
+    {
+        "action_id": 1,
+        "role_id": 5
+    }
+```
+
+
+### Resposta
+``` 
+    1|0
+```
+
+## cadastrar user na role `[POST] /role/user/
+
+
+
+### Enviar
+``` 
+    {
+        "user_id": 1,
+        "role_id": 5
+    }
+```
+
+
+### Resposta
+``` 
+    {
+        "id": 3,
+        "user_id": 1,
+        "role_id": 5,
+        "updatedAt": "2018-10-31T23:33:25.735Z",
+        "createdAt": "2018-10-31T23:33:25.735Z",
+        "deletedAt": null
+    }
+```
+
+## remover action na role `[DELETE] /role/user/
+
+
+
+### Enviar
+``` 
+    {
+        "user_id": 1,
+        "role_id": 5
+    }
+```
+
+
+### Resposta
+``` 
+    1|0
+```
