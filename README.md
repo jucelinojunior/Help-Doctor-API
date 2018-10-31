@@ -514,3 +514,22 @@ ou
 ``` 
     1|0
 ```
+
+
+
+## reset da senha `[POST] /user/reset
+
+
+na API, precisa ver a rota para colocar o e-mail de envio
+
+### Enviar
+``` 
+    {
+        "email": "1"
+    }
+```
+
+### Resposta
+```
+    usuario: object
+```
