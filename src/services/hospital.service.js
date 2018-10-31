@@ -73,11 +73,22 @@ const getAllCategories = async () => {
     });
 }
 
+const registerCategories = async (name) => {
+    var cat = new Categories();
+    cat.name = name;
+    return cat.save().then(()=>{
+      return cat;
+    }).catch(err => {
+      return {errors: true,data: 'Não possivel cadastrar',err: err};
+    });
+}
+
 module.exports = {
   getAll,
   register,
   update,
   destroy,
   users,
-  getAllCategories
+  getAllCategories,
+  registerCategories
 }

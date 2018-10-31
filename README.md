@@ -57,32 +57,6 @@ curl -X POST -F 'username=admin@helpdoctor.com.br' -F 'password=123' authorizati
 | `400` | `Bad Request` | `grant_type must be password value` | o `grant_type` passado não é um `grant_type` válido. Ele só aceita o valor `password` |
 | `500` | `Internal Server Error` | `An internal server error occurred` | Ocorreu um erro de implementação no servidor, nesse caso você deve ver o log do servidor |
 
-## Inserir paciente na fila `[POST] /queue`
-
-### Post
-
-``` 
-    {id: int}
-``` 
-
-|   Parametro  |    Descrição  |     Tipo    |  Obrigatório |
-|--------------|---------------|-------------|--------------|
-|`id`  |  Enviar o ID da consulta do paciente | `integer` |  `true` |
-
-
-### Resposta (OBJETO QUEUE)
-```
-{
-    "id": 4,
-    "hospital_id": 1,
-    "appointment_id": 1,
-    "status": 1, // 1 -> está na fila; 2 -> não está na fila
-    "severity": 1, // 1-> AZUL; 2-> VERDE; 3-> AMARELO -> 4 VERMELHO
-    "updatedAt": "2018-10-20T04:41:04.192Z",
-    "createdAt": "2018-10-20T04:41:04.192Z",
-    "deletedAt": null
-}
-```
 
 ## Listar fila em um hospital `[GET] /queue/hospital/{hospital_id}`
 
@@ -270,6 +244,31 @@ ou
     }
 ]
 ```
+
+
+## cadastrar category medical `[POST] /medical/category
+
+
+
+### Enviar
+``` 
+    {
+        "name": "bakbakbka"
+    }
+```
+
+
+### Resposta
+``` 
+{
+    "id": 2,
+    "name": "bakbakbka",
+    "updatedAt": "2018-10-31T23:57:11.231Z",
+    "createdAt": "2018-10-31T23:57:11.231Z",
+    "deletedAt": null
+}
+```
+
 
 ## Listar todas as roles `[GET] /role
 
@@ -575,3 +574,23 @@ Rota responsável por listar todos os usuários
 | Status Code |     Error    |  Message  |  Motivo   |
 |-------------|--------------|-----------|-----------|
 | `403`       |   `Forbidden`|  `Insufficient scope` | O Usuário não possui a action `user.all` no JWT |
+
+
+
+## reset da senha `[POST] /user/reset
+
+
+na API, precisa ver a rota para colocar o e-mail de envio
+
+### Enviar
+``` 
+    {
+        "email": "1"
+    }
+```
+
+### Resposta
+```
+    usuario: object
+```
+
