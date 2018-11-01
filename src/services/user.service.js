@@ -40,15 +40,27 @@ const DEFAULT_INCLUDES = [
 
 /**
  * @desc Adiciona um usuário
- * @param {object} user 
+ * @param {object} user
  */
 const add = async (user) => {
   return User.build(user).save()
 }
 
 /**
+ * @desc Procura um usuario por ID
+ */
+const find = async (id) => {
+  return User.findOne({
+    where: {
+      id: id
+    },
+    include: DEFAULT_INCLUDES
+  })
+}
+
+/**
  * @desc procura um usuário que possua um email igual ao informado
- * @param {string} email 
+ * @param {string} email
  */
 const getUserByEmail = async (email) => {
   const users = await User.findAll({
@@ -108,5 +120,6 @@ module.exports = {
   add,
   getAll,
   getUserByEmail,
-  validateCPF
+  validateCPF,
+  find
 }

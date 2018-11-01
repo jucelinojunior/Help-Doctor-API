@@ -43,11 +43,11 @@ module.exports = {
       //  Tenta encontrar ou recuperar um endereço
       const {address} = user
       const addressAdded = await addressService.register(address)
-      // console.log(addressAdded, addressAdded.id)
+      console.log(addressAdded, addressAdded.id)
       //  Acompla no usuario
       delete user.address
-      // user.addressId = addressAdded.id
-      user.addressId = 1
+      user.addressId = addressAdded.id
+      // user.addressId = 1
       console.log('==>', user)
       await userService.add(user)
       return user
@@ -61,7 +61,7 @@ module.exports = {
       scope: ['user.create']
     },
     validate: {
-        payload: schema
-      }
+      payload: schema
+    }
   }
 }

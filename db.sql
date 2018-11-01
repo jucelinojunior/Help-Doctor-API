@@ -51,7 +51,7 @@ CREATE TABLE ROLES (
       CREATE TABLE HOSPITAL (
         id SERIAL PRIMARY KEY,
         name VARCHAR(255) NOT NULL,
-        address INT NOT NULL, 
+        address INT NOT NULL,
         "createdAt" TIMESTAMP NULL DEFAULT NOW(),
         "updatedAt" TIMESTAMP NULL DEFAULT NOW(),
         "deletedAt" TIMESTAMP DEFAULT NULL,
@@ -255,31 +255,31 @@ INSERT INTO public.address(
     VALUES ('Rua teste','Bairro Teste', 'SP', '04174090', 8, '');
 
 INSERT INTO public.users(
-            id, 
+            id,
             name,
-            email, 
-            salt, 
-            password, 
-            "addressId", 
-            birthday, 
-            medical_document, 
+            email,
+            salt,
+            password,
+            "addressId",
+            birthday,
+            medical_document,
             personal_document,
             responsable_hospital,
             genre,
-            "createdAt", 
-            "updatedAt", 
+            "createdAt",
+            "updatedAt",
             "deletedAt"
           )
     VALUES (
-      1, 
+      1,
       'Administrador',
       'admin@helpdoctor.com.br',
       '$2a$10$VfGHHzlP0BjjbHWWpg4BhO',
       '$2a$10$VfGHHzlP0BjjbHWWpg4BhOR/zhjeDbmWjnAgNbvN7omojJMHtnw9a',
       1,
       '1980-01-01',
-      null, 
-      '12345678923', 
+      null,
+      '12345678923',
       null,
       'M',
       '2018-10-12 17:36:33.58',
@@ -301,6 +301,7 @@ INSERT INTO users_has_roles (user_id, role_id) VALUES (1,1);
 
 insert into actions (name) values ('user.create');
 insert into actions (name) values ('user.all');
+insert into actions (name) values ('user.find');
 insert into roles_has_actions (role_id, action_id) values (1,1);
 insert into roles_has_actions (role_id, action_id) values (1,2);
 
