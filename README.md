@@ -1,6 +1,7 @@
 # Help Doctor API
 API para consumo do help doctor
 
+
 # Endpoints
 ## Carga automática `[GET] /init`
 Rota responsavel por criar as tabelas e preencher os dados
@@ -575,7 +576,47 @@ Rota responsável por listar todos os usuários
 |-------------|--------------|-----------|-----------|
 | `403`       |   `Forbidden`|  `Insufficient scope` | O Usuário não possui a action `user.all` no JWT |
 
+---
 
+## Criar usuário `[POST] /user`
+
+Cria o usuário
+
+### Payload 
+```json 
+{
+  "name": "Guilherme",
+  "email": "guiihpr@gmail.com",
+  "password": "123",
+  "personal_document": "12345678998",
+  "addressId": 1,
+  "birthday": "1994-03-13",
+  "roles_id": ["1"],
+  "genre": "M"
+  }
+```
+
+### Atributos
+
+| Atributo | Tipo | Obrigatório | Descrição |
+|-----------|------|------|-----------|
+|`name`| `string` |`true` | Nome do usuário |
+|`email`| `string` | `true` | Email do usuário |
+|`password`| `string` | `true` | Senha do usuário, a principio não tem nenhuma validação de minimo de caracteres |
+|`personal_document`| `string` | `true` | CPF do usuário |
+|`birthday`| `date` | `true` | Data de aniversário do usuário |
+|`roles_id`| `array` | `true` | uma lista de roles que o usuário vai ter |
+|`genre`| `string` | `true` | Sexo do usuário |
+
+
+
+### Erros Possíveis
+
+| Status Code |     Error    |  Message  |  Motivo   |
+|-------------|--------------|-----------|-----------|
+| `403`       |   `Bad Request`|  `CPF Invalido` | O CPF passado é um CPF inválido |
+
+----
 
 ## reset da senha `[POST] /user/reset
 

@@ -26,13 +26,7 @@ const Hospital = global.sequelize.define('hospital', {
 {
   paranoid: true,
   // freezeTableName: true,
-   tableName: 'hospital'
+  tableName: 'hospital'
 })
-
-Hospital.hasMany(Address, {
-    as: 'address_info',
-    foreignKey: 'id',
-    sourceKey: 'address'
-});
 
 module.exports = Hospital

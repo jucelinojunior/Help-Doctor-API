@@ -2,7 +2,7 @@ const Sequelize = require('sequelize')
 
 const Address = require('./address')
 
-const User = global.sequelize.define('patient', {
+const Patient = global.sequelize.define('patient', {
   id: {
     type: Sequelize.STRING,
     primaryKey: true,
@@ -43,11 +43,11 @@ const User = global.sequelize.define('patient', {
   tableName: 'patient'
 })
 
-User.hasOne(Address, {
+Patient.hasOne(Address, {
   as: 'address',
   foreignKey: 'id',
   targetKey: 'address_id'
 })
 
 
-module.exports = User
+module.exports = Patient
