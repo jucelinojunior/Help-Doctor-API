@@ -14,9 +14,7 @@ module.exports = {
     auth: {
       strategy: 'helpdoctor',
       scope: ['user.all']
-    }
-  },
-  options: {
+    },
     cors: {
       origin: ['*']
     }
