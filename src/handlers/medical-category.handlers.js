@@ -17,6 +17,11 @@ const register = {
   path: '/medical/category',
   handler: async (request) => {
     return userService.registerCategories(request.payload.name);
+  },
+  options: {
+    cors: {
+      origin: ['*']
+    }
   }
 }
 

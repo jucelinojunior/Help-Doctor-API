@@ -5,5 +5,10 @@ module.exports = {
   path: '/hospital/user',
   handler: async (request, reply) => {
     return userService.users(request.payload.user,request.payload.hospital);
-  } 
+  },
+  options: {
+    cors: {
+      origin: ['*']
+    }
+  }
 }

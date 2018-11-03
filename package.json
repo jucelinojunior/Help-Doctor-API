@@ -1,10 +1,10 @@
 {
-  "name": "api-maria-hill",
-  "version": "1.0.0",
-  "description": "API de métricas de usuários e campanhas",
+  "name": "api-help-doctor",
+  "version": "1.0.1",
+  "description": "API do Help Doctor",
   "main": "index.js",
-  "repository": "https://github.com/squidit/api-maria-hill.git",
-  "author": "Lucas Santos <lhs.santoss@gmail.com>",
+  "repository": "https://github.com/UNIPTCC/Help-Doctor-API.git",
+  "author": "Guilherme Pereira",
   "license": "ISC",
   "scripts": {
     "start": "node index.js",

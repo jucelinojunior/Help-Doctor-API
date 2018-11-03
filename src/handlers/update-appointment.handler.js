@@ -24,5 +24,10 @@ module.exports = {
 		return appointment.update(request.payload).then(()=>{
 			return appointment;
 		});
-	}
+	},
+	options: {
+    cors: {
+      origin: ['*']
+    }
+  }
 }

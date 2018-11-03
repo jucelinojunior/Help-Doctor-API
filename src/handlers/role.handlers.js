@@ -5,6 +5,11 @@ const roles = {
   path: '/role',
   handler: async (request, reply) => {
     return userService.getAllRoles();
+  },
+  options: {
+    cors: {
+      origin: ['*']
+    }
   }
 }
 
@@ -13,6 +18,11 @@ const roles2 = {
   path: '/role/{id}',
   handler: async (request, reply) => {
     return userService.getRole(request.params.id);
+  },
+  options: {
+    cors: {
+      origin: ['*']
+    }
   }
 }
 
@@ -21,6 +31,11 @@ const roles3 = {
   path: '/role/{id}',
   handler: async (request, reply) => {
     return userService.removeRole(request.params.id);
+  },
+  options: {
+    cors: {
+      origin: ['*']
+    }
   }
 }
 
@@ -29,6 +44,11 @@ const roles4 = {
   path: '/role/{id}',
   handler: async (request, reply) => {
     return userService.updateRole(request.params.id,request.payload.name);
+  },
+  options: {
+    cors: {
+      origin: ['*']
+    }
   }
 }
 
@@ -37,6 +57,11 @@ const roles5 = {
   path: '/role',
   handler: async (request, reply) => {
     return userService.addRole(request.payload.name);
+  },
+  options: {
+    cors: {
+      origin: ['*']
+    }
   }
 }
 
@@ -45,6 +70,11 @@ const roles6 = {
   path: '/role/action',
   handler: async (request, reply) => {
     return userService.addActionToRole(request.payload.action_id,request.payload.role_id);
+  },
+  options: {
+    cors: {
+      origin: ['*']
+    }
   }
 }
 
@@ -53,6 +83,11 @@ const roles8 = {
   path: '/role/action',
   handler: async (request, reply) => {
     return userService.removeActionToRole(request.payload.action_id,request.payload.role_id);
+  },
+  options: {
+    cors: {
+      origin: ['*']
+    }
   }
 }
 
@@ -61,6 +96,11 @@ const roles9 = {
   path: '/role/user',
   handler: async (request, reply) => {
     return userService.userRemoveRole(request.payload.role_id,request.payload.user_id);
+  },
+  options: {
+    cors: {
+      origin: ['*']
+    }
   }
 }
 
@@ -69,6 +109,11 @@ const roles7 = {
   path: '/role/user',
   handler: async (request, reply) => {
     return userService.userAddRole(request.payload.role_id,request.payload.user_id);
+  },
+  options: {
+    cors: {
+      origin: ['*']
+    }
   }
 }
 
@@ -77,6 +122,11 @@ const roles10 = {
   path: '/action',
   handler: async (request, reply) => {
     return userService.actions();
+  },
+  options: {
+    cors: {
+      origin: ['*']
+    }
   }
 }
 

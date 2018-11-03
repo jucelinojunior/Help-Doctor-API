@@ -49,6 +49,10 @@ module.exports = {
 
     });
 
+  },
+  options: {
+    cors: {
+      origin: ['*']
+    }
   }
-
 }

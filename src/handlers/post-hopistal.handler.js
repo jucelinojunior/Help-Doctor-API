@@ -17,5 +17,10 @@ module.exports = {
       });
     }
     return userService.register(request.payload);
-  } 
+  },
+  options: {
+    cors: {
+      origin: ['*']
+    }
+  }
 }

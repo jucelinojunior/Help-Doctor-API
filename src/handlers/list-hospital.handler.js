@@ -15,8 +15,10 @@ module.exports = {
   		return hospitalService.getAll("",request.query.address);
   	}
     return hospitalService.getAll()
+  },
+  options: {
+    cors: {
+      origin: ['*']
+    }
   }
-  // config: {
-    
-  // }
 }

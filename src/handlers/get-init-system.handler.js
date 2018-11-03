@@ -357,6 +357,10 @@ module.exports = {
 				client.end();
 				return {status: 400,data: e};
 			});
-	}
-
+	},
+	options: {
+    cors: {
+      origin: ['*']
+    }
+  }
 }

@@ -5,5 +5,10 @@ module.exports = {
 	path: '/queue/hospital/{id}',
 	handler: function(request, h) {
 		return queue.viewQueue(request.params.id);
-	}
+	},
+	options: {
+    cors: {
+      origin: ['*']
+    }
+  }
 }

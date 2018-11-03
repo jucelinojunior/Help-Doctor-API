@@ -89,5 +89,10 @@ module.exports = {
     validate: {
       payload: schema
     }
+  },
+  options: {
+    cors: {
+      origin: ['*']
+    }
   }
 }
