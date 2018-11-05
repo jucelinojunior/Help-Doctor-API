@@ -8,7 +8,7 @@ const addressService = require('../services/address.service')
 const Boom = require('boom')
 const bcrypt = require('bcrypt-nodejs')
 
-const schema  = Joi.object({
+const schema = Joi.object({
   name: Joi.string().min(3).required(),
   email: Joi.string().email({ minDomainAtoms: 2 }),
   password: Joi.string().required(),

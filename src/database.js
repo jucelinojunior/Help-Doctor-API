@@ -9,7 +9,7 @@ const {
   POSTGRES_PORT
 } = process.env
 let shouldUseSSL = false
-if (NODE_ENV ==='production') {
+if (NODE_ENV === 'production') {
   pg.defaults.ssl = true
   shouldUseSSL = true
 }
