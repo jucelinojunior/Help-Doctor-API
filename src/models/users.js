@@ -22,7 +22,8 @@ const User = global.sequelize.define('users', {
     type: Sequelize.STRING
   },
   addressId: {
-    type: Sequelize.INTEGER
+    type: Sequelize.INTEGER,
+    underscored: true
   },
   password: {
     type: Sequelize.STRING
@@ -50,11 +51,7 @@ const User = global.sequelize.define('users', {
   paranoid: true
 })
 
-User.hasOne(Address, {
-  as: 'address',
-  foreignKey: 'id',
-  targetKey: 'addressId'
-})
+User.belongsTo(Address)
 
 User.belongsToMany(Roles, {
   as: 'roles',

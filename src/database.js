@@ -9,7 +9,7 @@ const {
   POSTGRES_PORT
 } = process.env
 let shouldUseSSL = false
-if (NODE_ENV ==='production') {
+if (NODE_ENV === 'production') {
   pg.defaults.ssl = true
   shouldUseSSL = true
 }
@@ -21,7 +21,7 @@ global.sequelize = new Sequelize(POSTGRES_DATABASE, POSTGRES_USERNAME, POSTGRES_
   port: POSTGRES_PORT,
   dialect: 'postgres',
   charset: 'utf8mb4',
-  logging: true,
+  logging: false,
   freezeTableName: true,
   ssl: shouldUseSSL
 })

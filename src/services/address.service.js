@@ -1,24 +1,33 @@
-const Address = require('../models/address');
+const Address = require('../models/address')
 
-const register = async (h) => {
-  const hospital = new Address();
-  h.formatedaddress = h.address + ", " + h.number + " - " + h.neighborhood + " " + h.state;
-  return hospital.update(h).then(()=>{
-      return hospital;
-    });
-}
-
-const update = async (id,h) => {
-  const hospital = await Address.findOne({
-  	where: {id: id}
+const register = async (address) => {
+  address.formatedaddress = `${address.address}, ${address.number} - ${address.neighborhood} ${address.state}`
+  return Address.findOrCreate({ where: {
+    formatedaddress: address.formatedaddress
+  },
+  defaults: address
   })
-  h.formatedaddress = h.address + ", " + h.number + " - " + h.neighborhood + " " + h.state;
-  return hospital.update(h).then(()=>{
-      return hospital;
-    });
+    .spread((address, created) => {
+      return address.get({
+        plain: true
+      })
+    })
+}
+/**
+ * @desc Atualiza o endereço
+ * @param {string|integer} id
+ * @param {object} address
+ */
+const update = async (id, address) => {
+  address.formatedaddress = `${address.address}, ${address.number} - ${address.neighborhood} ${address.state}`
+  return Address.update(address, {
+    where: {
+      id: id
+    }
+  })
 }
 
 module.exports = {
-	register,
-	update
+  register,
+  update
 }
