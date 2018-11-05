@@ -49,12 +49,13 @@ const add = async (user) => {
 /**
  * @desc Procura um usuario por ID
  */
-const find = async (id) => {
+const find = async (id, showDeleteds = false) => {
   return User.findOne({
     where: {
       id: id
     },
-    include: DEFAULT_INCLUDES
+    include: DEFAULT_INCLUDES,
+    paranoid: !showDeleteds
   })
 }
 
@@ -116,10 +117,33 @@ const validateCPF = (strCPF) => {
   return true
 }
 
+const update = async (id, user) => {
+  return User.update(user, {
+    where: {
+      id: id
+    },
+    paranoid: false
+  })
+}
+
+/**
+ * @param {{string|integer}} id
+ * @desc Deleta um usuario da base
+ */
+const destroy = async (id) => {
+  return User.destroy({
+    where: {
+      id: id
+    }
+  })
+}
+
 module.exports = {
   add,
   getAll,
   getUserByEmail,
   validateCPF,
-  find
+  find,
+  update,
+  destroy
 }

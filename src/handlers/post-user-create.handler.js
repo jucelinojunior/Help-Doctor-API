@@ -14,7 +14,7 @@ const schema = Joi.object({
   password: Joi.string().required(),
   personal_document: Joi.string().regex(/\d{11}/).required(),
   responsable_hospital: Joi.number(),
-  birthday: Joi.string().required(),
+  birthday: Joi.date().required(),
   roles_id: Joi.array().min(1).required(),
   genre: Joi.string().required(),
   address: Joi.object({

@@ -2,11 +2,8 @@
  * Rota repsonsável pela criação de usuários
  * https://imasters.com.br/devsecops/encriptando-senhas-com-o-bcrypt
  */
-const Joi = require('joi')
 const userService = require('../services/user.service')
-const addressService = require('../services/address.service')
 const Boom = require('boom')
-const bcrypt = require('bcrypt-nodejs')
 
 module.exports = {
   method: 'GET',
@@ -14,7 +11,9 @@ module.exports = {
   handler: async (request, reply) => {
     try {
       const {id} = request.params
-      const user = await userService.find(id)
+      const showDeleteds = request.query.deleteds === undefined ? false : true
+      const user = await userService.find(id, showDeleteds)
+      if (!user) return {}
       return user
     } catch (err) {
       console.error(err)

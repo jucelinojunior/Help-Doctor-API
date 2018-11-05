@@ -1,4 +1,4 @@
-const Address = require('../models/address');
+const Address = require('../models/address')
 
 const register = async (address) => {
   address.formatedaddress = `${address.address}, ${address.number} - ${address.neighborhood} ${address.state}`
@@ -13,13 +13,18 @@ const register = async (address) => {
       })
     })
 }
-
-const update = async (id,h) => {
-  const hospital = await Address.findOne({
-    where: {id: id}
+/**
+ * @desc Atualiza o endereço
+ * @param {string|integer} id
+ * @param {object} address
+ */
+const update = async (id, address) => {
+  address.formatedaddress = `${address.address}, ${address.number} - ${address.neighborhood} ${address.state}`
+  return Address.update(address, {
+    where: {
+      id: id
+    }
   })
-  h.formatedaddress = `${h.address}, ${h.number} - ${h.neighborhood} ${h.state}`
-  return hospital.update(h)
 }
 
 module.exports = {
