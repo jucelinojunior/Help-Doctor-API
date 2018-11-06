@@ -27,7 +27,16 @@ const update = async (id, address) => {
   })
 }
 
+/**
+ * @desc Procura um endereço por ID
+ * @param {integer} id
+ */
+const findById  = async (id) => {
+  return Address.findById(id)
+}
+
 module.exports = {
   register,
-  update
+  update,
+  findById
 }

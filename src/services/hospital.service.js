@@ -13,6 +13,12 @@ const DEFAULT_INCLUDE = [
   }
 ]
 
+const findById = async (id) => {
+  return Hospital.findById(id, {
+    include: DEFAULT_INCLUDE
+  })
+}
+
 const getAll = async (names = '', address = '') => {
   const obj = {
     include: DEFAULT_INCLUDE
@@ -85,5 +91,6 @@ module.exports = {
   destroy,
   users,
   getAllCategories,
-  registerCategories
+  registerCategories,
+  findById
 }
