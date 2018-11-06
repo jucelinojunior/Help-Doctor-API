@@ -2,7 +2,7 @@ const Sequelize = require('sequelize')
 const Address = require('./hospital')
 const User = require('./users')
 
-const Hospital = global.sequelize.define('hospital_has_user', {
+const HospitalHasUsers = global.sequelize.define('hospital_has_user', {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
@@ -44,4 +44,4 @@ const Hospital = global.sequelize.define('hospital_has_user', {
 //   sourceKey: 'hospital_id'
 // })
 
-module.exports = Hospital
+module.exports = HospitalHasUsers

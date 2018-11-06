@@ -38,14 +38,15 @@ CREATE TABLE ROLES (
       );
 
       CREATE TABLE ROLES_HAS_ACTIONS (
-        id SERIAL PRIMARY KEY,
+        id SERIAL,
         role_id INT NOT NULL,
         action_id INT NOT NULL,
         "createdAt" TIMESTAMP NULL DEFAULT NOW(),
         "updatedAt" TIMESTAMP NULL DEFAULT NOW(),
         "deletedAt" TIMESTAMP DEFAULT NULL,
         foreign key (action_id) REFERENCES ACTIONS(id),
-        foreign key (role_id) REFERENCES ROLES(id)
+        foreign key (role_id) REFERENCES ROLES(id),
+        PRIMARY KEY (id, role_id, action_id)
       );
 
       CREATE TABLE HOSPITAL (
@@ -250,6 +251,11 @@ INSERT INTO public.address(
             address, neighborhood, state, zipcode, "number", complement)
     VALUES ('Rua teste','Bairro Teste', 'SP', '04174090', 8, '');
 
+INSERT INTO public.hospital(
+             name, "addressId")
+    VALUES ( 'Hospital teste', 1);
+insert into hospital_has_user (user_id, hospital_id) values (1,1);
+
 INSERT INTO public.users(
             id,
             name,
@@ -282,17 +288,52 @@ INSERT INTO public.users(
       '2018-10-12 17:36:33.58',
       null);
 
+INSERT INTO public.users(
+            id,
+            name,
+            email,
+            salt,
+            password,
+            "addressId",
+            birthday,
+            medical_document,
+            personal_document,
+            responsable_hospital,
+            genre,
+            "createdAt",
+            "updatedAt",
+            "deletedAt"
+          )
+    VALUES (
+      2,
+      'Manager',
+      'manager@helpdoctor.com.br',
+      '$2a$10$VfGHHzlP0BjjbHWWpg4BhO',
+      '$2a$10$VfGHHzlP0BjjbHWWpg4BhOR/zhjeDbmWjnAgNbvN7omojJMHtnw9a',
+      1,
+      '1980-01-01',
+      null,
+      '06497063072',
+      1,
+      'M',
+      '2018-10-12 17:36:33.58',
+      '2018-10-12 17:36:33.58',
+      null);
 
 
-INSERT INTO public.hospital(
-             name, "addressId")
-    VALUES ( 'Hospital teste', 1);
-insert into hospital_has_user (user_id, hospital_id) values (1,1);
+
 
 INSERT INTO public.roles(
             name)
     VALUES ( 'ADMIN');
 
+    INSERT INTO public.roles(
+            name)
+    VALUES ( 'MANAGER');
+
+insert INTO hospital_has_user (user_id, hospital_id) values (2,1);
+
+-- Vinculo de roles e actions para usuario admin
 INSERT INTO users_has_roles (user_id, role_id) VALUES (1,1);
 
 insert into actions (name) values ('user.create');
@@ -302,6 +343,7 @@ insert into actions (name) values ('user.update');
 insert into actions (name) values ('user.delete');
 insert into actions (name) values ('hospital.create');
 insert into actions (name) values ('hospital.update');
+insert into actions (name) values ('user.list');
 insert into roles_has_actions (role_id, action_id) values (1,1);
 insert into roles_has_actions (role_id, action_id) values (1,2);
 insert into roles_has_actions (role_id, action_id) values (1,3);
@@ -309,6 +351,14 @@ insert into roles_has_actions (role_id, action_id) values (1,4);
 insert into roles_has_actions (role_id, action_id) values (1,5);
 insert into roles_has_actions (role_id, action_id) values (1,6);
 insert into roles_has_actions (role_id, action_id) values (1,7);
+insert into roles_has_actions (role_id, action_id) values (1,8);
+
+
+-- Vinculo de roles e actions para o usuario manager
+INSERT INTO users_has_roles (user_id, role_id) VALUES (2,2);
+-- Actio user.list para o usuario
+insert into roles_has_actions (role_id, action_id) values (2,8);
+
 -- SELECT * FROM users as users
 -- inner join users_has_roles as users_has_roles ON users_has_roles.user_id = users.id
 -- inner join roles as roles ON roles.id = users_has_roles.role_id

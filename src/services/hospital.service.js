@@ -1,8 +1,9 @@
 const User = require('../models/users')
 const Hospital = require('../models/hospital')
 const Address = require('../models/address')
-const Users = require('../models/hospital_has_user')
+const HospitalHasUsers = require('../models/hospital_has_user')
 const Categories = require('../models/medical_category')
+const Op = global.sequelize.Op
 
 const DEFAULT_INCLUDE = [
   {
@@ -10,8 +11,46 @@ const DEFAULT_INCLUDE = [
     as: 'addressHospital',
     required: false,
     attributes: ['id', 'formatedaddress', 'address', 'neighborhood', 'state', 'zipcode', 'number', 'complement', 'createdAt', 'updatedAt']
+  },
+  {
+    model: User,
+    as: 'users',
+    required: false,
+    attributes: [
+      'id',
+      'name',
+      'email',
+      'addressId',
+      'birthday',
+      'medical_document',
+      'personal_document',
+      'genre',
+      'createdAt',
+      'updatedAt'
+    ],
+    through: { attributes: [ /* 'user_id' */ ] },
+    include: [
+      {
+        model: Address,
+        as: 'address',
+        required: false,
+        attributes: ['id', 'formatedaddress', 'address', 'neighborhood', 'state', 'zipcode', 'number', 'complement', 'createdAt', 'updatedAt']
+      }
+    ]
   }
 ]
+
+const findAllWithMultiplusId = async (ids) => {
+  if (!Array.isArray(ids)) ids = [ids]
+  return Hospital.find({
+    where: {
+      id: {
+        [Op.in]: ids
+      }
+    },
+    include: DEFAULT_INCLUDE
+  })
+}
 
 const findById = async (id) => {
   return Hospital.findById(id, {
@@ -54,7 +93,7 @@ const destroy = async (id) => {
 }
 
 const users = async (id, hospital) => {
-  var user = new Users()
+  var user = new HospitalHasUsers()
   return user.update({user_id: id, hospital_id: hospital}).then(() => {
     return user
   })
@@ -92,5 +131,6 @@ module.exports = {
   users,
   getAllCategories,
   registerCategories,
-  findById
+  findById,
+  findAllWithMultiplusId
 }
