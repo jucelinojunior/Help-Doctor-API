@@ -300,12 +300,15 @@ insert into actions (name) values ('user.all');
 insert into actions (name) values ('user.find');
 insert into actions (name) values ('user.update');
 insert into actions (name) values ('user.delete');
+insert into actions (name) values ('hospital.create');
+insert into actions (name) values ('hospital.update');
 insert into roles_has_actions (role_id, action_id) values (1,1);
 insert into roles_has_actions (role_id, action_id) values (1,2);
 insert into roles_has_actions (role_id, action_id) values (1,3);
 insert into roles_has_actions (role_id, action_id) values (1,4);
 insert into roles_has_actions (role_id, action_id) values (1,5);
-
+insert into roles_has_actions (role_id, action_id) values (1,6);
+insert into roles_has_actions (role_id, action_id) values (1,7);
 -- SELECT * FROM users as users
 -- inner join users_has_roles as users_has_roles ON users_has_roles.user_id = users.id
 -- inner join roles as roles ON roles.id = users_has_roles.role_id
