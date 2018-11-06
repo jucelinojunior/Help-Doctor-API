@@ -32,8 +32,8 @@ const DEFAULT_INCLUDES = [
     through: { attributes: [ /* 'user_id' */ ] },
     required: false,
     attributes: [
-      'name',
-      'address'
+      'id',
+      'name'
     ]
   }
 ]
