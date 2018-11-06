@@ -162,7 +162,7 @@ curl -X POST -F 'username=admin@helpdoctor.com.br' -F 'password=123' authorizati
 ```
 
 
-##Listar hospitais `[GET] /hospital
+## Listar hospitais `[GET] /hospital
 
 |   Parametro Query |    Descrição  |     Tipo  
 |--------------|---------------|-------------|
@@ -191,7 +191,7 @@ passar um ou outro, opcional
 ]
 ```
 
-##Criar hospitais `[POST] /hospital
+## Criar hospitais `[POST] /hospital
 
 ``` 
 {
