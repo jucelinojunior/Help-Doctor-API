@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const Trauma = require('./trauma')
 
-const Hospital = global.sequelize.define('has_trauma', {
+const HasTrauma = global.sequelize.define('has_trauma', {
   id: {
       type: Sequelize.INTEGER,
       primaryKey: true,
@@ -29,11 +29,11 @@ const Hospital = global.sequelize.define('has_trauma', {
   }
 );
 
-Hospital.hasMany(Trauma, {
-  as: 'trauma' ,
+HasTrauma.hasMany(Trauma, {
+  as: 'trauma',
   foreignKey: 'id',
   sourceKey: 'trauma_id'
 });
 
 
-module.exports = Hospital
+module.exports = HasTrauma

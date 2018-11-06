@@ -10,7 +10,7 @@ const Hospital = global.sequelize.define('hospital', {
   name: {
     type: Sequelize.STRING
   },
-  address: {
+  addressId: {
     type: Sequelize.INTEGER
   },
   createdAt: {
@@ -27,6 +27,11 @@ const Hospital = global.sequelize.define('hospital', {
   paranoid: true,
   // freezeTableName: true,
   tableName: 'hospital'
+})
+
+Hospital.belongsTo(Address, {
+  as: 'addressHospital',
+  foreignKey: 'addressId'
 })
 
 module.exports = Hospital

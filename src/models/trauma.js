@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize')
 
-const Hospital = global.sequelize.define('trauma', {
+const Trauma = global.sequelize.define('trauma', {
   id: {
       type: Sequelize.INTEGER,
       primaryKey: true,
@@ -31,4 +31,4 @@ const Hospital = global.sequelize.define('trauma', {
   }
 );
 
-module.exports = Hospital
+module.exports = Trauma
