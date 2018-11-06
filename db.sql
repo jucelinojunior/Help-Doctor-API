@@ -51,11 +51,11 @@ CREATE TABLE ROLES (
       CREATE TABLE HOSPITAL (
         id SERIAL PRIMARY KEY,
         name VARCHAR(255) NOT NULL,
-        address INT NOT NULL,
+        "addressId" INT NOT NULL,
         "createdAt" TIMESTAMP NULL DEFAULT NOW(),
         "updatedAt" TIMESTAMP NULL DEFAULT NOW(),
         "deletedAt" TIMESTAMP DEFAULT NULL,
-        foreign key (address) REFERENCES ADDRESS(id)
+        foreign key ("addressId") REFERENCES ADDRESS(id)
       );
 
       CREATE TABLE USERS (
@@ -250,10 +250,6 @@ INSERT INTO public.address(
             address, neighborhood, state, zipcode, "number", complement)
     VALUES ('Rua teste','Bairro Teste', 'SP', '04174090', 8, '');
 
-INSERT INTO public.address(
-            address, neighborhood, state, zipcode, "number", complement)
-    VALUES ('Rua teste','Bairro Teste', 'SP', '04174090', 8, '');
-
 INSERT INTO public.users(
             id,
             name,
@@ -289,7 +285,7 @@ INSERT INTO public.users(
 
 
 INSERT INTO public.hospital(
-             name, address)
+             name, "addressId")
     VALUES ( 'Hospital teste', 1);
 insert into hospital_has_user (user_id, hospital_id) values (1,1);
 
@@ -308,6 +304,7 @@ insert into roles_has_actions (role_id, action_id) values (1,1);
 insert into roles_has_actions (role_id, action_id) values (1,2);
 insert into roles_has_actions (role_id, action_id) values (1,3);
 insert into roles_has_actions (role_id, action_id) values (1,4);
+insert into roles_has_actions (role_id, action_id) values (1,5);
 
 -- SELECT * FROM users as users
 -- inner join users_has_roles as users_has_roles ON users_has_roles.user_id = users.id
