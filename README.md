@@ -20,6 +20,7 @@ API para consumo do help doctor
   - [Criar hospitais `[POST] /hospital](#criar-hospitais-post-hospital)
     - [Resposta](#resposta-2)
   - [Atualizar hospitais `[PUT] /hospital/{id}](#atualizar-hospitais-put-hospitalid)
+    - [Payload](#payload)
     - [Resposta](#resposta-3)
   - [Deletar hospitais `[DELETE] /hospital/{id}](#deletar-hospitais-delete-hospitalid)
     - [Resposta](#resposta-4)
@@ -63,14 +64,14 @@ API para consumo do help doctor
     - [Exemplo Curl](#exemplo-curl-1)
     - [Erros possíveis](#erros-possíveis-1)
   - [Criar usuário `[POST] /user`](#criar-usuário-post-user)
-    - [Payload](#payload)
+    - [Payload](#payload-1)
     - [Atributos](#atributos)
     - [Erros Possíveis](#erros-possíveis-1)
   - [Editar usuario `[PUT] /user/:id`](#editar-usuario-put-userid)
     - [Atributos](#atributos-1)
     - [Atributos](#atributos-2)
     - [URL exemplo](#url-exemplo)
-    - [Payload](#payload-1)
+    - [Payload](#payload-2)
   - [Deletar usuario `[DELETE] /user/{id}`](#deletar-usuario-delete-userid)
     - [Parametros](#parametros-2)
   - [reset da senha `[POST] /user/reset](#reset-da-senha-post-userreset)
@@ -193,30 +194,32 @@ passar um ou outro, opcional
 
 ## Criar hospitais `[POST] /hospital
 
-``` 
+Cria hospitais
+
+> Para essa rota, é necessário que você tenha a action `hospital.create` na sua role
+
+```json
 {
     "name": "HOSPITAL ALBERT EINSTEIN",
-    "address": 1
+    "addressId": 1
 }
 ```
 
 ou
 
-``` 
+```json
 {
-    "name": "HOSPITAL ALBERT EINSTEIN",
+    "name": "Meu novo hospital",
     "address": {
-        "address": "string",
-        "neighborhood": "string",
-        "state": "string",
-        "number": "string",
-        "complement": "",
-        "zipcode": ""
+        "address": "Rua Help doctor",
+        "neighborhood": "Bairro help",
+        "state": "SP",
+        "zipcode": "04174092",
+        "number": "9",
+        "complement": ""
     }
 }
 ```
-
-passar um ou outro, opcional
 
 ### Resposta
 ``` 
@@ -235,44 +238,55 @@ passar um ou outro, opcional
 
 ## Atualizar hospitais `[PUT] /hospital/{id}
 
-``` 
+Atualizar dados de um hospital, para os dados de endereço ou você passa uma referencia de enderço ou passa os dados do endereço _(Para essa ação irá editar os dados do endereço vinculado ao hospital)_
+> Para essa ação é necessário ter a ação `hospital.update` na sua role
+
+### Payload
+```json
 {
-    "name": "HOSPITAL ALBERT EINSTEIN",
-    "address": 1
+    "name": "HOSPITAL ALBERT EINSTEIN editado",
+    "addressId": 2
 }
 ```
 
 ou
 
-``` 
+```json
 {
-    "name": "HOSPITAL ALBERT EINSTEIN",
+    "name": "HOSPITAL ALBERT EINSTEIN editado",
     "address": {
-        id: 1,
-        data: {
-            "address": "string",
-            "neighborhood": "string",
-            "state": "string",
-            "number": "string",
-            "complement": "",
-            "zipcode": ""
-        }
+        "address": "string editada",
+        "neighborhood": "string editada",
+        "state": "SP",
+        "number": "string editada",
+        "complement": "",
+        "zipcode": ""
     }
 }
 ```
 
 ### Resposta
-``` 
-[
-    {
-        "id": 1,
-        "name": "HOSPITAL ALBERT EINSTEIN",
-        "address": 1,
-        "createdAt": "2018-10-20T18:56:02.620Z",
-        "updatedAt": "2018-10-20T18:56:02.620Z",
-        "deletedAt": null,
+```json
+{
+    "id": 1,
+    "name": "HOSPITAL ALBERT EINSTEIN editado",
+    "addressId": 2,
+    "createdAt": "2018-11-06T16:28:30.811Z",
+    "updatedAt": "2018-11-06T19:34:32.001Z",
+    "deletedAt": null,
+    "addressHospital": {
+        "id": 2,
+        "formatedaddress": null,
+        "address": "Rua bla bla ",
+        "neighborhood": "Bairro Bla bla",
+        "state": "SP",
+        "zipcode": "04174092",
+        "number": "9",
+        "complement": "",
+        "createdAt": "2018-11-06T16:29:32.185Z",
+        "updatedAt": "2018-11-06T16:29:32.185Z"
     }
-]
+}
 ```
 
 
