@@ -4,23 +4,36 @@ const Address = require('../models/address')
 const Users = require('../models/hospital_has_user')
 const Categories = require('../models/medical_category')
 
-const DEFAULT_INCLUDE = [
-  {
-    model: Address,
-    as: 'addressHospital',
-    required: false,
-    attributes: ['id', 'formatedaddress', 'address', 'neighborhood', 'state', 'zipcode', 'number', 'complement', 'createdAt', 'updatedAt']
-  }
-]
 
 const findById = async (id) => {
-  return Hospital.findById(id, {
+  
+  const DEFAULT_INCLUDE = [
+    {
+      model: Address,
+      as: 'addressHospital',
+      required: false,
+      attributes: ['id', 'formatedaddress', 'address', 'neighborhood', 'state', 'zipcode', 'number', 'complement', 'createdAt', 'updatedAt']
+    }
+  ]
+
+  return Hospital.findById(id,{
     include: DEFAULT_INCLUDE
-  })
+  });
+  
 }
 
 const getAll = async (names = '', address = '') => {
-  const obj = {
+  
+  const DEFAULT_INCLUDE = [
+    {
+      model: Address,
+      as: 'addressHospital',
+      required: false,
+      attributes: ['id', 'formatedaddress', 'address', 'neighborhood', 'state', 'zipcode', 'number', 'complement', 'createdAt', 'updatedAt']
+    }
+  ]
+
+  var obj = {
     include: DEFAULT_INCLUDE
   }
 
@@ -31,7 +44,7 @@ const getAll = async (names = '', address = '') => {
   }
 
   if (address !== '') {
-    obj.include[0].required = true
+    obj.include[0].required = true;
     obj.include[0].where = global.sequelize.where(global.sequelize.col('formatedaddress'), {
       ilike: `%${address}%`
     })
