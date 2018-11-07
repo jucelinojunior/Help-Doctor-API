@@ -24,6 +24,9 @@ module.exports = {
     auth: {
       strategy: 'helpdoctor',
       scope: ['user.find']
+    },
+    cors: {
+      origin: ['*']
     }
   }
 }

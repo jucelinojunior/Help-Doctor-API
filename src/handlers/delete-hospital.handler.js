@@ -1,12 +1,16 @@
-const userService = require('../services/hospital.service');
+const userService = require('../services/hospital.service')
 
 module.exports = {
   method: 'DELETE',
   path: '/hospital/{id}',
   handler: async (request, reply) => {
-    return userService.destroy(request.params.id);
+    return userService.destroy(request.params.id)
   },
-  options: {
+  config: {
+    auth: {
+      strategy: 'helpdoctor',
+      scope: ['hospital.delete']
+    },
     cors: {
       origin: ['*']
     }

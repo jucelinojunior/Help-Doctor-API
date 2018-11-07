@@ -72,7 +72,8 @@ module.exports = {
       payload: schema
     },
     auth: {
-      strategy: 'helpdoctor'
+      strategy: 'helpdoctor',
+      scope: ['hospital.update']
     },
     cors: {
       origin: ['*']

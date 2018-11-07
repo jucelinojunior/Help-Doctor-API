@@ -4,9 +4,13 @@ module.exports = {
   method: 'POST',
   path: '/hospital/user',
   handler: async (request, reply) => {
-    return userService.users(request.payload.user,request.payload.hospital);
+    return userService.users(request.payload.user, request.payload.hospital)
   },
-  options: {
+  config: {
+    auth: {
+      strategy: 'helpdoctor',
+      scope: ['hospital_user.add']
+    },
     cors: {
       origin: ['*']
     }
