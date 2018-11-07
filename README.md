@@ -163,7 +163,7 @@ curl -X POST -F 'username=admin@helpdoctor.com.br' -F 'password=123' authorizati
 ```
 
 
-## Listar hospitais `[GET] /hospital
+## Listar hospitais `[GET] /hospital`
 
 Busca os hospitais
 
@@ -199,7 +199,35 @@ passar um ou outro, opcional
 ]
 ```
 
-## Criar hospitais `[POST] /hospital
+## Ver hospital `[GET] /hospital/{id}`
+
+### Resposta
+``` 
+
+{
+  "id": 1,
+  "name": "HOSPITAL ALBERT EINSTEIN",
+  "addressId": 1,
+  "createdAt": "2018-11-07T10:05:44.369Z",
+  "updatedAt": "2018-11-07T10:05:44.369Z",
+  "deletedAt": null,
+  "addressHospital": {
+    "id": 1,
+    "formatedaddress": "Avenida Alet Einstein, 627 Moumi | São Paulo Telefone: (11) 2151-1233",
+    "address": "teste",
+    "neighborhood": "TESTE",
+    "state": "SP",
+    "zipcode": "9780900",
+    "number": "627",
+    "complement": "",
+    "createdAt": "2018-11-07T10:05:41.700Z",
+    "updatedAt": "2018-11-07T10:05:41.700Z"
+  }
+}
+
+```
+
+## Criar hospitais `[POST] /hospital`
 
 Cria hospitais
 
@@ -243,7 +271,7 @@ ou
 ```
 
 
-## Atualizar hospitais `[PUT] /hospital/{id}
+## Atualizar hospitais `[PUT] /hospital/{id}`
 
 Atualizar dados de um hospital, para os dados de endereço ou você passa uma referencia de enderço ou passa os dados do endereço _(Para essa ação irá editar os dados do endereço vinculado ao hospital)_
 > Para essa ação é necessário ter a ação `hospital.update` na sua role
@@ -297,7 +325,7 @@ ou
 ```
 
 
-## Deletar hospitais `[DELETE] /hospital/{id}
+## Deletar hospitais `[DELETE] /hospital/{id}`
 
 ### Resposta
 ``` 
@@ -305,7 +333,7 @@ ou
 ```
 
 
-## usuario nos hospitais `[POST] /hospital/user
+## usuario nos hospitais `[POST] /hospital/user`
 
 ``` 
 {
@@ -327,7 +355,7 @@ ou
 ```
 
 
-## usuario nos hospitais `[GET] /medical/category
+## usuario nos hospitais `[GET] /medical/category`
 
 
 
@@ -345,7 +373,7 @@ ou
 ```
 
 
-## cadastrar category medical `[POST] /medical/category
+## cadastrar category medical `[POST] /medical/category`
 
 
 
@@ -369,7 +397,7 @@ ou
 ```
 
 
-## Listar todas as roles `[GET] /role
+## Listar todas as roles `[GET] /role`
 
 
 
@@ -432,7 +460,7 @@ ou
 ]
 ```
 
-## ver actions `[GET] /action
+## ver actions `[GET] /action`
 
 
 ### Resposta
@@ -450,7 +478,7 @@ ou
 ```
 
 
-## ver role `[GET] /role/{id}
+## ver role `[GET] /role/{id}`
 
 
 
@@ -481,7 +509,7 @@ ou
 ```
 
 
-## cadastrar role `[POST] /role
+## cadastrar role `[POST] /role`
 
 
 
@@ -505,7 +533,7 @@ ou
     }
 ```
 
-## atualizar role `[PUT] /role/{id}
+## atualizar role `[PUT] /role/{id}`
 
 
 
@@ -528,7 +556,7 @@ ou
     }
 ```
 
-## cadastrar action na role `[POST] /role/action/
+## cadastrar action na role `[POST] /role/action/`
 
 
 
@@ -553,7 +581,7 @@ ou
     }
 ```
 
-## remover action na role `[DELETE] /role/action/
+## remover action na role `[DELETE] /role/action/`
 
 
 
@@ -571,7 +599,7 @@ ou
     1|0
 ```
 
-## cadastrar user na role `[POST] /role/user/
+## cadastrar user na role `[POST] /role/user/`
 
 
 
@@ -596,7 +624,7 @@ ou
     }
 ```
 
-## remover action na role `[DELETE] /role/user/
+## remover action na role `[DELETE] /role/user/`
 
 
 
@@ -806,7 +834,7 @@ Deleta um usuário
 ---
 
 
-## reset da senha `[POST] /user/reset
+## reset da senha `[POST] /user/reset`
 
 
 na API, precisa ver a rota para colocar o e-mail de envio
