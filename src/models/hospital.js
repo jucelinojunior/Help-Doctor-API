@@ -34,4 +34,8 @@ Hospital.belongsTo(Address, {
   foreignKey: 'addressId'
 })
 
+/**
+ * O Relacionamento do HOSPITAL_HAS_USERS encontra-se no arquivo users.model.js
+ */
+
 module.exports = Hospital
