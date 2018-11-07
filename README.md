@@ -165,6 +165,13 @@ curl -X POST -F 'username=admin@helpdoctor.com.br' -F 'password=123' authorizati
 
 ## Listar hospitais `[GET] /hospital
 
+Busca os hospitais
+
+> Essa rota requer a action `hospital.list`
+
+Caso o usuario tenha a action `hospital.all` a rota retorna **TODOS** os hospitais.
+Agora, se o usuário tiver só a action `hospital.list` então retorna só os hospitais dos quais o usuário esta participando
+
 |   Parametro Query |    Descrição  |     Tipo  
 |--------------|---------------|-------------|
 |`name`  |  Buscar por nome | `String` |
