@@ -813,6 +813,6 @@ na API, precisa ver a rota para colocar o e-mail de envio
 
 ### Resposta
 ```
-    usuario: object
+    {errors: false ,data: object}
 ```
 

@@ -46,15 +46,28 @@ function table (request,h) {
       			console.error(err);
     		}else {
       			var keys = Object.keys(result[0]);
+
+      			var kk = [];
+
+      			for (var i in keys) {
+      				kk.push(keys[i]);
+      			}
+      			
       			for(var i = 0; i < result.length; i++) {
 
       				var vals = [];
       				var values = [];
+      				var kkk = [];
       				for(var z = 0; z < keys.length; z++ ) {
       					vals[z] = "$"+(z+1);
       					values[z] = result[i][keys[z]];
+      					if(values[z] != "" && values[z] != undefined && values[z] != null)
+      						kkk.push("\'"+values[z]+"\'");
+      					else
+      						kkk.push("\'\'");
       				}	
       				const text = 'INSERT INTO '+sheet+'('+keys.join(",")+') VALUES('+vals.join(",")+')';
+      				console.log('INSERT INTO '+sheet+'('+kk.join(",")+') VALUES('+kkk.join(",")+');');
 					client.query(text, values, (err, res) => {
 						
 						if(err != null) {
@@ -81,6 +94,8 @@ module.exports = {
 	method: 'GET',
 	path: '/init',
 	handler: function (request, h) {
+		
+		return {errors: false,data: 'Não existe mais essa função :/'};
 
 		const client = require('../pgConnect.js').connect();
 		client.connect();
@@ -152,11 +167,11 @@ module.exports = {
 			CREATE TABLE HOSPITAL (
 				id SERIAL PRIMARY KEY,
 				name VARCHAR(255) NOT NULL,
-				address INT NOT NULL,	
+				"addressId" INT NOT NULL,	
 				"createdAt" TIMESTAMP NULL DEFAULT NOW(),
 				"updatedAt" TIMESTAMP NULL DEFAULT NOW(),
 				"deletedAt" TIMESTAMP DEFAULT NULL,
-				foreign key (address) REFERENCES ADDRESS(id)
+				foreign key ("addressId") REFERENCES ADDRESS(id)
 			);
 
 			CREATE TABLE USERS (
