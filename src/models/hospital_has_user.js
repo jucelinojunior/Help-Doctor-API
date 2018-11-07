@@ -1,6 +1,5 @@
 const Sequelize = require('sequelize')
-const Address = require('./hospital')
-const User = require('./users')
+const Hospitals = require('./hospital')
 
 const HospitalHasUsers = global.sequelize.define('hospital_has_user', {
   id: {
@@ -32,16 +31,9 @@ const HospitalHasUsers = global.sequelize.define('hospital_has_user', {
   tableName: 'hospital_has_user'
 })
 
-// Hospital.hasMany(Address, {
-//   as: 'hospital',
-//   foreignKey: 'id',
-//   sourceKey: 'hospital_id'
-// })
-
-// Hospital.hasMany(User, {
-//   as: 'user',
-//   foreignKey: 'id',
-//   sourceKey: 'hospital_id'
-// })
+HospitalHasUsers.belongsTo(Hospitals, {
+  as: 'hospital',
+  foreignKey: 'hospital_id'
+})
 
 module.exports = HospitalHasUsers

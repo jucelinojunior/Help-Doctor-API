@@ -242,14 +242,15 @@ CREATE TABLE ROLES (
           user_id INT NOT NULL,
           "createdAt" TIMESTAMP NULL DEFAULT NOW(),
           "updatedAt" TIMESTAMP NULL DEFAULT NOW(),
+          "deletedAt" TIMESTAMP DEFAULT NULL,
           foreign key (hospital_id) references HOSPITAL(id),
           foreign key (user_id) references USERS(id),
           PRIMARY KEY (id, hospital_id, user_id)
         );
 
 INSERT INTO public.address(
-            address, neighborhood, state, zipcode, "number", complement)
-    VALUES ('Rua teste','Bairro Teste', 'SP', '04174090', 8, '');
+            address, neighborhood, state, zipcode, "number", complement, formatedaddress)
+    VALUES ('Rua teste','Bairro Teste', 'SP', '04174090', 8, '', 'Rua teste, 8 Bairro Teste - 04174090');
 
 INSERT INTO public.hospital(
              name, "addressId")
@@ -329,7 +330,6 @@ INSERT INTO public.roles(
             name)
     VALUES ( 'MANAGER');
 
-insert INTO hospital_has_user (user_id, hospital_id) values (2,1);
 
 -- Vinculo de roles e actions para usuario admin
 INSERT INTO users_has_roles (user_id, role_id) VALUES (1,1);
@@ -359,7 +359,7 @@ insert into roles_has_actions (role_id, action_id) values (1,10); -- hospital.al
 -- Vinculo de roles e actions para o usuario manager
 INSERT INTO users_has_roles (user_id, role_id) VALUES (2,2);
 insert into roles_has_actions (role_id, action_id) values (2,8); -- user.list
-insert into roles_has_actions (role_id, action_id) values (2,10); -- hospital.all
+insert into roles_has_actions (role_id, action_id) values (2,9); -- hospital.list
 
 -- SELECT * FROM users as users
 -- inner join users_has_roles as users_has_roles ON users_has_roles.user_id = users.id
@@ -1261,3 +1261,6 @@ INSERT INTO PAIN(severity,pain_name) VALUES('4','muita dor');
 INSERT INTO TRAUMA(severity,trauma_name,trauma_type) VALUES('4','traumazão','1');
 INSERT INTO APPOINTMENT_HAS_TRAUMAS(trauma_id,appointment_id) VALUES('1','2');
 INSERT INTO APPOINTMENT_HAS_PAIN(pain_id,appointment_id) VALUES('1','3');
+
+insert INTO hospital_has_user (user_id, hospital_id) values (2,1);
+insert INTO hospital_has_user (user_id, hospital_id) values (2,3);

@@ -5,6 +5,12 @@ const HospitalHasUsers = require('../models/hospital_has_user')
 const Categories = require('../models/medical_category')
 const Op = global.sequelize.Op
 
+const mapHospitalHasUser = (hospital) => {
+  return hospital.hospital
+}
+const removeNullObject = (h) => {
+  return !!h
+}
 const DEFAULT_INCLUDE = [
   {
     model: Address,
@@ -39,6 +45,53 @@ const DEFAULT_INCLUDE = [
     ]
   }
 ]
+
+const hospitalsByUser = async (userId, names = '', address = '') => {
+  const includeObject = [
+    {
+      model: Hospital,
+      as: 'hospital',
+      required: false,
+      attributes: ['id', 'name'],
+      include: [
+        {
+          model: Address,
+          as: 'addressHospital',
+          required: false,
+          attributes: ['id', 'formatedaddress', 'address', 'neighborhood', 'state', 'zipcode', 'number', 'complement', 'createdAt', 'updatedAt']
+        }
+      ]
+    }
+  ]
+  if (address !== '') {
+    includeObject[0].include[0].required = true
+    includeObject[0].include[0].where = {
+      [Op.and]: {
+        name: global.sequelize.where(global.sequelize.col('formatedaddress'), {
+          ilike: `%${address}%`
+        })
+      }
+    }
+  }
+
+  if (names !== '') {
+    includeObject[0].where = {
+      [Op.and]: {
+        name: global.sequelize.where(global.sequelize.col('name'), {
+          ilike: `%${names}%`
+        })
+      }
+    }
+  }
+  const hospitals = await HospitalHasUsers.findAll({
+    where: {
+      user_id: userId
+    },
+    include: includeObject
+  })
+
+  return hospitals.map(mapHospitalHasUser).filter(removeNullObject)
+}
 
 const findAllWithMultiplusId = async (ids) => {
   if (!Array.isArray(ids)) ids = [ids]
@@ -132,5 +185,6 @@ module.exports = {
   getAllCategories,
   registerCategories,
   findById,
-  findAllWithMultiplusId
+  findAllWithMultiplusId,
+  hospitalsByUser
 }
