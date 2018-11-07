@@ -13,6 +13,9 @@ module.exports = {
     auth: {
       strategy: 'helpdoctor',
       scope: ['user.delete']
+    },
+    cors: {
+      origin: ['*']
     }
   }
 }

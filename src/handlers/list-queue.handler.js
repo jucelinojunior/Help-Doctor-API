@@ -1,12 +1,16 @@
-const queue = require('../services/queue.service');
+const queue = require('../services/queue.service')
 
 module.exports = {
-	method: 'GET',
-	path: '/queue/hospital/{id}',
-	handler: function(request, h) {
-		return queue.viewQueue(request.params.id);
-	},
-	options: {
+  method: 'GET',
+  path: '/queue/hospital/{id}',
+  handler: async (request, h) => {
+    return queue.viewQueue(request.params.id)
+  },
+  config: {
+    auth: {
+      strategy: 'helpdoctor',
+      scope: ['queue.list']
+    },
     cors: {
       origin: ['*']
     }

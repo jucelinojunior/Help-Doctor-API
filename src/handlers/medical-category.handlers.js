@@ -9,6 +9,15 @@ const list = {
   path: '/medical/category',
   handler: async (request) => {
     return userService.getAllCategories()
+  },
+  config: {
+    auth: {
+      strategy: 'helpdoctor',
+      scope: ['medical_category.list']
+    },
+    cors: {
+      origin: ['*']
+    }
   }
 }
 
@@ -16,9 +25,13 @@ const register = {
   method: 'POST',
   path: '/medical/category',
   handler: async (request) => {
-    return userService.registerCategories(request.payload.name);
+    return userService.registerCategories(request.payload.name)
   },
-  options: {
+  config: {
+    auth: {
+      strategy: 'helpdoctor',
+      scope: ['medical_category.create']
+    },
     cors: {
       origin: ['*']
     }

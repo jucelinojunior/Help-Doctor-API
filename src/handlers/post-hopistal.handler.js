@@ -35,7 +35,8 @@ module.exports = {
   },
   config: {
     auth: {
-      strategy: 'helpdoctor'
+      strategy: 'helpdoctor',
+      scope: ['hospital.create']
     },
     cors: {
       origin: ['*']

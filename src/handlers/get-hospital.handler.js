@@ -10,7 +10,11 @@ module.exports = {
   handler: async (request) => {
     return hospitalService.findById(request.params.id);
   },
-  options: {
+  config: {
+    auth: {
+      strategy: 'helpdoctor',
+      scope: ['hospital.find']
+    },
     cors: {
       origin: ['*']
     }

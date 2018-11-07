@@ -99,30 +99,34 @@ CREATE TABLE ROLES (
       CREATE TABLE TYPE_APPOINTMENT (
         id SERIAL PRIMARY KEY,
         name VARCHAR(255) NOT NULL,
-        createdAt TIMESTAMP NULL DEFAULT NOW(),
-        updatedAt TIMESTAMP NULL DEFAULT NOW()
+        "createdAt" TIMESTAMP NULL DEFAULT NOW(),
+        "updatedAt" TIMESTAMP NULL DEFAULT NOW(),
+        "deletedAt" TIMESTAMP DEFAULT NULL
       );
 
       CREATE TABLE MEDICAL_CATEGORY (
         id SERIAL PRIMARY KEY,
         name VARCHAR(255) NOT NULL,
-        createdAt TIMESTAMP NULL DEFAULT NOW(),
-        updatedAt TIMESTAMP NULL DEFAULT NOW()
+        "createdAt" TIMESTAMP NULL DEFAULT NOW(),
+        "updatedAt" TIMESTAMP NULL DEFAULT NOW(),
+        "deletedAt" TIMESTAMP DEFAULT NULL
       );
 
       CREATE TABLE TYPE_PRONOUNCER (
         id SERIAL PRIMARY KEY,
         name VARCHAR(255) NOT NULL,
-        createdAt TIMESTAMP NULL DEFAULT NOW(),
-        updatedAt TIMESTAMP NULL DEFAULT NOW()
+        "createdAt" TIMESTAMP NULL DEFAULT NOW(),
+        "updatedAt" TIMESTAMP NULL DEFAULT NOW(),
+        "deletedAt" TIMESTAMP DEFAULT NULL
       );
 
       CREATE TABLE USERS_HAS_MEDICAL_CATEGORY (
         user_id INT NOT NULL,
         medical_category_id INT NOT NULL,
         PRIMARY KEY (user_id, medical_category_id),
-        createdAt TIMESTAMP NULL DEFAULT NOW(),
-        updatedAt TIMESTAMP NULL DEFAULT NOW(),
+        "createdAt" TIMESTAMP NULL DEFAULT NOW(),
+        "updatedAt" TIMESTAMP NULL DEFAULT NOW(),
+        "deletedAt" TIMESTAMP DEFAULT NULL,
         foreign key (user_id) REFERENCES USERS(id),
         foreign key (medical_category_id) REFERENCES MEDICAL_CATEGORY(id)
       );
@@ -344,17 +348,53 @@ insert into actions (name) values ('hospital.update');
 insert into actions (name) values ('user.list');
 insert into actions (name) values ('hospital.list');
 insert into actions (name) values ('hospital.all');
+insert into actions (name) values ('hospital.delete');
+insert into actions (name) values ('hospital.find');
+insert into actions (name) values ('queue.list');
+insert into actions (name) values ('medical_category.list');
+insert into actions (name) values ('medical_category.create');
+insert into actions (name) values ('hospital_user.add');
+insert into actions (name) values ('user.resetpassword');
+insert into actions (name) values ('role.list');
+insert into actions (name) values ('role.find');
+insert into actions (name) values ('role.delete');
+insert into actions (name) values ('role.update');
+insert into actions (name) values ('role.create');
+insert into actions (name) values ('role_action.create');
+insert into actions (name) values ('role_action.delete');
+insert into actions (name) values ('user_role.delete');
+insert into actions (name) values ('user_role.create');
+insert into actions (name) values ('action.list');
+insert into actions (name) values ('appointment.update');
+
 insert into roles_has_actions (role_id, action_id) values (1,1);
 insert into roles_has_actions (role_id, action_id) values (1,2);
 insert into roles_has_actions (role_id, action_id) values (1,3);
 insert into roles_has_actions (role_id, action_id) values (1,4);
-insert into roles_has_actions (role_id, action_id) values (1,5);
+insert into roles_has_actions (role_id, action_id) values (1,5); -- user.delete
 insert into roles_has_actions (role_id, action_id) values (1,6);
-insert into roles_has_actions (role_id, action_id) values (1,7);
+insert into roles_has_actions (role_id, action_id) values (1,7); -- hospital.update
 insert into roles_has_actions (role_id, action_id) values (1,8); -- user.list
 insert into roles_has_actions (role_id, action_id) values (1,9); -- hospital.list
 insert into roles_has_actions (role_id, action_id) values (1,10); -- hospital.all
-
+insert into roles_has_actions (role_id, action_id) values (1,11); -- hospital.delete
+insert into roles_has_actions (role_id, action_id) values (1,12); -- hospital.find
+insert into roles_has_actions (role_id, action_id) values (1,13); -- queue.list
+insert into roles_has_actions (role_id, action_id) values (1,14); -- medical_category.list
+insert into roles_has_actions (role_id, action_id) values (1,15); -- medical_category.create
+insert into roles_has_actions (role_id, action_id) values (1,16); -- hospital_user.add
+insert into roles_has_actions (role_id, action_id) values (1,17); -- user.resetpassword
+insert into roles_has_actions (role_id, action_id) values (1,18); -- role.list
+insert into roles_has_actions (role_id, action_id) values (1,19); -- role.find
+insert into roles_has_actions (role_id, action_id) values (1,20); -- role.delete
+insert into roles_has_actions (role_id, action_id) values (1,21); -- role.update
+insert into roles_has_actions (role_id, action_id) values (1,22); -- role.create
+insert into roles_has_actions (role_id, action_id) values (1,23); -- role_action.create
+insert into roles_has_actions (role_id, action_id) values (1,24); -- role_action.delete
+insert into roles_has_actions (role_id, action_id) values (1,25); -- user_role.delete
+insert into roles_has_actions (role_id, action_id) values (1,26); -- user_role.create
+insert into roles_has_actions (role_id, action_id) values (1,27); -- action.list
+insert into roles_has_actions (role_id, action_id) values (1,28); -- action.list -- appointment.update
 
 -- Vinculo de roles e actions para o usuario manager
 INSERT INTO users_has_roles (user_id, role_id) VALUES (2,2);
