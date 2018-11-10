@@ -16,7 +16,7 @@ const DEFAULT_INCLUDE = [
     model: Address,
     as: 'addressHospital',
     required: false,
-    attributes: ['id', 'formatedaddress', 'address', 'neighborhood', 'state', 'zipcode', 'number', 'complement', 'createdAt', 'updatedAt']
+    attributes: ['id', 'formatedaddress', 'address', 'neighborhood','city', 'state', 'zipcode', 'number', 'complement', 'createdAt', 'updatedAt']
   },
   {
     model: User,
@@ -58,7 +58,19 @@ const hospitalsByUser = async (userId, names = '', address = '') => {
           model: Address,
           as: 'addressHospital',
           required: false,
-          attributes: ['id', 'formatedaddress', 'address', 'neighborhood', 'state', 'zipcode', 'number', 'complement', 'createdAt', 'updatedAt']
+          attributes: [
+            'id',
+             'formatedaddress',
+              'address',
+               'neighborhood',
+               'city',
+               'state',
+               'zipcode',
+               'number',
+               'complement',
+               'createdAt',
+               'updatedAt'
+               ]
         }
       ]
     }
@@ -106,30 +118,30 @@ const findAllWithMultiplusId = async (ids) => {
 }
 
 const findById = async (id) => {
-  
+
   const DEFAULT_INCLUDE = [
     {
       model: Address,
       as: 'addressHospital',
       required: false,
-      attributes: ['id', 'formatedaddress', 'address', 'neighborhood', 'state', 'zipcode', 'number', 'complement', 'createdAt', 'updatedAt']
+      attributes: ['id', 'formatedaddress', 'address', 'neighborhood', 'city', 'state', 'zipcode', 'number', 'complement', 'createdAt', 'updatedAt']
     }
   ]
 
   return Hospital.findById(id,{
     include: DEFAULT_INCLUDE
   });
-  
+
 }
 
 const getAll = async (names = '', address = '') => {
-  
+
   const DEFAULT_INCLUDE = [
     {
       model: Address,
       as: 'addressHospital',
       required: false,
-      attributes: ['id', 'formatedaddress', 'address', 'neighborhood', 'state', 'zipcode', 'number', 'complement', 'createdAt', 'updatedAt']
+      attributes: ['id', 'formatedaddress', 'address', 'neighborhood', 'city', 'state', 'zipcode', 'number', 'complement', 'createdAt', 'updatedAt']
     }
   ]
 

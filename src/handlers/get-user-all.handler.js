@@ -7,7 +7,7 @@ const hospitalService = require('../services/hospital.service')
 
 module.exports = {
   method: 'GET',
-  path: '/user/all',
+  path: '/user',
   handler: async (request) => {
     const {scope, user} = request.auth.credentials
     if (scope.includes('user.all')) return userService.getAll()

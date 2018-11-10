@@ -9,6 +9,8 @@ const schema = Joi.object({
   address: Joi.object({
     address: Joi.string(),
     neighborhood: Joi.string(),
+    city: Joi.string().required(),
+    state: Joi.string(),
     state: Joi.string(),
     zipcode: Joi.string(),
     number: Joi.number(),

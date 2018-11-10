@@ -1,7 +1,7 @@
 const Address = require('../models/address')
 
 const register = async (address) => {
-  address.formatedaddress = `${address.address}, ${address.number} - ${address.neighborhood} ${address.state}`
+  address.formatedaddress = `${address.address}, ${address.number} - ${address.neighborhood}, ${address.city} - ${address.state}`
   return Address.findOrCreate({ where: {
     formatedaddress: address.formatedaddress
   },
@@ -19,7 +19,7 @@ const register = async (address) => {
  * @param {object} address
  */
 const update = async (id, address) => {
-  address.formatedaddress = `${address.address}, ${address.number} - ${address.neighborhood} ${address.state}`
+  address.formatedaddress = `${address.address}, ${address.number} - ${address.neighborhood}, ${address.city} - ${address.state}`
   return Address.update(address, {
     where: {
       id: id

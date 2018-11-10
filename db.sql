@@ -26,6 +26,7 @@ CREATE TABLE ROLES (
       CREATE TABLE ADDRESS (
         id SERIAL PRIMARY KEY,
         address  VARCHAR(255) NOT NULL,
+        city  VARCHAR(255)  NULL,
         neighborhood VARCHAR(255) NOT NULL,
         state VARCHAR(10) NOT NULL,
         zipcode VARCHAR(50) NOT NULL,
@@ -253,8 +254,8 @@ CREATE TABLE ROLES (
         );
 
 INSERT INTO public.address(
-            address, neighborhood, state, zipcode, "number", complement, formatedaddress)
-    VALUES ('Rua teste','Bairro Teste', 'SP', '04174090', 8, '', 'Rua teste, 8 Bairro Teste - 04174090');
+            address, neighborhood, state, zipcode, "number", complement, formatedaddress, city)
+    VALUES ('Rua teste','Bairro Teste', 'SP', '04174090', 8, '', 'Rua teste, 8 Bairro Teste - 04174090', 'Cidate Teste');
 
 INSERT INTO public.hospital(
              name, "addressId")

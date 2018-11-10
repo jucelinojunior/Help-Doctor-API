@@ -23,6 +23,7 @@ const schema = Joi.object({
     neighborhood: Joi.string(),
     state: Joi.string(),
     zipcode: Joi.string(),
+    state: Joi.string(),
     number: Joi.number(),
     complement: Joi.string().allow('').optional()
   })

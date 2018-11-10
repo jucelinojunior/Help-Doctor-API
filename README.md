@@ -15,47 +15,49 @@ API para consumo do help doctor
     - [Erros possíveis](#erros-possíveis)
   - [Listar fila em um hospital `[GET] /queue/hospital/{hospital_id}`](#listar-fila-em-um-hospital-get-queuehospitalhospital_id)
     - [Resposta](#resposta)
-  - [Listar hospitais `[GET] /hospital](#listar-hospitais-get-hospital)
+  - [Listar hospitais `[GET] /hospital`](#listar-hospitais-get-hospital)
     - [Resposta](#resposta-1)
-  - [Criar hospitais `[POST] /hospital](#criar-hospitais-post-hospital)
+  - [Ver hospital `[GET] /hospital/{id}`](#ver-hospital-get-hospitalid)
     - [Resposta](#resposta-2)
-  - [Atualizar hospitais `[PUT] /hospital/{id}](#atualizar-hospitais-put-hospitalid)
-    - [Payload](#payload)
+  - [Criar hospitais `[POST] /hospital`](#criar-hospitais-post-hospital)
     - [Resposta](#resposta-3)
-  - [Deletar hospitais `[DELETE] /hospital/{id}](#deletar-hospitais-delete-hospitalid)
+  - [Atualizar hospitais `[PUT] /hospital/{id}`](#atualizar-hospitais-put-hospitalid)
+    - [Payload](#payload)
     - [Resposta](#resposta-4)
-  - [usuario nos hospitais `[POST] /hospital/user](#usuario-nos-hospitais-post-hospitaluser)
+  - [Deletar hospitais `[DELETE] /hospital/{id}`](#deletar-hospitais-delete-hospitalid)
     - [Resposta](#resposta-5)
-  - [usuario nos hospitais `[GET] /medical/category](#usuario-nos-hospitais-get-medicalcategory)
+  - [usuario nos hospitais `[POST] /hospital/user`](#usuario-nos-hospitais-post-hospitaluser)
     - [Resposta](#resposta-6)
-  - [cadastrar category medical `[POST] /medical/category](#cadastrar-category-medical-post-medicalcategory)
-    - [Enviar](#enviar)
+  - [usuario nos hospitais `[GET] /medical/category`](#usuario-nos-hospitais-get-medicalcategory)
     - [Resposta](#resposta-7)
-  - [Listar todas as roles `[GET] /role](#listar-todas-as-roles-get-role)
+  - [cadastrar category medical `[POST] /medical/category`](#cadastrar-category-medical-post-medicalcategory)
+    - [Enviar](#enviar)
     - [Resposta](#resposta-8)
-  - [ver actions `[GET] /action](#ver-actions-get-action)
+  - [Listar todas as roles `[GET] /role`](#listar-todas-as-roles-get-role)
     - [Resposta](#resposta-9)
-  - [ver role `[GET] /role/{id}](#ver-role-get-roleid)
+  - [ver actions `[GET] /action`](#ver-actions-get-action)
     - [Resposta](#resposta-10)
-  - [cadastrar role `[POST] /role](#cadastrar-role-post-role)
-    - [Enviar](#enviar-1)
+  - [ver role `[GET] /role/{id}`](#ver-role-get-roleid)
     - [Resposta](#resposta-11)
-  - [atualizar role `[PUT] /role/{id}](#atualizar-role-put-roleid)
-    - [Enviar](#enviar-2)
+  - [cadastrar role `[POST] /role`](#cadastrar-role-post-role)
+    - [Enviar](#enviar-1)
     - [Resposta](#resposta-12)
-  - [cadastrar action na role `[POST] /role/action/](#cadastrar-action-na-role-post-roleaction)
-    - [Enviar](#enviar-3)
+  - [atualizar role `[PUT] /role/{id}`](#atualizar-role-put-roleid)
+    - [Enviar](#enviar-2)
     - [Resposta](#resposta-13)
-  - [remover action na role `[DELETE] /role/action/](#remover-action-na-role-delete-roleaction)
-    - [Enviar](#enviar-4)
+  - [cadastrar action na role `[POST] /role/action/`](#cadastrar-action-na-role-post-roleaction)
+    - [Enviar](#enviar-3)
     - [Resposta](#resposta-14)
-  - [cadastrar user na role `[POST] /role/user/](#cadastrar-user-na-role-post-roleuser)
-    - [Enviar](#enviar-5)
+  - [remover action na role `[DELETE] /role/action/`](#remover-action-na-role-delete-roleaction)
+    - [Enviar](#enviar-4)
     - [Resposta](#resposta-15)
-  - [remover action na role `[DELETE] /role/user/](#remover-action-na-role-delete-roleuser)
-    - [Enviar](#enviar-6)
+  - [cadastrar user na role `[POST] /role/user/`](#cadastrar-user-na-role-post-roleuser)
+    - [Enviar](#enviar-5)
     - [Resposta](#resposta-16)
-  - [[GET] Listar todos os usuários dos sistema `/user/all`](#get-listar-todos-os-usuários-dos-sistema-userall)
+  - [remover action na role `[DELETE] /role/user/`](#remover-action-na-role-delete-roleuser)
+    - [Enviar](#enviar-6)
+    - [Resposta](#resposta-17)
+  - [[GET] Listar todos os usuários dos sistema `/user`](#get-listar-todos-os-usuários-dos-sistema-user)
     - [Response](#response)
     - [Erros Possíveis](#erros-possíveis)
   - [Procurar usuario no sistema `[GET] /user/:id`](#procurar-usuario-no-sistema-get-userid)
@@ -74,9 +76,9 @@ API para consumo do help doctor
     - [Payload](#payload-2)
   - [Deletar usuario `[DELETE] /user/{id}`](#deletar-usuario-delete-userid)
     - [Parametros](#parametros-2)
-  - [reset da senha `[POST] /user/reset](#reset-da-senha-post-userreset)
+  - [reset da senha `[POST] /user/reset`](#reset-da-senha-post-userreset)
     - [Enviar](#enviar-7)
-    - [Resposta](#resposta-17)
+    - [Resposta](#resposta-18)
 
 <!-- /TOC -->
 
@@ -172,7 +174,7 @@ Busca os hospitais
 Caso o usuario tenha a action `hospital.all` a rota retorna **TODOS** os hospitais.
 Agora, se o usuário tiver só a action `hospital.list` então retorna só os hospitais dos quais o usuário esta participando
 
-|   Parametro Query |    Descrição  |     Tipo  
+|   Parametro Query |    Descrição  |     Tipo
 |--------------|---------------|-------------|
 |`name`  |  Buscar por nome | `String` |
 |`address`  |  Buscar por endereço | `String` |
@@ -180,7 +182,7 @@ Agora, se o usuário tiver só a action `hospital.list` então retorna só os ho
 passar um ou outro, opcional
 
 ### Resposta
-``` 
+```
 [
     {
         "id": 1,
@@ -202,7 +204,7 @@ passar um ou outro, opcional
 ## Ver hospital `[GET] /hospital/{id}`
 
 ### Resposta
-``` 
+```
 
 {
   "id": 1,
@@ -257,7 +259,7 @@ ou
 ```
 
 ### Resposta
-``` 
+```
 [
     {
         "id": 1,
@@ -328,14 +330,14 @@ ou
 ## Deletar hospitais `[DELETE] /hospital/{id}`
 
 ### Resposta
-``` 
+```
 1 | 0
 ```
 
 
 ## usuario nos hospitais `[POST] /hospital/user`
 
-``` 
+```
 {
     "user": id,
     "hospital": id
@@ -343,7 +345,7 @@ ou
 ```
 
 ### Resposta
-``` 
+```
 {
     "id": 1,
     "user_id": 1,
@@ -360,7 +362,7 @@ ou
 
 
 ### Resposta
-``` 
+```
 [
     {
         "id": 1,
@@ -378,7 +380,7 @@ ou
 
 
 ### Enviar
-``` 
+```
     {
         "name": "bakbakbka"
     }
@@ -386,7 +388,7 @@ ou
 
 
 ### Resposta
-``` 
+```
 {
     "id": 2,
     "name": "bakbakbka",
@@ -402,7 +404,7 @@ ou
 
 
 ### Resposta
-``` 
+```
 [
     {
         "id": 1,
@@ -464,7 +466,7 @@ ou
 
 
 ### Resposta
-``` 
+```
 
    [
     {
@@ -483,7 +485,7 @@ ou
 
 
 ### Resposta
-``` 
+```
 
     {
         "id": 1,
@@ -514,7 +516,7 @@ ou
 
 
 ### Enviar
-``` 
+```
 
     {
         "name": "ADMIN",
@@ -523,7 +525,7 @@ ou
 
 
 ### Resposta
-``` 
+```
     {
         "id": 1,
         "name": "ADMIN",
@@ -538,7 +540,7 @@ ou
 
 
 ### Enviar
-``` 
+```
     {
         "name": "ADMIN",
     }
@@ -546,7 +548,7 @@ ou
 
 
 ### Resposta
-``` 
+```
     {
         "id": 1,
         "name": "ADMIN",
@@ -561,7 +563,7 @@ ou
 
 
 ### Enviar
-``` 
+```
     {
         "action_id": 1,
         "role_id": 5
@@ -570,7 +572,7 @@ ou
 
 
 ### Resposta
-``` 
+```
     {
         "id": 3,
         "action_id": 1,
@@ -586,7 +588,7 @@ ou
 
 
 ### Enviar
-``` 
+```
     {
         "action_id": 1,
         "role_id": 5
@@ -595,7 +597,7 @@ ou
 
 
 ### Resposta
-``` 
+```
     1|0
 ```
 
@@ -604,7 +606,7 @@ ou
 
 
 ### Enviar
-``` 
+```
     {
         "user_id": 1,
         "role_id": 5
@@ -613,7 +615,7 @@ ou
 
 
 ### Resposta
-``` 
+```
     {
         "id": 3,
         "user_id": 1,
@@ -629,7 +631,7 @@ ou
 
 
 ### Enviar
-``` 
+```
     {
         "user_id": 1,
         "role_id": 5
@@ -638,14 +640,14 @@ ou
 
 
 ### Resposta
-``` 
+```
     1|0
 ```
 
-## [GET] Listar todos os usuários dos sistema `/user/all`
+## [GET] Listar todos os usuários dos sistema `/user`
 
 Rota responsável por listar todos os usuários
-> Essa Rota requer que o JWT usado tenha permissão de `user.all` 
+> Essa Rota requer que o JWT usado tenha permissão de `user.all`
 
 ### Response
 
@@ -704,7 +706,7 @@ Rota responsável por listar todos os usuários
 
 ---
 
-## Procurar usuario no sistema `[GET] /user/:id` 
+## Procurar usuario no sistema `[GET] /user/:id`
 
 Procura um usuario no sistema
 
@@ -741,8 +743,8 @@ Procura um usuario no sistema
 
 Cria o usuário
 
-### Payload 
-```json 
+### Payload
+```json
 {
   "name": "Guilherme",
   "email": "guiihpr@gmail.com",
@@ -810,7 +812,7 @@ Edita usuario de acordo com um ID passado
 
 ### URL exemplo
 [PUT] `/user/20`
-### Payload 
+### Payload
 
 ```json
   {
@@ -840,7 +842,7 @@ Deleta um usuário
 na API, precisa ver a rota para colocar o e-mail de envio
 
 ### Enviar
-``` 
+```
     {
         "email": "1"
     }
