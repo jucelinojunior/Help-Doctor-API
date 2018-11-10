@@ -4,6 +4,9 @@ API para consumo do help doctor
 <!-- TOC -->
 
 - [Help Doctor API](#help-doctor-api)
+- [Permissões do sistema](#permissões-do-sistema)
+  - [Tabelas de ações](#tabelas-de-ações)
+- [Usuarios do sistema](#usuarios-do-sistema)
 - [Endpoints](#endpoints)
   - [Carga automática `[GET] /init`](#carga-automática-get-init)
   - [Autorização `[POST] /oauth/authorize`](#autorização-post-oauthauthorize)
@@ -81,8 +84,58 @@ API para consumo do help doctor
     - [Resposta](#resposta-18)
 
 <!-- /TOC -->
+# Permissões do sistema
+
+Toda role possui 0 ou N actions, e toda action possui 0 ou N roles. Por exemplo, para criar um usuário, é necessário que uma das roles do usuario tenha a action `user.create`. Dessa forma para adicionar uma nova ação, é necessário adicionar a ação na role desejada.
+
+## Tabelas de ações
+
+| Action | Descrição | Requer action |
+|--------|-----------|---------------|
+|`user.create`| Permissão para a criação de novos usuarios| - |
+| `user.list` | Permissão para listar os usuarios, caso o usuário só possua a `user.list` ele retorna apenas os usuarios de hospitais que ele seja responsável | - |
+|`user.all`| Permissão para listar **TODOS** os usuários| `user.list` |
+|`user.find`| Permissão para pesquisar usuarios | - |
+|`user.update` | Permissão para editar o usuário, caso o JWT do usuario não tenha a action `user.update_all` ele só podera editar o proprio usuario | - |
+|`user.update_all`| Permissão para editar qualquer usuario do sistema | `user.update` |
+|`user.delete` | Permissão para fazer um soft delete | - |
+|`hospital.create`|Permissão para criar hospitais | - |
+|`hospital.update`| Permissão para atualizar hospitais | - |
+|`hospital.list` | Permissão para listar os hospitais, caso o JWT só possua a action `hospital.list` mostra apenas hospitais que ele esteja participando | - |
+|`hospital.all` | Permissão para listar **TODOS** os hospitais | `hospital.list` |
+|`hospital.delete`| Permissão para um soft delete no hospital | - |
+|`hospital.find` | Permissão para encontrar um hospital | - |
+|`queue.list` | Permissão para listar a file | - |
+|`medical_category.list`| Permissão para listar os medical categories | - |
+|`medical_category.create`| Permissão para criar novos medical categories | - |
+|`hospital_user.add`| Permissão para adicionar um usuário a um hospital | - |
+|`user.resetpassword`| Permissão para solicitar um reset de senha | - |
+|`role.list`| Permissão para listar as roles | - |
+|`role.delete`| Permissão para fazer um soft delete em uma role | - |
+|`role.update`| Permissão para atualizar uma role | - |
+|`role.create`| Permissão para criar uma nova role | - |
+|`role_action.create` | Permissão para vinculo de action com uma role | - |
+|`role_action.delete`| Permissão para deletar um vinculo de action com uma role | - |
+|`user_role.delete`| Permissão para deletar um vinculo entre um usuário e uma role | - |
+|`user_role.create`| Permissão para fazer um vinculo entre um usuario e uma role | -|
+|`action.list` | Permissão para listar todas as actions do sistema | - |
+|`appointment.update`| Permissão para atualização de consultas | - |
+
+# Usuarios do sistema
+
+Existem os 5 tipos de usuarios do sistema
+
+| Role | Usuario | Senha |
+|--------|-------------|------------|
+|ADMIN| admin@helpdoctor.com.br| 123|
+|MANAGER|manager@helpdoctor.com.br|123|
+|DOCTOR| doctor@helpdoctor.com.br| 123|
+|MANAGER| manager@helpdoctor.com.br|123|
+|RECEPCIONIST| recepcionist@helpdoctor.com.br | 123 |
+
 
 # Endpoints
+
 ## Carga automática `[GET] /init`
 Rota responsavel por criar as tabelas e preencher os dados
 

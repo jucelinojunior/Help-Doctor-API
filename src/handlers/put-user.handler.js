@@ -32,6 +32,9 @@ module.exports = {
   method: 'PUT',
   path: '/user/{id}',
   handler: async (request, reply) => {
+    //Pega o user do JWT
+    const {scope, user:userJWT} = request.auth.credentials
+
     const {payload} = request
     if (payload.personal_document) {
       //  Faz validação de CPF
@@ -41,6 +44,11 @@ module.exports = {
 
     //  Recupera o usuario
     const user = await userService.find(request.params.id, true)
+
+    // Verifica se o usuario que ele deseja editar é o mesmo da JWT
+    const isSelfUpdate = user.id === userJWT.id
+
+    if (!isSelfUpdate && !scope.includes('user.update_all')) throw Boom.unauthorized('Você esta tentando editar um usuario que não é seu.')
 
     //  Atualiza o endereço
     let addressResult = null
