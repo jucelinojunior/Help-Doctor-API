@@ -12,7 +12,7 @@ module.exports = {
   config: {
     auth: {
       strategy: 'helpdoctor',
-      //scope: ['patient.list']
+      scope: ['patient.list']
     },
     cors: {
       origin: ['*']

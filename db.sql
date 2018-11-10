@@ -367,6 +367,11 @@ insert into actions (name) values ('user_role.delete');
 insert into actions (name) values ('user_role.create');
 insert into actions (name) values ('action.list');
 insert into actions (name) values ('appointment.update');
+insert into actions (name) values ('patient.list');
+insert into actions (name) values ('patient.create');
+insert into actions (name) values ('patient.update');
+insert into actions (name) values ('patient.delete');
+insert into actions (name) values ('patient.find');
 
 insert into roles_has_actions (role_id, action_id) values (1,1);
 insert into roles_has_actions (role_id, action_id) values (1,2);
@@ -395,12 +400,24 @@ insert into roles_has_actions (role_id, action_id) values (1,24); -- role_action
 insert into roles_has_actions (role_id, action_id) values (1,25); -- user_role.delete
 insert into roles_has_actions (role_id, action_id) values (1,26); -- user_role.create
 insert into roles_has_actions (role_id, action_id) values (1,27); -- action.list
-insert into roles_has_actions (role_id, action_id) values (1,28); -- action.list -- appointment.update
+insert into roles_has_actions (role_id, action_id) values (1,28); -- appointment.update
+insert into roles_has_actions (role_id, action_id) values (1,29); -- patient.list
+insert into roles_has_actions (role_id, action_id) values (1,30); -- patient.create
+insert into roles_has_actions (role_id, action_id) values (1,31); -- patient.update
+insert into roles_has_actions (role_id, action_id) values (1,32); -- patient.delete
+insert into roles_has_actions (role_id, action_id) values (1,33); -- patient.find
+
+
 
 -- Vinculo de roles e actions para o usuario manager
 INSERT INTO users_has_roles (user_id, role_id) VALUES (2,2);
 insert into roles_has_actions (role_id, action_id) values (2,8); -- user.list
 insert into roles_has_actions (role_id, action_id) values (2,9); -- hospital.list
+insert into roles_has_actions (role_id, action_id) values (2,29); -- patient.list
+insert into roles_has_actions (role_id, action_id) values (2,30); -- patient.create
+insert into roles_has_actions (role_id, action_id) values (2,31); -- patient.update
+insert into roles_has_actions (role_id, action_id) values (2,32); -- patient.delete
+insert into roles_has_actions (role_id, action_id) values (2,33); -- patient.find
 
 -- SELECT * FROM users as users
 -- inner join users_has_roles as users_has_roles ON users_has_roles.user_id = users.id
