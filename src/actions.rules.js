@@ -8,6 +8,11 @@ const ACTIONS = {
     require: [
       'hospital.list'
     ]
+  },
+  'user.create': {
+    require: [
+      'role.list'
+    ]
   }
 }
 module.exports = ACTIONS

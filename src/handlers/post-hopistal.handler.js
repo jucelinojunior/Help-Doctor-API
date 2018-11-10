@@ -12,7 +12,7 @@ const schema = Joi.object({
     city: Joi.string().required(),
     zipcode: Joi.string().required(),
     number: Joi.number().required(),
-    complement: Joi.string().allow('').optional()
+    complement: Joi.string().allow('').allow(null).optional()
   })
 })
 

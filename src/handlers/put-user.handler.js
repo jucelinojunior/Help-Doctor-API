@@ -24,8 +24,9 @@ const schema = Joi.object({
     state: Joi.string(),
     zipcode: Joi.string(),
     state: Joi.string(),
+    city: Joi.string(),
     number: Joi.number(),
-    complement: Joi.string().allow('').optional()
+    complement: Joi.string().allow('').allow(null).optional()
   })
 })
 module.exports = {

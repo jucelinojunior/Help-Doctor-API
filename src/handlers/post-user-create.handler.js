@@ -20,12 +20,12 @@ const schema = Joi.object({
   address: Joi.object({
     address: Joi.string().required(),
     neighborhood: Joi.string().required(),
-    state: Joi.string().required(),
+    city: Joi.string().required(),
     state: Joi.string().required(),
     zipcode: Joi.string().required(),
     number: Joi.number().required(),
-    complement: Joi.string().allow('').optional()
-  })
+    complement: Joi.string().allow('').allow(null).optional()
+  }).required()
 })
 module.exports = {
   method: 'POST',
@@ -33,7 +33,7 @@ module.exports = {
   handler: async (request, reply) => {
     const {payload} = request
     //  Faz validação de CPF
-    if (userService.validateCPF(payload.personal_document)) {
+    // if (userService.validateCPF(payload.personal_document)) {
       const salt = bcrypt.genSaltSync(10)
       const user = {
         ...payload,
@@ -50,11 +50,10 @@ module.exports = {
       user.addressId = addressAdded.id
       // user.addressId = 1
       console.log('==>', user)
-      await userService.add(user)
-      return user
-    } else {
-      throw Boom.badRequest('CPF Invalido')
-    }
+      return userService.add(user)
+    // } else {
+    //   throw Boom.badRequest('CPF Invalido')
+    // }
   },
   config: {
     auth: {

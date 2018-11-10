@@ -519,6 +519,7 @@ insert into roles_has_actions (role_id, action_id) values (2,4); -- user.update
 insert into roles_has_actions (role_id, action_id) values (2,5); -- user.delete
 insert into roles_has_actions (role_id, action_id) values (2,7); -- hospital.update
 insert into roles_has_actions (role_id, action_id) values (2,14); -- medical_category.list
+insert into roles_has_actions (role_id, action_id) values (2,18); -- role.list
 
 -- Vinculo de roles e actions para o usuario doctor
 insert into roles_has_actions (role_id, action_id) values (3,4); -- user.update
