@@ -17,6 +17,38 @@ const getAll = async () => {
   })
 }
 
+const findById = async (id, showDeleteds = false) => {
+  return Patient.findById(id, {
+    include: DEFAULT_INCLUDE,
+    paranoid: !showDeleteds
+  })
+}
+
+const update = async (id, patient) => {
+  return Patient.update(patient, {
+    where: {
+      id: id
+    },
+    paranoid: false
+  })
+}
+
+const add = async (patient) => {
+  return Patient.build(patient).save()
+}
+
+const destroy = async (id) => {
+  return Patient.destroy({
+    where: {
+      id: id
+    }
+  })
+}
+
 module.exports = {
-  getAll
+  getAll,
+  findById,
+  update,
+  add,
+  destroy
 }

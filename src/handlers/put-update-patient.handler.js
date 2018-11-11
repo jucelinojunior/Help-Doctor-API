@@ -3,7 +3,7 @@
  * https://imasters.com.br/devsecops/encriptando-senhas-com-o-bcrypt
  */
 const Joi = require('joi')
-const userService = require('../services/user.service')
+const patientService = require('../services/patient.service')
 const addressService = require('../services/address.service')
 const Boom = require('boom')
 const bcrypt = require('bcrypt-nodejs')
@@ -13,10 +13,9 @@ const schema = Joi.object({
   email: Joi.string().email({ minDomainAtoms: 2 }),
   password: Joi.string(),
   personal_document: Joi.string().regex(/\d{11}/),
-  responsable_hospital: Joi.number(),
   birthday: Joi.date(),
-  roles_id: Joi.array().min(1),
   genre: Joi.string(),
+  phoneNumber: Joi.string().optional(),
   deletedAt: Joi.allow(null).optional(),
   address: Joi.object({
     address: Joi.string(),
@@ -31,40 +30,33 @@ const schema = Joi.object({
 })
 module.exports = {
   method: 'PUT',
-  path: '/user/{id}',
+  path: '/patient/{id}',
   handler: async (request, reply) => {
     //Pega o user do JWT
-    const {scope, user:userJWT} = request.auth.credentials
 
     const {payload} = request
 
-    //  Recupera o usuario
-    const user = await userService.find(request.params.id, true)
+    //  Recupera o paciente
+    const patient = await patientService.findById(request.params.id, true)
 
-    // Verifica se o usuario que ele deseja editar é o mesmo da JWT
-    const isSelfUpdate = user.id === userJWT.id
-
-    if (!isSelfUpdate && !scope.includes('user.update_all')) throw Boom.unauthorized('Você esta tentando editar um usuario que não é seu.')
+    console.log(patient)
 
     //  Atualiza o endereço
     let addressResult = null
     if (payload.address) {
-      addressResult = await addressService.update(user.address.id, payload.address)
+      addressResult = await addressService.update(payload.address.id, payload.address)
     }
-    //  Verifica se no payload tem senha
-    if (payload.password) {
-      payload.password = bcrypt.hashSync(payload.password, payload.salt)
-    }
-    //  Atualiza o usuario
-    const userResult = await userService.update(user.id, payload)
 
-    userResult.address = addressResult
-    return userResult
+    //  Atualiza o usuario
+    const patientResult = await patientService.update(request.params.id, payload)
+
+    patientResult.address = addressResult
+    return patientResult
   },
   config: {
     auth: {
       strategy: 'helpdoctor',
-      scope: ['user.update']
+      scope: ['patient.update']
     },
     validate: {
       payload: schema

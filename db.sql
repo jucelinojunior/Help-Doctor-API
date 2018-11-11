@@ -324,20 +324,129 @@ INSERT INTO public.users(
       '2018-10-12 17:36:33.58',
       null);
 
+INSERT INTO public.users(
+            id,
+            name,
+            email,
+            salt,
+            password,
+            "addressId",
+            birthday,
+            medical_document,
+            personal_document,
+            responsable_hospital,
+            genre,
+            "createdAt",
+            "updatedAt",
+            "deletedAt"
+          )
+    VALUES (
+      3,
+      'Doctor',
+      'doctor@helpdoctor.com.br',
+      '$2a$10$VfGHHzlP0BjjbHWWpg4BhO',
+      '$2a$10$VfGHHzlP0BjjbHWWpg4BhOR/zhjeDbmWjnAgNbvN7omojJMHtnw9a',
+      1,
+      '1980-01-01',
+      null,
+      '06497063073',
+      null,
+      'M',
+      '2018-10-12 17:36:33.58',
+      '2018-10-12 17:36:33.58',
+      null);
 
+INSERT INTO public.users(
+            id,
+            name,
+            email,
+            salt,
+            password,
+            "addressId",
+            birthday,
+            medical_document,
+            personal_document,
+            responsable_hospital,
+            genre,
+            "createdAt",
+            "updatedAt",
+            "deletedAt"
+          )
+    VALUES (
+      4,
+      'Nurse',
+      'nurse@helpdoctor.com.br',
+      '$2a$10$VfGHHzlP0BjjbHWWpg4BhO',
+      '$2a$10$VfGHHzlP0BjjbHWWpg4BhOR/zhjeDbmWjnAgNbvN7omojJMHtnw9a',
+      1,
+      '1980-01-01',
+      null,
+      '06497063074',
+      null,
+      'M',
+      '2018-10-12 17:36:33.58',
+      '2018-10-12 17:36:33.58',
+      null);
 
+INSERT INTO public.users(
+            id,
+            name,
+            email,
+            salt,
+            password,
+            "addressId",
+            birthday,
+            medical_document,
+            personal_document,
+            responsable_hospital,
+            genre,
+            "createdAt",
+            "updatedAt",
+            "deletedAt"
+          )
+    VALUES (
+      5,
+      'Recepcionist',
+      'recepcionist@helpdoctor.com.br',
+      '$2a$10$VfGHHzlP0BjjbHWWpg4BhO',
+      '$2a$10$VfGHHzlP0BjjbHWWpg4BhOR/zhjeDbmWjnAgNbvN7omojJMHtnw9a',
+      1,
+      '1980-01-01',
+      null,
+      '06497063075',
+      null,
+      'M',
+      '2018-10-12 17:36:33.58',
+      '2018-10-12 17:36:33.58',
+      null);
 
 INSERT INTO public.roles(
-            name)
-    VALUES ( 'ADMIN');
+            id,name)
+    VALUES (1,  'ADMIN');
 
     INSERT INTO public.roles(
-            name)
-    VALUES ( 'MANAGER');
+            id, name)
+    VALUES (2,  'MANAGER');
+
+    INSERT INTO public.roles(
+            id, name)
+    VALUES (3,  'DOCTOR');
+
+    INSERT INTO public.roles(
+            id, name)
+    VALUES (4,  'NURSE');
+
+    INSERT INTO public.roles(
+            id, name)
+    VALUES (5,  'RECEPTIONIST');
 
 
 -- Vinculo de roles e actions para usuario admin
 INSERT INTO users_has_roles (user_id, role_id) VALUES (1,1);
+INSERT INTO users_has_roles (user_id, role_id) VALUES (2,2);
+INSERT INTO users_has_roles (user_id, role_id) VALUES (3,3);
+INSERT INTO users_has_roles (user_id, role_id) VALUES (4,4);
+INSERT INTO users_has_roles (user_id, role_id) VALUES (5,5);
 
 insert into actions (name) values ('user.create');
 insert into actions (name) values ('user.all');
@@ -372,13 +481,14 @@ insert into actions (name) values ('patient.create');
 insert into actions (name) values ('patient.update');
 insert into actions (name) values ('patient.delete');
 insert into actions (name) values ('patient.find');
+insert into actions (name) values ('user.update_all');
 
-insert into roles_has_actions (role_id, action_id) values (1,1);
-insert into roles_has_actions (role_id, action_id) values (1,2);
-insert into roles_has_actions (role_id, action_id) values (1,3);
-insert into roles_has_actions (role_id, action_id) values (1,4);
+insert into roles_has_actions (role_id, action_id) values (1,1); -- user.create
+insert into roles_has_actions (role_id, action_id) values (1,2); -- user.all
+insert into roles_has_actions (role_id, action_id) values (1,3); -- user.find
+insert into roles_has_actions (role_id, action_id) values (1,4); -- user.update
 insert into roles_has_actions (role_id, action_id) values (1,5); -- user.delete
-insert into roles_has_actions (role_id, action_id) values (1,6);
+insert into roles_has_actions (role_id, action_id) values (1,6); -- hospital.create
 insert into roles_has_actions (role_id, action_id) values (1,7); -- hospital.update
 insert into roles_has_actions (role_id, action_id) values (1,8); -- user.list
 insert into roles_has_actions (role_id, action_id) values (1,9); -- hospital.list
@@ -408,16 +518,33 @@ insert into roles_has_actions (role_id, action_id) values (1,32); -- patient.del
 insert into roles_has_actions (role_id, action_id) values (1,33); -- patient.find
 
 
+insert into roles_has_actions (role_id, action_id) values (1,34); -- user.update_all
 
 -- Vinculo de roles e actions para o usuario manager
-INSERT INTO users_has_roles (user_id, role_id) VALUES (2,2);
+insert into roles_has_actions (role_id, action_id) values (2,1); -- user.create
 insert into roles_has_actions (role_id, action_id) values (2,8); -- user.list
 insert into roles_has_actions (role_id, action_id) values (2,9); -- hospital.list
+insert into roles_has_actions (role_id, action_id) values (2,2); -- user.all
+insert into roles_has_actions (role_id, action_id) values (2,3); -- user.find
+insert into roles_has_actions (role_id, action_id) values (2,4); -- user.update
+insert into roles_has_actions (role_id, action_id) values (2,5); -- user.delete
+insert into roles_has_actions (role_id, action_id) values (2,7); -- hospital.update
+insert into roles_has_actions (role_id, action_id) values (2,14); -- medical_category.list
+insert into roles_has_actions (role_id, action_id) values (2,18); -- role.list
 insert into roles_has_actions (role_id, action_id) values (2,29); -- patient.list
 insert into roles_has_actions (role_id, action_id) values (2,30); -- patient.create
 insert into roles_has_actions (role_id, action_id) values (2,31); -- patient.update
 insert into roles_has_actions (role_id, action_id) values (2,32); -- patient.delete
 insert into roles_has_actions (role_id, action_id) values (2,33); -- patient.find
+
+-- Vinculo de roles e actions para o usuario doctor
+insert into roles_has_actions (role_id, action_id) values (3,4); -- user.update
+
+-- Vinculo de roles e actions para usuario nurse
+insert into roles_has_actions (role_id, action_id) values (4,4); -- user.update
+
+-- Vinculo de roles e actions para usuario recepcionist
+insert into roles_has_actions (role_id, action_id) values (5,4); -- user.update
 
 -- SELECT * FROM users as users
 -- inner join users_has_roles as users_has_roles ON users_has_roles.user_id = users.id
