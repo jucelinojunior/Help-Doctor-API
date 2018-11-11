@@ -12,7 +12,7 @@ const schema = Joi.object({
   name: Joi.string().min(3),
   email: Joi.string().email({ minDomainAtoms: 2 }),
   password: Joi.string(),
-  personal_document: Joi.string().regex(/\d{11}/),
+  personal_document: Joi.string().regex(/\d{15}/),
   birthday: Joi.date(),
   genre: Joi.string(),
   phoneNumber: Joi.string().optional(),

@@ -11,7 +11,7 @@ const bcrypt = require('bcrypt-nodejs')
 const schema = Joi.object({
   name: Joi.string().min(3).required(),
   email: Joi.string().email({ minDomainAtoms: 2 }),
-  personal_document: Joi.string().regex(/\d{11}/).required(),
+  personal_document: Joi.string().regex(/\d{15}/).required(),
   birthday: Joi.date().required(),
   genre: Joi.string().required(),
   phoneNumber: Joi.string().required(),
