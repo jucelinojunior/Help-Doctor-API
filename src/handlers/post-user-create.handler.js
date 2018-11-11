@@ -16,7 +16,7 @@ const schema = Joi.object({
   responsable_hospital: Joi.any().allow('').allow(null),
   medical_document: Joi.string().allow('').allow(null),
   birthday: Joi.date().required(),
-  roles_id: Joi.array().min(1).required(),
+  roles: Joi.array().min(1).required(),
   genre: Joi.string().required(),
   hospitals: Joi.array().allow(null).allow([]).optional(),
   address: Joi.object({

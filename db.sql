@@ -414,24 +414,24 @@ INSERT INTO public.users(
       null);
 
 INSERT INTO public.roles(
-            name, label)
-    VALUES ('ADMIN', 'Administrador');
+            id, name, label)
+    VALUES (1,'ADMIN', 'Administrador');
 
     INSERT INTO public.roles(
-            name, label)
-    VALUES ('MANAGER', 'Gerente');
+            id, name, label)
+    VALUES (2, 'MANAGER', 'Gerente');
 
     INSERT INTO public.roles(
-            name, label)
-    VALUES ('DOCTOR', 'Médico');
+            id, name, label)
+    VALUES (3, 'DOCTOR', 'Médico');
 
     INSERT INTO public.roles(
-            name, label)
-    VALUES ('NURSE', 'Enfermeiro');
+            id, name, label)
+    VALUES (4, 'NURSE', 'Enfermeiro');
 
     INSERT INTO public.roles(
-            name, label)
-    VALUES ('RECEPTIONIST', 'Recepcionista');
+            id, name, label)
+    VALUES (5, 'RECEPTIONIST', 'Recepcionista');
 
 
 -- Vinculo de roles e actions para usuario admin
@@ -549,11 +549,6 @@ insert into roles_has_actions (role_id, action_id) values (5,4); -- user.update
 
 
 
-
-INSERT INTO ROLES(name) VALUES('ADMIN');
-INSERT INTO ROLES(name) VALUES('Atendente');
-INSERT INTO ROLES(name) VALUES('Enfermeiro');
-INSERT INTO ROLES(name) VALUES('Médico');
 INSERT INTO ACTIONS(name) VALUES('create-user');
 INSERT INTO ADDRESS(formatedAddress,address,neighborhood,state,zipcode,number,complement) VALUES('Avenida Alet Einstein, 627 Moumi | São Paulo Telefone: (11) 2151-1233','teste','TESTE','SP','9780900','627','');
 INSERT INTO ADDRESS(formatedAddress,address,neighborhood,state,zipcode,number,complement) VALUES('Rua Diogo Caea, 94 Imiim | São Paulo Telefone: (11) 2189-1199','teste','TESTE','SP','9780900','94','');
