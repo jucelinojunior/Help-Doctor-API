@@ -29,7 +29,6 @@ const schema = Joi.object({
     neighborhood: Joi.string(),
     state: Joi.string(),
     zipcode: Joi.string(),
-    state: Joi.string(),
     formatedaddress: Joi.string(),
     city: Joi.string(),
     number: Joi.number(),
@@ -41,42 +40,43 @@ module.exports = {
   path: '/user/{id}',
   handler: async (request, reply) => {
     // try{
-      //Pega o user do JWT
-      const {scope, user:userJWT} = request.auth.credentials
+    //  Pega o user do JWT
+    const {scope, user: userJWT} = request.auth.credentials
 
-      const {payload} = request
+    const {payload} = request
 
-      //  Recupera o usuario
-      const user = await userService.find(request.params.id, true)
+    //  Recupera o usuario
+    const user = await userService.find(request.params.id, true)
 
-      // Verifica se o usuario que ele deseja editar é o mesmo da JWT
-      const isSelfUpdate = user.id === userJWT.id
+    // Verifica se o usuario que ele deseja editar é o mesmo da JWT
+    const isSelfUpdate = user.id === userJWT.id
 
-      if (!isSelfUpdate && !scope.includes('user.update_all')) throw Boom.unauthorized('Você esta tentando editar um usuario que não é seu.')
+    if (!isSelfUpdate && !scope.includes('user.update_all')) throw Boom.unauthorized('Você esta tentando editar um usuario que não é seu.')
 
-      //  Atualiza o endereço
-      let addressResult = null
-      if (payload.address) {
-        addressResult = await addressService.update(user.address.id, payload.address)
+    //  Atualiza o endereço
+    let addressResult = null
+    if (payload.address) {
+      addressResult = await addressService.update(user.address.id, payload.address)
+    }
+    //  Verifica se no payload tem senha
+    if (payload.password) {
+      if (!payload.salt) payload.salt = bcrypt.genSaltSync(10)
+      payload.password = bcrypt.hashSync(payload.password, payload.salt)
+    }
+    //  Atualiza o usuario
+    const userResult = await userService.update(user.id, payload)
+
+    //  Verifica se na request esta passando um array de id de hospitais
+    if (payload.hospitals) {
+      //  Deleta todos os vinculos
+      await hospitalService.deleteAllUsersInHospital(user.id)
+      for (let hospitalId of payload.hospitals) {
+        await hospitalService.addUserHospital(user.id, hospitalId)
       }
-      //  Verifica se no payload tem senha
-      if (payload.password) {
-        payload.password = bcrypt.hashSync(payload.password, payload.salt)
-      }
-      //  Atualiza o usuario
-      const userResult = await userService.update(user.id, payload)
+    }
 
-      //  Verifica se na request esta passando um array de id de hospitais
-      if (payload.hospitals) {
-        //  Deleta todos os vinculos
-        await hospitalService.deleteAllUsersInHospital(user.id)
-        for (let hospitalId of payload.hospitals) {
-          await hospitalService.addUserHospital(user.id, hospitalId)
-        }
-      }
-
-      userResult.address = addressResult
-      return userResult
+    userResult.address = addressResult
+    return userResult
     // }catch (err) {
     //   console.log(err.name)
     //   return Boom.badImplementation(err.message)

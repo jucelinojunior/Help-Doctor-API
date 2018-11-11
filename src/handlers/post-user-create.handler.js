@@ -6,7 +6,6 @@ const Joi = require('joi')
 const userService = require('../services/user.service')
 const hospitalService = require('../services/hospital.service')
 const addressService = require('../services/address.service')
-const Boom = require('boom')
 const bcrypt = require('bcrypt-nodejs')
 
 const schema = Joi.object({
@@ -35,32 +34,32 @@ module.exports = {
   path: '/user',
   handler: async (request, reply) => {
     try {
-        const {payload} = request
-        //  Faz validação de CPF
-        const salt = bcrypt.genSaltSync(10)
-        const user = {
-          ...payload,
-          salt: salt,
-          birthday: new Date(payload.birthday),
-          password: bcrypt.hashSync(payload.password, salt)
-        }
-        //  Tenta encontrar ou recuperar um endereço
-        const {address} = user
-        const addressAdded = await addressService.register(address)
-        //  Acompla no usuario
-        delete user.address
-        user.addressId = addressAdded.id
-        const userResult = await userService.add(user)
+      const {payload} = request
+      //  Faz validação de CPF
+      const salt = bcrypt.genSaltSync(10)
+      const user = {
+        ...payload,
+        salt: salt,
+        birthday: new Date(payload.birthday),
+        password: bcrypt.hashSync(payload.password, salt)
+      }
+      //  Tenta encontrar ou recuperar um endereço
+      const {address} = user
+      const addressAdded = await addressService.register(address)
+      //  Acompla no usuario
+      delete user.address
+      user.addressId = addressAdded.id
+      const userResult = await userService.add(user)
 
-        //  Verifica se na request esta passando um array de id de hospitais
-        if (user.hospitals) {
-          await hospitalService.deleteAllUsersInHospital(user.id)
-          for (let hospitalId of user.hospitals) {
-            await hospitalService.addUserHospital(userResult.id, hospitalId)
-          }
+      //  Verifica se na request esta passando um array de id de hospitais
+      if (user.hospitals) {
+        await hospitalService.deleteAllUsersInHospital(user.id)
+        for (let hospitalId of user.hospitals) {
+          await hospitalService.addUserHospital(userResult.id, hospitalId)
         }
+      }
 
-        return userResult
+      return userResult
     } catch (err) {
       console.log(err.name)
     }

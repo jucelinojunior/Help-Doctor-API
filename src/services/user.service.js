@@ -6,15 +6,15 @@ const Hospital = require('../models/hospital')
 const FailedToAuthenticateError = require('../errors/FailedToAuthenticateError')
 
 const FIELDS = [
-    'id',
-    'name',
-    'email',
-    'password',
-    'birthday',
-    'genre',
-    'medical_document' ,
-    'personal_document',
-    'responsable_hospital'
+  'id',
+  'name',
+  'email',
+  'password',
+  'birthday',
+  'genre',
+  'medical_document',
+  'personal_document',
+  'responsable_hospital'
 ]
 const DEFAULT_INCLUDES = [
   {
@@ -45,7 +45,7 @@ const DEFAULT_INCLUDES = [
       'zipcode',
       'state',
       'formatedaddress'
-      ]
+    ]
   },
   {
     model: Hospital,

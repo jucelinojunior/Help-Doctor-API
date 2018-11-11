@@ -16,7 +16,7 @@ const DEFAULT_INCLUDE = [
     model: Address,
     as: 'addressHospital',
     required: false,
-    attributes: ['id', 'formatedaddress', 'address', 'neighborhood','city', 'state', 'zipcode', 'number', 'complement', 'createdAt', 'updatedAt']
+    attributes: ['id', 'formatedaddress', 'address', 'neighborhood', 'city', 'state', 'zipcode', 'number', 'complement']
   },
   {
     model: User,
@@ -40,7 +40,7 @@ const DEFAULT_INCLUDE = [
         model: Address,
         as: 'address',
         required: false,
-        attributes: ['id', 'formatedaddress', 'address', 'neighborhood', 'state', 'zipcode', 'number', 'complement', 'createdAt', 'updatedAt']
+        attributes: ['id', 'formatedaddress', 'address', 'neighborhood', 'state', 'zipcode', 'number', 'complement']
       }
     ]
   }
@@ -60,17 +60,15 @@ const hospitalsByUser = async (userId, names = '', address = '') => {
           required: false,
           attributes: [
             'id',
-             'formatedaddress',
-              'address',
-               'neighborhood',
-               'city',
-               'state',
-               'zipcode',
-               'number',
-               'complement',
-               'createdAt',
-               'updatedAt'
-               ]
+            'formatedaddress',
+            'address',
+            'neighborhood',
+            'city',
+            'state',
+            'zipcode',
+            'number',
+            'complement'
+          ]
         }
       ]
     }
@@ -118,30 +116,27 @@ const findAllWithMultiplusId = async (ids) => {
 }
 
 const findById = async (id) => {
-
   const DEFAULT_INCLUDE = [
     {
       model: Address,
       as: 'addressHospital',
       required: false,
-      attributes: ['id', 'formatedaddress', 'address', 'neighborhood', 'city', 'state', 'zipcode', 'number', 'complement', 'createdAt', 'updatedAt']
+      attributes: ['id', 'formatedaddress', 'address', 'neighborhood', 'city', 'state', 'zipcode', 'number', 'complement']
     }
   ]
 
-  return Hospital.findById(id,{
+  return Hospital.findById(id, {
     include: DEFAULT_INCLUDE
-  });
-
+  })
 }
 
 const getAll = async (names = '', address = '') => {
-
   const DEFAULT_INCLUDE = [
     {
       model: Address,
       as: 'addressHospital',
       required: false,
-      attributes: ['id', 'formatedaddress', 'address', 'neighborhood', 'city', 'state', 'zipcode', 'number', 'complement', 'createdAt', 'updatedAt']
+      attributes: ['id', 'formatedaddress', 'address', 'neighborhood', 'city', 'state', 'zipcode', 'number', 'complement']
     }
   ]
 
@@ -156,7 +151,7 @@ const getAll = async (names = '', address = '') => {
   }
 
   if (address !== '') {
-    obj.include[0].required = true;
+    obj.include[0].required = true
     obj.include[0].where = global.sequelize.where(global.sequelize.col('formatedaddress'), {
       ilike: `%${address}%`
     })

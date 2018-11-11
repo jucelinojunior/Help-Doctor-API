@@ -10,7 +10,7 @@ SE ATUALIZAR AQUI, ATUALIZAR O ARQUIVO get-init-system.handler TAMBÉM
 CREATE TABLE ROLES (
         id SERIAL PRIMARY KEY,
         name  VARCHAR(255) NOT NULL,
-        label VARCHAR(255) NOT NULL,
+        label VARCHAR(255) NULL,
         "createdAt" TIMESTAMP NULL DEFAULT NOW(),
         "updatedAt" TIMESTAMP NULL DEFAULT NOW(),
         "deletedAt" TIMESTAMP DEFAULT NULL
@@ -261,7 +261,7 @@ INSERT INTO public.address(
 INSERT INTO public.hospital(
              name, "addressId")
     VALUES ( 'Hospital teste', 1);
-insert into hospital_has_user (user_id, hospital_id) values (1,1);
+
 
 INSERT INTO public.users(
             name,
@@ -435,7 +435,7 @@ INSERT INTO public.roles(
 
     INSERT INTO public.roles(
             id, name, label)
-    VALUES (4,  'NURSE', 'Enfermeira');
+    VALUES (4,  'NURSE', 'Enfermeiro');
 
     INSERT INTO public.roles(
             id, name, label)
@@ -1448,5 +1448,6 @@ INSERT INTO TRAUMA(severity,trauma_name,trauma_type) VALUES('4','traumazão','1'
 INSERT INTO APPOINTMENT_HAS_TRAUMAS(trauma_id,appointment_id) VALUES('1','2');
 INSERT INTO APPOINTMENT_HAS_PAIN(pain_id,appointment_id) VALUES('1','3');
 
+insert into hospital_has_user (user_id, hospital_id) values (1,1);
 insert INTO hospital_has_user (user_id, hospital_id) values (2,1);
 insert INTO hospital_has_user (user_id, hospital_id) values (2,3);
