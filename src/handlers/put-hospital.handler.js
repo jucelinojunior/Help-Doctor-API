@@ -7,6 +7,7 @@ const schema = Joi.object({
   name: Joi.string().min(3).optional(),
   addressId: Joi.number(),
   address: Joi.object({
+    id: Joi.string().allow('').allow(null),
     address: Joi.string(),
     neighborhood: Joi.string(),
     city: Joi.string().required(),

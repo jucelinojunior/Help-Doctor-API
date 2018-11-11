@@ -21,6 +21,7 @@ const schema = Joi.object({
   deletedAt: Joi.allow(null).optional(),
   hospitals: Joi.array().allow(null).allow([]).optional(),
   address: Joi.object({
+    id: Joi.string().allow('').allow(null),
     address: Joi.string(),
     neighborhood: Joi.string(),
     state: Joi.string(),
