@@ -16,6 +16,7 @@ const schema = Joi.object({
   password: Joi.string(),
   personal_document: Joi.string(),
   responsable_hospital: Joi.string().allow('').allow(null),
+  medical_document: Joi.string().allow('').allow(null),
   birthday: Joi.date(),
   roles_id: Joi.array(),
   roles: Joi.array(),
