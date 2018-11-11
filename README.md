@@ -821,7 +821,14 @@ Cria o usuário
   "email": "guiihpr@gmail.com",
   "password": "123",
   "personal_document": "12345678998",
-  "addressId": 1,
+  "address": {
+    "address": "Rua teste",
+    "neighborhood": "Bairro teste",
+    "number": 1,
+    "city": "São Paulo",
+    "state": "SP",
+    "zipcode": "04174090"
+    },
   "birthday": "1994-03-13",
   "roles_id": ["1"],
   "genre": "M"
@@ -841,10 +848,12 @@ Cria o usuário
 |`genre`| `string` | `true` | Sexo do usuário |
 |`address.address`| `string` | `true` | Rua do endereço |
 |`address.neighborhood`| `string` | `true` | Bairro do endereço |
+|`address.city`| `string` | `true` | Cidade do endereço |
 |`address.state`| `string` | `true` | Estado do endereço |
 |`address.zipcode`| `string` | `true` | CEP do endereço |
 |`address.number`| `integer` | `true` | número do endereço |
 |`address.complement`| `string` | `false` | Complemento do endereço |
+|`hospitals`| `Array` | `false` | Lista de hospitais que o usuário esta participando|
 
 
 
@@ -876,10 +885,12 @@ Edita usuario de acordo com um ID passado
 |`genre`| `string` | `false` | Sexo do usuário |
 |`address.address`| `string` | `false` | Rua do endereço |
 |`address.neighborhood`| `string` | `false` | Bairro do endereço |
+|`address.city`| `string` | `false` | Cidade do endereço |
 |`address.state`| `string` | `false` | Estado do endereço |
 |`address.zipcode`| `string` | `false` | CEP do endereço |
 |`address.number`| `integer` | `false` | número do endereço |
 |`address.complement`| `string` | `false` | Complemento do endereço |
+|`hospitals`| `Array` | `false` | Lista de hospitais que o usuário esta participando|
 
 ### URL exemplo
 [PUT] `/user/20`

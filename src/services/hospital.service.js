@@ -178,10 +178,20 @@ const destroy = async (id) => {
   })
 }
 
-const users = async (id, hospital) => {
+const addUserHospital = async (userId, hospitalId) => {
   var user = new HospitalHasUsers()
-  return user.update({user_id: id, hospital_id: hospital}).then(() => {
+  return user.update({user_id: userId, hospital_id: hospitalId}).then(() => {
     return user
+  })
+}
+const deleteAllUsersInHospital = async (userId) => {
+  console.log('users to delete', userId)
+  // var user = new HospitalHasUsers()
+  return HospitalHasUsers.destroy({
+    where: {
+      user_id: userId
+    },
+    truncate: true
   })
 }
 const update = async (id, h) => {
@@ -214,10 +224,11 @@ module.exports = {
   register,
   update,
   destroy,
-  users,
+  addUserHospital,
   getAllCategories,
   registerCategories,
   findById,
   findAllWithMultiplusId,
-  hospitalsByUser
+  hospitalsByUser,
+  deleteAllUsersInHospital
 }

@@ -16,7 +16,7 @@ module.exports = {
     //  Pega o hospital o qual ele é responsavel
     if (currentUser.responsable_hospital) {
       const hospitals = await hospitalService.findById(currentUser.responsable_hospital)
-      return hospitals.users
+      return hospitals
     }
     return []
   },
