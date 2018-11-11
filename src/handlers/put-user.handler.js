@@ -14,7 +14,7 @@ const schema = Joi.object({
   email: Joi.string().email({ minDomainAtoms: 2 }),
   password: Joi.string(),
   personal_document: Joi.string(),
-  responsable_hospital: Joi.number(),
+  responsable_hospital: Joi.string().allow('').allow(null),
   birthday: Joi.date(),
   roles_id: Joi.array().min(1),
   genre: Joi.string(),
