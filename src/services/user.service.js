@@ -10,7 +10,7 @@ const DEFAULT_INCLUDES = [
     model: Role,
     as: 'roles',
     required: false,
-    attributes: ['id', 'name'],
+    attributes: ['id', 'name', 'label'],
     through: { attributes: [ /* 'user_id' */ ] },
     include: {
       model: Action,

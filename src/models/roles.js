@@ -14,6 +14,9 @@ const Roles = global.sequelize.define('roles', {
   name: {
     type: Sequelize.STRING
   },
+  label: {
+    type: Sequelize.STRING
+  },
   createdAt: {
     type: Sequelize.DATE
   },

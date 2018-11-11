@@ -10,6 +10,7 @@ SE ATUALIZAR AQUI, ATUALIZAR O ARQUIVO get-init-system.handler TAMBÉM
 CREATE TABLE ROLES (
         id SERIAL PRIMARY KEY,
         name  VARCHAR(255) NOT NULL,
+        label VARCHAR(255) NOT NULL,
         "createdAt" TIMESTAMP NULL DEFAULT NOW(),
         "updatedAt" TIMESTAMP NULL DEFAULT NOW(),
         "deletedAt" TIMESTAMP DEFAULT NULL
@@ -421,24 +422,24 @@ INSERT INTO public.users(
       null);
 
 INSERT INTO public.roles(
-            id,name)
-    VALUES (1,  'ADMIN');
+            id,name, label)
+    VALUES (1,  'ADMIN', 'Administrador');
 
     INSERT INTO public.roles(
-            id, name)
-    VALUES (2,  'MANAGER');
+            id, name, label)
+    VALUES (2,  'MANAGER', 'Gerente');
 
     INSERT INTO public.roles(
-            id, name)
-    VALUES (3,  'DOCTOR');
+            id, name, label)
+    VALUES (3,  'DOCTOR', 'Médico');
 
     INSERT INTO public.roles(
-            id, name)
-    VALUES (4,  'NURSE');
+            id, name, label)
+    VALUES (4,  'NURSE', 'Enfermeira');
 
     INSERT INTO public.roles(
-            id, name)
-    VALUES (5,  'RECEPTIONIST');
+            id, name, label)
+    VALUES (5,  'RECEPTIONIST', 'Recepcionista');
 
 
 -- Vinculo de roles e actions para usuario admin
