@@ -9,6 +9,7 @@ const Boom = require('boom')
 const bcrypt = require('bcrypt-nodejs')
 
 const schema = Joi.object({
+  id: Joi.number().optional(),
   name: Joi.string().min(3),
   email: Joi.string().email({ minDomainAtoms: 2 }),
   password: Joi.string(),
@@ -18,7 +19,8 @@ const schema = Joi.object({
   phoneNumber: Joi.string().optional(),
   deletedAt: Joi.allow(null).optional(),
   address: Joi.object({
-    id: Joi.string().allow('').allow(null),
+    id: Joi.number().optional(),
+    formatedaddress: Joi.string(),
     address: Joi.string(),
     neighborhood: Joi.string(),
     state: Joi.string(),

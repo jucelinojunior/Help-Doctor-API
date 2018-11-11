@@ -4,15 +4,17 @@ const Boom = require('boom')
 const Joi = require('joi')
 
 const schema = Joi.object({
+  id: Joi.number().optional(),
   name: Joi.string().min(3).optional(),
   addressId: Joi.number(),
   address: Joi.object({
-    id: Joi.string().allow('').allow(null),
+    id: Joi.number().optional(),
     address: Joi.string(),
     neighborhood: Joi.string(),
     city: Joi.string().required(),
     state: Joi.string(),
     state: Joi.string(),
+    formatedaddress: Joi.string(),
     zipcode: Joi.string(),
     number: Joi.number(),
     complement: Joi.string().allow('').allow(null).optional()

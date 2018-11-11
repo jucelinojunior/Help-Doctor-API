@@ -5,6 +5,17 @@ const Address = require('../models/address')
 const Hospital = require('../models/hospital')
 const FailedToAuthenticateError = require('../errors/FailedToAuthenticateError')
 
+const FIELDS = [
+    'id',
+    'name',
+    'email',
+    'password',
+    'birthday',
+    'genre',
+    'medical_document' ,
+    'personal_document',
+    'responsable_hospital'
+]
 const DEFAULT_INCLUDES = [
   {
     model: Role,
@@ -51,6 +62,7 @@ const add = async (user) => {
  */
 const find = async (id, showDeleteds = false) => {
   return User.findOne({
+    attributes: FIELDS,
     where: {
       id: id
     },
@@ -65,6 +77,7 @@ const find = async (id, showDeleteds = false) => {
  */
 const getUserByEmail = async (email) => {
   const users = await User.findAll({
+    attributes: FIELDS,
     where: {
       email: email
     },
@@ -82,6 +95,7 @@ const getUserByEmail = async (email) => {
  */
 const getAll = async () => {
   return User.findAll({
+    attributes: FIELDS,
     include: DEFAULT_INCLUDES
   }).map(it => {
     return it

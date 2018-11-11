@@ -10,23 +10,26 @@ const Boom = require('boom')
 const bcrypt = require('bcrypt-nodejs')
 
 const schema = Joi.object({
+  id: Joi.number().optional(),
   name: Joi.string().min(3),
   email: Joi.string().email({ minDomainAtoms: 2 }),
   password: Joi.string(),
   personal_document: Joi.string(),
   responsable_hospital: Joi.string().allow('').allow(null),
   birthday: Joi.date(),
-  roles_id: Joi.array().min(1),
+  roles_id: Joi.array(),
+  roles: Joi.array(),
   genre: Joi.string(),
   deletedAt: Joi.allow(null).optional(),
   hospitals: Joi.array().allow(null).allow([]).optional(),
   address: Joi.object({
-    id: Joi.string().allow('').allow(null),
+    id: Joi.number().optional(),
     address: Joi.string(),
     neighborhood: Joi.string(),
     state: Joi.string(),
     zipcode: Joi.string(),
     state: Joi.string(),
+    formatedaddress: Joi.string(),
     city: Joi.string(),
     number: Joi.number(),
     complement: Joi.string().allow('').allow(null).optional()
@@ -36,7 +39,7 @@ module.exports = {
   method: 'PUT',
   path: '/user/{id}',
   handler: async (request, reply) => {
-    try{
+    // try{
       //Pega o user do JWT
       const {scope, user:userJWT} = request.auth.credentials
 
@@ -73,10 +76,10 @@ module.exports = {
 
       userResult.address = addressResult
       return userResult
-    }catch (err) {
-      console.log(err.name)
-      return Boom.badImplementation(err.message)
-    }
+    // }catch (err) {
+    //   console.log(err.name)
+    //   return Boom.badImplementation(err.message)
+    // }
   },
   config: {
     auth: {
