@@ -55,7 +55,12 @@ module.exports = {
     //  Atualiza o endereço
     let addressResult = null
     if (payload.address) {
-      addressResult = await addressService.update(user.address.id, payload.address)
+      if (user.address.id) {
+        addressResult = await addressService.update(user.address.id, payload.address)
+      } else {
+        addressResult = await addressService.register(payload.address)
+      }
+      
     }
     //  Verifica se no payload tem senha
     if (payload.password) {
