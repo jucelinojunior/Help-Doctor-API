@@ -77,7 +77,6 @@ const find = async (id, showDeleteds = false) => {
  */
 const getUserByEmail = async (email) => {
   const users = await User.findAll({
-    attributes: FIELDS,
     where: {
       email: email
     },
