@@ -2,11 +2,6 @@ const Sequelize = require('sequelize')
 const Hospitals = require('./hospital')
 
 const HospitalHasUsers = global.sequelize.define('hospital_has_user', {
-  id: {
-    type: Sequelize.INTEGER,
-    primaryKey: true,
-    autoIncrement: true
-  },
   hospital_id: {
     type: Sequelize.INTEGER,
     primaryKey: true
@@ -26,7 +21,7 @@ const HospitalHasUsers = global.sequelize.define('hospital_has_user', {
   }
 },
 {
-  paranoid: true,
+  paranoid: false,
   // freezeTableName: true,
   tableName: 'hospital_has_user'
 })

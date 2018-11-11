@@ -4,6 +4,7 @@
  */
 const Joi = require('joi')
 const userService = require('../services/user.service')
+const hospitalService = require('../services/hospital.service')
 const addressService = require('../services/address.service')
 const Boom = require('boom')
 const bcrypt = require('bcrypt-nodejs')
@@ -17,6 +18,7 @@ const schema = Joi.object({
   birthday: Joi.date().required(),
   roles_id: Joi.array().min(1).required(),
   genre: Joi.string().required(),
+  hospitals: Joi.array().allow(null).allow([]).optional(),
   address: Joi.object({
     address: Joi.string().required(),
     neighborhood: Joi.string().required(),
@@ -31,29 +33,36 @@ module.exports = {
   method: 'POST',
   path: '/user',
   handler: async (request, reply) => {
-    const {payload} = request
-    //  Faz validação de CPF
-    // if (userService.validateCPF(payload.personal_document)) {
-      const salt = bcrypt.genSaltSync(10)
-      const user = {
-        ...payload,
-        salt: salt,
-        birthday: new Date(payload.birthday),
-        password: bcrypt.hashSync(payload.password, salt)
-      }
-      //  Tenta encontrar ou recuperar um endereço
-      const {address} = user
-      const addressAdded = await addressService.register(address)
-      console.log(addressAdded, addressAdded.id)
-      //  Acompla no usuario
-      delete user.address
-      user.addressId = addressAdded.id
-      // user.addressId = 1
-      console.log('==>', user)
-      return userService.add(user)
-    // } else {
-    //   throw Boom.badRequest('CPF Invalido')
-    // }
+    try {
+        const {payload} = request
+        //  Faz validação de CPF
+        const salt = bcrypt.genSaltSync(10)
+        const user = {
+          ...payload,
+          salt: salt,
+          birthday: new Date(payload.birthday),
+          password: bcrypt.hashSync(payload.password, salt)
+        }
+        //  Tenta encontrar ou recuperar um endereço
+        const {address} = user
+        const addressAdded = await addressService.register(address)
+        //  Acompla no usuario
+        delete user.address
+        user.addressId = addressAdded.id
+        const userResult = await userService.add(user)
+
+        //  Verifica se na request esta passando um array de id de hospitais
+        if (user.hospitals) {
+          await hospitalService.deleteAllUsersInHospital(user.id)
+          for (let hospitalId of user.hospitals) {
+            await hospitalService.addUserHospital(userResult.id, hospitalId)
+          }
+        }
+
+        return userResult
+    } catch (err) {
+      console.log(err.name)
+    }
   },
   config: {
     auth: {

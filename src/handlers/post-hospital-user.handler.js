@@ -4,7 +4,7 @@ module.exports = {
   method: 'POST',
   path: '/hospital/user',
   handler: async (request, reply) => {
-    return userService.users(request.payload.user, request.payload.hospital)
+    return userService.addUserHospital(request.payload.user, request.payload.hospital)
   },
   config: {
     auth: {
