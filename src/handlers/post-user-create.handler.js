@@ -41,9 +41,9 @@ module.exports = {
         ...payload,
         salt: salt,
         birthday: new Date(payload.birthday),
-        password: bcrypt.hashSync(payload.password, salt),
-        roles_id: payload.roles
+        password: bcrypt.hashSync(payload.password, salt)
       }
+
       //  Tenta encontrar ou recuperar um endereço
       const {address} = user
       const addressAdded = await addressService.register(address)
@@ -60,6 +60,11 @@ module.exports = {
         }
       }
 
+      if (user.roles) {
+        for (let roleId of user.roles) {
+          await userService.addRole(userResult.id, roleId)
+        }
+      }
       return userResult
     } catch (err) {
       console.log(err.name)
