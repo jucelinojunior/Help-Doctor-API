@@ -8,12 +8,12 @@ function register (server) {
 
   for (var i in mHandlers) {
   	var hs = require(mHandlers[i]);
-    hs.config = {
+  	for (var j in hs) {
+      hs[j].config = {
       cors: {
         origin: ['*']
       }
     }
-  	for (var j in hs) {
   		server.route(hs[j]);
   	}
   }
