@@ -42,7 +42,7 @@ const DEFAULT_INCLUDES = [
       'number',
       'complement',
       'city',
-      'zipcoode',
+      'zipcode',
       'state',
       'formatedaddress'
       ]
