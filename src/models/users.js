@@ -66,6 +66,7 @@ User.belongsToMany(Hospital, {
   through: 'hospital_has_user',
   foreignKey: 'user_id',
   contraints: false
+
 })
 
 Hospital.belongsToMany(User, {
