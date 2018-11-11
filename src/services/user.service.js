@@ -35,7 +35,16 @@ const DEFAULT_INCLUDES = [
     model: Address,
     as: 'address',
     required: false,
-    attributes: ['id', 'address', 'formatedaddress']
+    attributes: [
+      'id',
+      'address',
+      'neighborhood',
+      'number',
+      'complement',
+      'city',
+      'state',
+      'formatedaddress'
+      ]
   },
   {
     model: Hospital,

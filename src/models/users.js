@@ -38,6 +38,10 @@ const User = global.sequelize.define('users', {
     type: Sequelize.INTEGER,
     allowNull: true
   },
+  medical_document: {
+    type: Sequelize.INTEGER,
+    allowNull: true
+  },
   createdAt: {
     type: Sequelize.DATE
   },
