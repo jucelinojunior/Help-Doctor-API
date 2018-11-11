@@ -107,7 +107,7 @@ const insertQueue = async (idAppointment) => {
 		queue.appointment_id = appointment.id;
 		queue.status = QUEUE.IN_QUEUE;
 		
-		if(appointment.pronouncer[0].type_pronouncer == PRONOUNCER.APPOINTMENT) 
+		if(appointment.type_id == PRONOUNCER.APPOINTMENT) 
 			queue.severity = SEVERITY.BLUE;
 		else if (verifyTrauma(appointment,SEVERITY.RED) || verifyPain(appointment,SEVERITY.RED) || appointment.heart_attack || appointment.hypovolemic_shock || appointment.convulsion == QUEUE.CONVULSIONS_ATTACKS || appointment.skin_burn > 1)
 			queue.severity = SEVERITY.RED;

@@ -1111,3 +1111,172 @@ mostra a quantidade de registros que foram editados
 }
 ```
 
+
+## Criar Prontuário `[POST] /medical-records`
+
+> Requer a ação `prontuario.create`
+> Caso errors true, data: String mensagem do erro
+
+### Enviar
+```json
+{
+    "patient_id": 2,
+    "hospital_id": 1,
+    "type_pronouncer": 2, // 2 emergencia, 1 consulta, 3 exames
+    "description": "teste"
+}
+```
+
+### Response
+```json
+{
+    "errors": false,
+    "data": {
+        "id": 3,
+        "patient_id": 2,
+        "hospital_id": 1,
+        "type_pronouncer": 2,
+        "description": "teste",
+        "updatedAt": "2018-11-11T21:35:55.075Z",
+        "createdAt": "2018-11-11T21:35:55.075Z",
+        "deletedAt": null
+    }
+}
+```
+
+## Criar Prontuário `[PUT] /medical-records/{id}`
+
+> Requer a ação `prontuario.put`
+> Caso errors true, data: String mensagem do erro
+
+### Enviar
+```json
+{
+    "patient_id": 2,
+    "hospital_id": 1,
+    "type_pronouncer": 2, // 2 emergencia, 1 consulta, 3 exames
+    "description": "teste"
+}
+```
+
+### Response
+```json
+{
+    "errors": false,
+    "data": {
+        "id": 3,
+        "patient_id": 2,
+        "hospital_id": 1,
+        "type_pronouncer": 2,
+        "description": "teste",
+        "updatedAt": "2018-11-11T21:35:55.075Z",
+        "createdAt": "2018-11-11T21:35:55.075Z",
+        "deletedAt": null
+    }
+}
+```
+
+## Listar Prontuários `[GET] /medical-records/hospital/{id}`
+## Listar Prontuários `[GET] /medical-records/patient/{id}`
+## Listar Prontuários `[GET] /medical-records/patient/{id}/hospital/{hospital_id}`
+> Requer a ação `prontuario.basic`
+
+
+### Response
+```json
+{
+    "errors": false,
+    "data": [
+        {
+            "id": 1,
+            "patient_id": 1,
+            "hospital_id": 1,
+            "type_pronouncer": 1,
+            "description": "descrição",
+            "createdAt": "2018-11-07T10:05:44.820Z",
+            "updatedAt": "2018-11-07T10:05:44.820Z",
+            "deletedAt": null,
+            "patient": [
+                {
+                    "id": 1,
+                    "name": "afraates",
+                    "email": "afraates@gmail.com",
+                    "personal_document": "13650671816",
+                    "birthday": "1962-07-06T03:00:00.000Z",
+                    "genre": "M"
+                }
+            ],
+            "hospital": [
+                {
+                    "id": 1,
+                    "name": "HOSPITAL ALBERT EINSTEIN"
+                }
+            ]
+        },
+    ]
+}
+```
+
+## Ver Prontuário `[GET] /medical-records/{id}`
+> Requer a ação `prontuario.basic`
+> Se tiver a ação `prontuario.full` vem o atributo `pronouncer`
+
+### Response
+```json
+{
+    "errors": false,
+    "data": {
+        "id": 1,
+        "patient_id": 1,
+        "hospital_id": 1,
+        "type_pronouncer": 1,
+        "description": "descrição",
+        "createdAt": "2018-11-07T10:05:44.820Z",
+        "updatedAt": "2018-11-07T10:05:44.820Z",
+        "deletedAt": null,
+        "patient": [
+            {
+                "id": 1,
+                "name": "afraates",
+                "email": "afraates@gmail.com",
+                "personal_document": "13650671816",
+                "birthday": "1962-07-06T03:00:00.000Z",
+                "genre": "M"
+            }
+        ],
+        "hospital": [
+            {
+                "id": 1,
+                "name": "HOSPITAL ALBERT EINSTEIN"
+            }
+        ],
+        "pronouncer": [
+            {
+                "id": 1,
+                "pronouncer_id": 1,
+                "schedule": "2018-11-11T02:00:00.000Z",
+                "type_id": 1,
+                "description": "Descrição",
+                "user_id": 1,
+                "skin_burn": 0,
+                "fever": 36,
+                "convulsion": 0,
+                "asthma": false,
+                "vomit": false,
+                "diarrhea": false,
+                "heart_attack": false,
+                "hypovolemic_shock": false,
+                "apnea": false,
+                "is_pregnant": false,
+                "medical_return": false,
+                "status": 1,
+                "createdAt": "2018-11-07T10:05:44.823Z",
+                "updatedAt": "2018-11-07T10:05:44.823Z",
+                "deletedAt": null
+            }
+        ]
+    }
+}
+```
+
+
