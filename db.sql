@@ -294,7 +294,6 @@ INSERT INTO public.users(
       null);
 
 INSERT INTO public.users(
-            id,
             name,
             email,
             salt,
@@ -310,7 +309,6 @@ INSERT INTO public.users(
             "deletedAt"
           )
     VALUES (
-      2,
       'Manager',
       'manager@helpdoctor.com.br',
       '$2a$10$VfGHHzlP0BjjbHWWpg4BhO',
@@ -326,7 +324,6 @@ INSERT INTO public.users(
       null);
 
 INSERT INTO public.users(
-            id,
             name,
             email,
             salt,
@@ -342,7 +339,6 @@ INSERT INTO public.users(
             "deletedAt"
           )
     VALUES (
-      3,
       'Doctor',
       'doctor@helpdoctor.com.br',
       '$2a$10$VfGHHzlP0BjjbHWWpg4BhO',
@@ -358,7 +354,6 @@ INSERT INTO public.users(
       null);
 
 INSERT INTO public.users(
-            id,
             name,
             email,
             salt,
@@ -374,7 +369,6 @@ INSERT INTO public.users(
             "deletedAt"
           )
     VALUES (
-      4,
       'Nurse',
       'nurse@helpdoctor.com.br',
       '$2a$10$VfGHHzlP0BjjbHWWpg4BhO',
@@ -390,7 +384,6 @@ INSERT INTO public.users(
       null);
 
 INSERT INTO public.users(
-            id,
             name,
             email,
             salt,
@@ -406,7 +399,6 @@ INSERT INTO public.users(
             "deletedAt"
           )
     VALUES (
-      5,
       'Recepcionist',
       'recepcionist@helpdoctor.com.br',
       '$2a$10$VfGHHzlP0BjjbHWWpg4BhO',
@@ -422,24 +414,24 @@ INSERT INTO public.users(
       null);
 
 INSERT INTO public.roles(
-            id,name, label)
-    VALUES (1,  'ADMIN', 'Administrador');
+            name, label)
+    VALUES ('ADMIN', 'Administrador');
 
     INSERT INTO public.roles(
-            id, name, label)
-    VALUES (2,  'MANAGER', 'Gerente');
+            name, label)
+    VALUES ('MANAGER', 'Gerente');
 
     INSERT INTO public.roles(
-            id, name, label)
-    VALUES (3,  'DOCTOR', 'Médico');
+            name, label)
+    VALUES ('DOCTOR', 'Médico');
 
     INSERT INTO public.roles(
-            id, name, label)
-    VALUES (4,  'NURSE', 'Enfermeiro');
+            name, label)
+    VALUES ('NURSE', 'Enfermeiro');
 
     INSERT INTO public.roles(
-            id, name, label)
-    VALUES (5,  'RECEPTIONIST', 'Recepcionista');
+            name, label)
+    VALUES ('RECEPTIONIST', 'Recepcionista');
 
 
 -- Vinculo de roles e actions para usuario admin

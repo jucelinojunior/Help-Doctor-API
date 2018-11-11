@@ -5,6 +5,11 @@ const HospitalHasUsers = require('../models/hospital_has_user')
 const Categories = require('../models/medical_category')
 const Op = global.sequelize.Op
 
+const ATTRIBUTES = [
+  'id',
+  'name'
+]
+
 const mapHospitalHasUser = (hospital) => {
   return hospital.hospital
 }
@@ -97,7 +102,8 @@ const hospitalsByUser = async (userId, names = '', address = '') => {
     where: {
       user_id: userId
     },
-    include: includeObject
+    include: includeObject,
+    attributes: ATTRIBUTES
   })
 
   return hospitals.map(mapHospitalHasUser).filter(removeNullObject)
@@ -111,7 +117,8 @@ const findAllWithMultiplusId = async (ids) => {
         [Op.in]: ids
       }
     },
-    include: DEFAULT_INCLUDE
+    include: DEFAULT_INCLUDE,
+    attributes: ATTRIBUTES
   })
 }
 
@@ -126,7 +133,8 @@ const findById = async (id) => {
   ]
 
   return Hospital.findById(id, {
-    include: DEFAULT_INCLUDE
+    include: DEFAULT_INCLUDE,
+    attributes: ATTRIBUTES
   })
 }
 
@@ -141,7 +149,8 @@ const getAll = async (names = '', address = '') => {
   ]
 
   var obj = {
-    include: DEFAULT_INCLUDE
+    include: DEFAULT_INCLUDE,
+    attributes: ATTRIBUTES
   }
 
   if (names !== '') {

@@ -1,6 +1,15 @@
 const Patient = require('../models/patient')
 const Address = require('../models/address')
 
+const ATTRIBUTES = [
+  'id',
+  'name',
+  'personal_document',
+  'email',
+  'birthday',
+  'genre',
+  'phoneNumber'
+]
 const DEFAULT_INCLUDE = [
   {
     model: Address,
@@ -12,14 +21,16 @@ const DEFAULT_INCLUDE = [
 
 const getAll = async () => {
   return Patient.findAll({
-    include: DEFAULT_INCLUDE
+    include: DEFAULT_INCLUDE,
+    attributes: ATTRIBUTES
   })
 }
 
 const findById = async (id, showDeleteds = false) => {
   return Patient.findById(id, {
     include: DEFAULT_INCLUDE,
-    paranoid: !showDeleteds
+    paranoid: !showDeleteds,
+    attributes: ATTRIBUTES
   })
 }
 
