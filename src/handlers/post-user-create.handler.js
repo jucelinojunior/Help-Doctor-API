@@ -41,7 +41,8 @@ module.exports = {
         ...payload,
         salt: salt,
         birthday: new Date(payload.birthday),
-        password: bcrypt.hashSync(payload.password, salt)
+        password: bcrypt.hashSync(payload.password, salt),
+        roles_id: payload.roles
       }
       //  Tenta encontrar ou recuperar um endereço
       const {address} = user
