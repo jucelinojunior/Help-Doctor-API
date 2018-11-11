@@ -17,8 +17,9 @@ const Patient = global.sequelize.define('patient', {
   personal_document: {
     type: Sequelize.STRING
   },
-  address_id: {
-    type: Sequelize.INTEGER
+  addressId: {
+    type: Sequelize.INTEGER,
+    underscored: true
   },
   phoneNumber: {
     type: Sequelize.STRING
@@ -43,11 +44,7 @@ const Patient = global.sequelize.define('patient', {
   tableName: 'patient'
 })
 
-Patient.hasOne(Address, {
-  as: 'address',
-  foreignKey: 'id',
-  targetKey: 'address_id'
-})
+Patient.belongsTo(Address)
 
 
 module.exports = Patient

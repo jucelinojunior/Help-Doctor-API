@@ -82,6 +82,19 @@ API para consumo do help doctor
   - [reset da senha `[POST] /user/reset`](#reset-da-senha-post-userreset)
     - [Enviar](#enviar-7)
     - [Resposta](#resposta-18)
+  - [Listar Paciente `[GET] /patient`](#listar-paciente-get-patient)
+    - [Response](#response-1)
+  - [Procurar um paciente `[GET] /patient/:id](#procurar-um-paciente-get-patientid)
+    - [Parametros da URL](#parametros-da-url)
+    - [Response](#response-2)
+  - [Editar paciente `[/PUT] /patient/:id`](#editar-paciente-put-patientid)
+    - [Payload](#payload-3)
+    - [Response](#response-3)
+  - [Criar paciente `[POST] /patient`](#criar-paciente-post-patient)
+    - [Payload](#payload-4)
+    - [Response](#response-4)
+  - [Deletar `[DELETE] /patient/:id`](#deletar-delete-patientid)
+    - [Response](#response-5)
 
 <!-- /TOC -->
 # Permissões do sistema
@@ -120,6 +133,11 @@ Toda role possui 0 ou N actions, e toda action possui 0 ou N roles. Por exemplo,
 |`user_role.create`| Permissão para fazer um vinculo entre um usuario e uma role | -|
 |`action.list` | Permissão para listar todas as actions do sistema | - |
 |`appointment.update`| Permissão para atualização de consultas | - |
+|`patient.list`| Permissão para listar **TODOS** os pacientes | - |
+|`patient.find`| Permissão para Editar pacientes | - |
+|`patient.update`| Permissão para atualizar os paciente | - |
+|`patient.create`| Permissão para criar  o paciente | - |
+|`patient.delete`| Permissão para soft delete de paciente| - |
 
 # Usuarios do sistema
 
@@ -904,5 +922,181 @@ na API, precisa ver a rota para colocar o e-mail de envio
 ### Resposta
 ```
     {errors: false ,data: object}
+```
+---
+
+## Listar Paciente `[GET] /patient`
+
+> Requer a action `patient.list`
+
+Lista os pacientes
+
+### Response
+
+```json
+[
+    {
+        "id": 1,
+        "name": "afraates",
+        "email": "afraates@gmail.com",
+        "personal_document": "13650671816",
+        "addressId": 85,
+        "phoneNumber": "(11) 99620-2147",
+        "birthday": "1962-07-06T03:00:00.000Z",
+        "genre": "M",
+        "createdAt": "2018-11-11T00:03:15.948Z",
+        "updatedAt": "2018-11-11T00:03:15.948Z",
+        "deletedAt": null,
+        "address": {
+            "id": 85,
+            "formatedaddress": "Rua Voluntáios da Pátia 2786 Santana – São Paulo Telefone: (11) 2955| 1601",
+            "address": "teste",
+            "neighborhood": "TESTE",
+            "city": null,
+            "state": "SP",
+            "zipcode": "9780900",
+            "number": "2786",
+            "complement": "",
+            "createdAt": "2018-11-11T00:03:01.176Z",
+            "updatedAt": "2018-11-11T00:03:01.176Z"
+        }
+    }
+]
+```
+
+---
+
+## Procurar um paciente `[GET] /patient/:id
+
+> Precisa da action `patient.find`
+
+### Parametros da URL
+| Parametro | Descrição | Obrigatorio |
+|------------------|----------------|-------------------|
+|`id`| ID do paciente | `true` |
+
+### Response
+
+```json
+{
+    "id": 2,
+    "name": "airton_neto",
+    "email": "airton_neto@hotmail.com",
+    "personal_document": "059.884.756-12",
+    "addressId": 86,
+    "phoneNumber": "(34) 98829-6714",
+    "birthday": "1993-03-28T03:00:00.000Z",
+    "genre": "M",
+    "createdAt": "2018-11-11T00:03:15.983Z",
+    "updatedAt": "2018-11-11T00:03:15.983Z",
+    "deletedAt": null,
+    "address": {
+        "id": 86,
+        "formatedaddress": "Alameda Santos, Cerqueira César - São Paulo - SP",
+        "address": "teste",
+        "neighborhood": "TESTE",
+        "city": null,
+        "state": "SP",
+        "zipcode": "01418-100",
+        "number": "1126",
+        "complement": "ANDAR 3",
+        "createdAt": "2018-11-11T00:03:01.198Z",
+        "updatedAt": "2018-11-11T00:03:01.198Z"
+    }
+}
+```
+
+---
+
+## Editar paciente `[/PUT] /patient/:id`
+
+> Requer a ação `patient.update`
+
+### Payload
+
+```json
+{
+  "name": "Airton Neto"
+}
+```
+
+### Response
+
+```json
+[
+    1
+]
+```
+
+mostra a quantidade de registros que foram editados
+
+---
+
+## Criar paciente `[POST] /patient`
+
+> Requer a ação `patient.create`
+
+### Payload
+
+```json
+{
+    "name": "Fofão",
+    "email": "fofao@gmail.com",
+    "personal_document": "12332132145",
+    "phoneNumber": "(11) 99620-2147",
+    "birthday": "1962-07-06T03:00:00.000Z",
+    "genre": "M",
+    "address": {
+        "address": "Rua aractu",
+        "neighborhood": "Vila Liviero",
+        "city": "São Paulo",
+        "state": "SP",
+        "zipcode": "9780900",
+        "number": "99"
+    }
+}
+```
+
+### Response
+
+```json
+{
+    "id": 251,
+    "name": "Fofão",
+    "email": "fofao@gmail.com",
+    "personal_document": "12332132145",
+    "addressId": 336,
+    "phoneNumber": "(11) 99620-2147",
+    "birthday": "1962-07-06T03:00:00.000Z",
+    "genre": "M",
+    "createdAt": "2018-11-11T03:03:05.100Z",
+    "updatedAt": "2018-11-11T03:03:05.100Z",
+    "deletedAt": null,
+    "address": {
+        "id": 336,
+        "formatedaddress": "Rua aractu, 99 - Vila Liviero, São Paulo - SP",
+        "address": "Rua aractu",
+        "neighborhood": "Vila Liviero",
+        "city": "São Paulo",
+        "state": "SP",
+        "zipcode": "9780900",
+        "number": "99",
+        "complement": null,
+        "createdAt": "2018-11-11T03:03:04.963Z",
+        "updatedAt": "2018-11-11T03:03:04.963Z"
+    }
+}
+```
+
+## Deletar `[DELETE] /patient/:id`
+
+> Requer a ação `patient.delete`
+
+### Response
+
+```json
+{
+    "deleted": true
+}
 ```
 
