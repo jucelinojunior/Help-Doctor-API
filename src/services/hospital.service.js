@@ -190,13 +190,24 @@ const addUserHospital = async (userId, hospitalId) => {
 }
 const deleteAllUsersInHospital = async (userId) => {
   console.log('users to delete', userId)
-  // var user = new HospitalHasUsers()
-  return HospitalHasUsers.destroy({
+  const hospitalUsers = await HospitalHasUsers.findAll({
     where: {
       user_id: userId
-    },
-    truncate: true
+    }
   })
+  if (hospitalUsers.length > 0) {
+    let countRows = 0
+    for (let it of hospitalUsers) {
+      it.destroy()
+      countRows += 1
+    }
+    return [
+      countRows
+    ]
+  }
+  return [
+    0
+  ]
 }
 const update = async (id, h) => {
   const hospital = await Hospital.findOne({
