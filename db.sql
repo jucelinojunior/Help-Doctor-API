@@ -294,7 +294,6 @@ INSERT INTO public.users(
       null);
 
 INSERT INTO public.users(
-            id,
             name,
             email,
             salt,
@@ -310,7 +309,6 @@ INSERT INTO public.users(
             "deletedAt"
           )
     VALUES (
-      2,
       'Manager',
       'manager@helpdoctor.com.br',
       '$2a$10$VfGHHzlP0BjjbHWWpg4BhO',
@@ -326,7 +324,6 @@ INSERT INTO public.users(
       null);
 
 INSERT INTO public.users(
-            id,
             name,
             email,
             salt,
@@ -342,7 +339,6 @@ INSERT INTO public.users(
             "deletedAt"
           )
     VALUES (
-      3,
       'Doctor',
       'doctor@helpdoctor.com.br',
       '$2a$10$VfGHHzlP0BjjbHWWpg4BhO',
@@ -358,7 +354,6 @@ INSERT INTO public.users(
       null);
 
 INSERT INTO public.users(
-            id,
             name,
             email,
             salt,
@@ -374,7 +369,6 @@ INSERT INTO public.users(
             "deletedAt"
           )
     VALUES (
-      4,
       'Nurse',
       'nurse@helpdoctor.com.br',
       '$2a$10$VfGHHzlP0BjjbHWWpg4BhO',
@@ -390,7 +384,6 @@ INSERT INTO public.users(
       null);
 
 INSERT INTO public.users(
-            id,
             name,
             email,
             salt,
@@ -406,7 +399,6 @@ INSERT INTO public.users(
             "deletedAt"
           )
     VALUES (
-      5,
       'Recepcionist',
       'recepcionist@helpdoctor.com.br',
       '$2a$10$VfGHHzlP0BjjbHWWpg4BhO',
@@ -422,24 +414,24 @@ INSERT INTO public.users(
       null);
 
 INSERT INTO public.roles(
-            id,name, label)
-    VALUES (1,  'ADMIN', 'Administrador');
+            id, name, label)
+    VALUES (1,'ADMIN', 'Administrador');
 
     INSERT INTO public.roles(
             id, name, label)
-    VALUES (2,  'MANAGER', 'Gerente');
+    VALUES (2, 'MANAGER', 'Gerente');
 
     INSERT INTO public.roles(
             id, name, label)
-    VALUES (3,  'DOCTOR', 'Médico');
+    VALUES (3, 'DOCTOR', 'Médico');
 
     INSERT INTO public.roles(
             id, name, label)
-    VALUES (4,  'NURSE', 'Enfermeiro');
+    VALUES (4, 'NURSE', 'Enfermeiro');
 
     INSERT INTO public.roles(
             id, name, label)
-    VALUES (5,  'RECEPTIONIST', 'Recepcionista');
+    VALUES (5, 'RECEPTIONIST', 'Recepcionista');
 
 
 -- Vinculo de roles e actions para usuario admin
@@ -483,6 +475,12 @@ insert into actions (name) values ('patient.update');
 insert into actions (name) values ('patient.delete');
 insert into actions (name) values ('patient.find');
 insert into actions (name) values ('user.update_all');
+insert into actions (name) values ('appointment.list');
+insert into actions (name) values ('appointment.all');
+insert into actions (name) values ('appointment.update');
+insert into actions (name) values ('appointment.create');
+insert into actions (name) values ('appointment.delete');
+
 
 insert into roles_has_actions (role_id, action_id) values (1,1); -- user.create
 insert into roles_has_actions (role_id, action_id) values (1,2); -- user.all
@@ -517,9 +515,12 @@ insert into roles_has_actions (role_id, action_id) values (1,30); -- patient.cre
 insert into roles_has_actions (role_id, action_id) values (1,31); -- patient.update
 insert into roles_has_actions (role_id, action_id) values (1,32); -- patient.delete
 insert into roles_has_actions (role_id, action_id) values (1,33); -- patient.find
-
-
 insert into roles_has_actions (role_id, action_id) values (1,34); -- user.update_all
+insert into roles_has_actions (role_id, action_id) values (1,35); -- appointment.list
+insert into roles_has_actions (role_id, action_id) values (1,36); -- appointment.all
+insert into roles_has_actions (role_id, action_id) values (1,37); -- appointment.update
+insert into roles_has_actions (role_id, action_id) values (1,38); -- appointment.create
+insert into roles_has_actions (role_id, action_id) values (1,39); -- appointment.delete
 
 -- Vinculo de roles e actions para o usuario manager
 insert into roles_has_actions (role_id, action_id) values (2,1); -- user.create
@@ -537,15 +538,22 @@ insert into roles_has_actions (role_id, action_id) values (2,30); -- patient.cre
 insert into roles_has_actions (role_id, action_id) values (2,31); -- patient.update
 insert into roles_has_actions (role_id, action_id) values (2,32); -- patient.delete
 insert into roles_has_actions (role_id, action_id) values (2,33); -- patient.find
+insert into roles_has_actions (role_id, action_id) values (2,35); -- appointment.list
 
 -- Vinculo de roles e actions para o usuario doctor
 insert into roles_has_actions (role_id, action_id) values (3,4); -- user.update
+insert into roles_has_actions (role_id, action_id) values (3,29); -- patient.list
+insert into roles_has_actions (role_id, action_id) values (3,31); -- patient.update
 
 -- Vinculo de roles e actions para usuario nurse
 insert into roles_has_actions (role_id, action_id) values (4,4); -- user.update
+insert into roles_has_actions (role_id, action_id) values (3,31); -- patient.update
+insert into roles_has_actions (role_id, action_id) values (4,29); -- patient.list
 
 -- Vinculo de roles e actions para usuario recepcionist
 insert into roles_has_actions (role_id, action_id) values (5,4); -- user.update
+insert into roles_has_actions (role_id, action_id) values (5,29); -- patient.list
+insert into roles_has_actions (role_id, action_id) values (5,31); -- patient.update
 
 -- SELECT * FROM users as users
 -- inner join users_has_roles as users_has_roles ON users_has_roles.user_id = users.id
@@ -557,11 +565,6 @@ insert into roles_has_actions (role_id, action_id) values (5,4); -- user.update
 
 
 
-
-INSERT INTO ROLES(name) VALUES('ADMIN');
-INSERT INTO ROLES(name) VALUES('Atendente');
-INSERT INTO ROLES(name) VALUES('Enfermeiro');
-INSERT INTO ROLES(name) VALUES('Médico');
 INSERT INTO ACTIONS(name) VALUES('create-user');
 INSERT INTO ADDRESS(formatedAddress,address,neighborhood,state,zipcode,number,complement) VALUES('Avenida Alet Einstein, 627 Moumi | São Paulo Telefone: (11) 2151-1233','teste','TESTE','SP','9780900','627','');
 INSERT INTO ADDRESS(formatedAddress,address,neighborhood,state,zipcode,number,complement) VALUES('Rua Diogo Caea, 94 Imiim | São Paulo Telefone: (11) 2189-1199','teste','TESTE','SP','9780900','94','');

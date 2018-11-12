@@ -83,7 +83,8 @@ Hospital.belongsToMany(User, {
 Roles.belongsToMany(User, {
   as: 'users',
   through: 'users_has_roles',
-  foreignKey: 'user_id',
+  foreignKey: 'role_id',
+  targetKey: 'id',
   contraints: false
 })
 

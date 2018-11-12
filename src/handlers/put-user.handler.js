@@ -18,7 +18,6 @@ const schema = Joi.object({
   responsable_hospital: Joi.any().allow('').allow(null),
   medical_document: Joi.string().allow('').allow(null),
   birthday: Joi.date(),
-  roles_id: Joi.array(),
   roles: Joi.array(),
   genre: Joi.string(),
   deletedAt: Joi.allow(null).optional(),
@@ -56,7 +55,13 @@ module.exports = {
     //  Atualiza o endereço
     let addressResult = null
     if (payload.address) {
-      addressResult = await addressService.update(user.address.id, payload.address)
+      console.log(user.address)
+      if (user.address) {
+        addressResult = await addressService.update(user.address.id, payload.address)
+      } else {
+        addressResult = await addressService.register(payload.address)
+        payload.addressId = addressResult.id
+      }
     }
     //  Verifica se no payload tem senha
     if (payload.password) {
@@ -65,6 +70,12 @@ module.exports = {
     }
     //  Atualiza o usuario
     const userResult = await userService.update(user.id, payload)
+
+    if (payload.roles) {
+      for (let roleId of payload.roles) {
+        await userService.addRole(user.id, roleId)
+      }
+    }
 
     //  Verifica se na request esta passando um array de id de hospitais
     if (payload.hospitals) {

@@ -4,6 +4,7 @@ const Action = require('../models/actions')
 const Address = require('../models/address')
 const Hospital = require('../models/hospital')
 const FailedToAuthenticateError = require('../errors/FailedToAuthenticateError')
+const UserHasRoles = require('../models/users_has_roles')
 
 const FIELDS = [
   'id',
@@ -161,6 +162,13 @@ const destroy = async (id) => {
   })
 }
 
+const addRole = async (userId, roleId) => {
+  return UserHasRoles.build({
+    user_id: userId,
+    role_id: roleId
+  }).save()
+}
+
 module.exports = {
   add,
   getAll,
@@ -168,5 +176,6 @@ module.exports = {
   validateCPF,
   find,
   update,
-  destroy
+  destroy,
+  addRole
 }

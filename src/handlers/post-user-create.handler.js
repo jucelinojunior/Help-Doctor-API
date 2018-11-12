@@ -16,7 +16,7 @@ const schema = Joi.object({
   responsable_hospital: Joi.any().allow('').allow(null),
   medical_document: Joi.string().allow('').allow(null),
   birthday: Joi.date().required(),
-  roles_id: Joi.array().min(1).required(),
+  roles: Joi.array().min(1).required(),
   genre: Joi.string().required(),
   hospitals: Joi.array().allow(null).allow([]).optional(),
   address: Joi.object({
@@ -43,6 +43,7 @@ module.exports = {
         birthday: new Date(payload.birthday),
         password: bcrypt.hashSync(payload.password, salt)
       }
+
       //  Tenta encontrar ou recuperar um endereço
       const {address} = user
       const addressAdded = await addressService.register(address)
@@ -58,7 +59,11 @@ module.exports = {
           await hospitalService.addUserHospital(userResult.id, hospitalId)
         }
       }
-
+      if (user.roles) {
+        for (let roleId of user.roles) {
+          await userService.addRole(userResult.id, roleId)
+        }
+      }
       return userResult
     } catch (err) {
       console.log(err.name)
