@@ -59,7 +59,6 @@ module.exports = {
           await hospitalService.addUserHospital(userResult.id, hospitalId)
         }
       }
-
       if (user.roles) {
         for (let roleId of user.roles) {
           await userService.addRole(userResult.id, roleId)

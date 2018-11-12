@@ -71,6 +71,12 @@ module.exports = {
     //  Atualiza o usuario
     const userResult = await userService.update(user.id, payload)
 
+    if (payload.roles) {
+      for (let roleId of payload.roles) {
+        await userService.addRole(user.id, roleId)
+      }
+    }
+
     //  Verifica se na request esta passando um array de id de hospitais
     if (payload.hospitals) {
       //  Deleta todos os vinculos
