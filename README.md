@@ -1485,7 +1485,7 @@ mostra a quantidade de registros que foram editados
 ```json
 {
     "pronouncer_id": 1,
-    "type_id": 1,
+    "type_id": 1, // 2 emergencia, 1 consulta, 3 exames
     "description": "Descrição",
     "skin_burn": 0,
     "fever": 36,
