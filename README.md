@@ -1280,3 +1280,263 @@ mostra a quantidade de registros que foram editados
 ```
 
 
+## Ver Consultas `[GET] /appointment`
+> Requer a ação `appointment.basic`
+> Se tiver a ação `appointment.list` consegue ver todas as consultas, se não você precisa ser um usuário médico para ver apenas as suas
+
+### Response
+```json
+{
+  "errors": false,
+  "data": [{
+    "id": 1,
+    "pronouncer_id": 1,
+    "schedule": "2018-11-11T02:00:00.000Z",
+    "type_id": 1,
+    "description": "Descrição",
+    "user_id": 1,
+    "skin_burn": 0,
+    "fever": 36,
+    "convulsion": 0,
+    "asthma": false,
+    "vomit": false,
+    "diarrhea": false,
+    "medical_category_id": 1,
+    "heart_attack": false,
+    "hypovolemic_shock": false,
+    "apnea": false,
+    "is_pregnant": false,
+    "medical_return": false,
+    "status": 1,
+    "createdAt": "2018-11-07T10:05:44.823Z",
+    "updatedAt": "2018-11-07T10:05:44.823Z",
+    "deletedAt": null,
+    "pronouncer": [
+      {
+        "id": 1,
+        "patient_id": 1,
+        "hospital_id": 1,
+        "type_pronouncer": 1,
+        "description": "descrição",
+        "patient": [
+          {
+            "id": 1,
+            "name": "afraates",
+            "email": "afraates@gmail.com",
+            "personal_document": "13650671816",
+            "birthday": "1962-07-06T03:00:00.000Z",
+            "genre": "M"
+          }
+        ],
+        "hospital": [
+          {
+            "id": 1,
+            "name": "HOSPITAL ALBERT EINSTEIN"
+          }
+        ]
+      }
+    ]
+  }]
+}
+```
+
+## Ver Consultas `[GET] /appointment{id}`
+> Requer a ação `appointment.basic`
+> Se tiver a ação `appointment.view` consegue ver qualquer consulta, se não você precisa ser um usuário médico para ver apenas a sua
+
+### Response
+```json
+{
+  "errors": false,
+  "data": {
+    "id": 1,
+    "pronouncer_id": 1,
+    "schedule": "2018-11-11T02:00:00.000Z",
+    "type_id": 1,
+    "description": "Descrição",
+    "user_id": 1,
+    "skin_burn": 0,
+    "fever": 36,
+    "convulsion": 0,
+    "asthma": false,
+    "vomit": false,
+    "diarrhea": false,
+    "medical_category_id": 1,
+    "heart_attack": false,
+    "hypovolemic_shock": false,
+    "apnea": false,
+    "is_pregnant": false,
+    "medical_return": false,
+    "status": 1,
+    "createdAt": "2018-11-07T10:05:44.823Z",
+    "updatedAt": "2018-11-07T10:05:44.823Z",
+    "deletedAt": null,
+    "pronouncer": [
+      {
+        "id": 1,
+        "patient_id": 1,
+        "hospital_id": 1,
+        "type_pronouncer": 1,
+        "description": "descrição",
+        "patient": [
+          {
+            "id": 1,
+            "name": "afraates",
+            "email": "afraates@gmail.com",
+            "personal_document": "13650671816",
+            "birthday": "1962-07-06T03:00:00.000Z",
+            "genre": "M"
+          }
+        ],
+        "hospital": [
+          {
+            "id": 1,
+            "name": "HOSPITAL ALBERT EINSTEIN"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+## Atualizar Consulta `[PUT] /appointment/{id}`
+> Requer a ação `appointment.update`
+> Para adicionar na fila, enviar query ?queue = true
+> Para remover da fila, enviar query ?remove = queueId
+### Posiveis status 
+```
+
+'Recepção' : 1,
+'Triagem' : 2,
+'Fila': 3,
+'sendo atendido': 5,
+'concluido': 4
+
+```
+
+### enviar
+```json
+{
+    "pronouncer_id": 1,
+    "type_id": 1,
+    "description": "Descrição",
+    "user_id": 1,
+    "skin_burn": 0,
+    "fever": 36,
+    "convulsion": 0,
+    "asthma": false,
+    "vomit": false,
+    "medical_category_id": 1,
+    "diarrhea": false,
+    "heart_attack": false,
+    "hypovolemic_shock": false,
+    "apnea": false,
+    "is_pregnant": false,
+    "medical_return": false,
+    "status": 1,
+}
+```
+### Response
+```json
+{
+  "errors": false,
+  "data": {
+    "id": 1,
+    "pronouncer_id": 1,
+    "schedule": "2018-11-11T02:00:00.000Z",
+    "type_id": 1,
+    "medical_category_id": 1,
+    "description": "Descrição",
+    "user_id": 1,
+    "skin_burn": 0,
+    "fever": 36,
+    "convulsion": 0,
+    "asthma": false,
+    "vomit": false,
+    "diarrhea": false,
+    "heart_attack": false,
+    "hypovolemic_shock": false,
+    "apnea": false,
+    "is_pregnant": false,
+    "medical_return": false,
+    "status": 1,
+    "createdAt": "2018-11-07T10:05:44.823Z",
+    "updatedAt": "2018-11-07T10:05:44.823Z",
+    "deletedAt": null,
+  }
+}
+```
+
+## Atualizar Consulta `[POST] /appointment`
+> Requer a ação `appointment.create`
+### Posiveis status 
+```
+
+'Recepção' : 1,
+'Triagem' : 2,
+'Fila': 3,
+'sendo atendido': 5,
+'concluido': 4
+
+```
+
+### enviar
+```json
+{
+    "pronouncer_id": 1,
+    "type_id": 1,
+    "description": "Descrição",
+    "skin_burn": 0,
+    "fever": 36,
+    "convulsion": 0,
+    "asthma": false,
+    "vomit": false,
+    "medical_category_id": 1,
+    "diarrhea": false,
+    "heart_attack": false,
+    "hypovolemic_shock": false,
+    "apnea": false,
+    "is_pregnant": false,
+    "medical_return": false,
+    "status": 1,
+}
+```
+### Response
+```json
+{
+  "errors": false,
+  "data": {
+    "id": 1,
+    "pronouncer_id": 1,
+    "schedule": "2018-11-11T02:00:00.000Z",
+    "type_id": 1,
+    "medical_category_id": 1,
+    "description": "Descrição",
+    "user_id": 1,
+    "skin_burn": 0,
+    "fever": 36,
+    "convulsion": 0,
+    "asthma": false,
+    "vomit": false,
+    "diarrhea": false,
+    "heart_attack": false,
+    "hypovolemic_shock": false,
+    "apnea": false,
+    "is_pregnant": false,
+    "medical_return": false,
+    "status": 1,
+    "createdAt": "2018-11-07T10:05:44.823Z",
+    "updatedAt": "2018-11-07T10:05:44.823Z",
+    "deletedAt": null,
+  }
+}
+```
+
+## Atualizar Consulta `[DELETE] /appointment`
+> Requer a ação `appointment.delete`
+
+### Response
+``` 
+1|0
+```

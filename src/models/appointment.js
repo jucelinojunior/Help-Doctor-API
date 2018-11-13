@@ -18,6 +18,9 @@ const Appointment = global.sequelize.define('appointment', {
   type_id: {
     type: Sequelize.INTEGER
   },
+  medical_category_id: {
+    type: Sequelize.INTEGER
+  },
   description: {
     type: Sequelize.STRING
   },
