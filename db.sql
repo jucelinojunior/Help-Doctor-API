@@ -480,6 +480,8 @@ insert into actions (name) values ('appointment.all');
 insert into actions (name) values ('appointment.update');
 insert into actions (name) values ('appointment.create');
 insert into actions (name) values ('appointment.delete');
+insert into actions (name) values ('appointment.basic_info');
+insert into actions (name) values ('appointment.all_info');
 
 
 insert into roles_has_actions (role_id, action_id) values (1,1); -- user.create
@@ -521,6 +523,8 @@ insert into roles_has_actions (role_id, action_id) values (1,36); -- appointment
 insert into roles_has_actions (role_id, action_id) values (1,37); -- appointment.update
 insert into roles_has_actions (role_id, action_id) values (1,38); -- appointment.create
 insert into roles_has_actions (role_id, action_id) values (1,39); -- appointment.delete
+insert into roles_has_actions (role_id, action_id) values (1,40); -- appointment.basic_info
+insert into roles_has_actions (role_id, action_id) values (1,41); -- appointment.all_info
 
 -- Vinculo de roles e actions para o usuario manager
 insert into roles_has_actions (role_id, action_id) values (2,1); -- user.create
@@ -544,16 +548,23 @@ insert into roles_has_actions (role_id, action_id) values (2,35); -- appointment
 insert into roles_has_actions (role_id, action_id) values (3,4); -- user.update
 insert into roles_has_actions (role_id, action_id) values (3,29); -- patient.list
 insert into roles_has_actions (role_id, action_id) values (3,31); -- patient.update
+insert into roles_has_actions (role_id, action_id) values (3,35); -- appointment.list
+insert into roles_has_actions (role_id, action_id) values (3,40); -- appointment.basic_info
+insert into roles_has_actions (role_id, action_id) values (3,41); -- appointment.all_info
 
 -- Vinculo de roles e actions para usuario nurse
 insert into roles_has_actions (role_id, action_id) values (4,4); -- user.update
-insert into roles_has_actions (role_id, action_id) values (3,31); -- patient.update
+insert into roles_has_actions (role_id, action_id) values (4,31); -- patient.update
 insert into roles_has_actions (role_id, action_id) values (4,29); -- patient.list
+insert into roles_has_actions (role_id, action_id) values (4,35); -- appointment.list
+insert into roles_has_actions (role_id, action_id) values (4,40); -- appointment.basic_info
+insert into roles_has_actions (role_id, action_id) values (4,41); -- appointment.all_info
 
 -- Vinculo de roles e actions para usuario recepcionist
 insert into roles_has_actions (role_id, action_id) values (5,4); -- user.update
 insert into roles_has_actions (role_id, action_id) values (5,29); -- patient.list
 insert into roles_has_actions (role_id, action_id) values (5,31); -- patient.update
+insert into roles_has_actions (role_id, action_id) values (5,40); -- appointment.basic_info
 
 -- SELECT * FROM users as users
 -- inner join users_has_roles as users_has_roles ON users_has_roles.user_id = users.id
