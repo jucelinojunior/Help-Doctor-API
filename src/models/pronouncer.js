@@ -1,6 +1,8 @@
 const Sequelize = require('sequelize')
 
 const Patient = require('./patient');
+const hospital = require('./hospital');
+const Appointment = require('./appointment');
 
 const Hospital = global.sequelize.define('pronouncer', {
   id: {
@@ -40,6 +42,12 @@ Hospital.hasMany(Patient, {
   as: 'patient',
   foreignKey: 'id',
   sourceKey: 'patient_id'
+});
+
+Hospital.hasMany(hospital,{
+  as: 'hospital',
+  foreignKey: 'id',
+  sourceKey: 'hospital_id'
 });
 
 module.exports = Hospital

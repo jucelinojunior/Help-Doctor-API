@@ -1450,6 +1450,7 @@ INSERT INTO TYPE_APPOINTMENT(name) VALUES('emergência');
 INSERT INTO MEDICAL_CATEGORY(name) VALUES('Clinico geral');
 INSERT INTO TYPE_PRONOUNCER(name) VALUES('consulta');
 INSERT INTO TYPE_PRONOUNCER(name) VALUES('emergência');
+INSERT INTO TYPE_PRONOUNCER(name) VALUES('exame');
 INSERT INTO USERS_HAS_MEDICAL_CATEGORY(medical_category_id,user_id) VALUES('1','1');
 INSERT INTO PRONOUNCER(description,patient_id,hospital_id,type_pronouncer) VALUES('descrição','1','1','1');
 INSERT INTO PRONOUNCER(description,patient_id,hospital_id,type_pronouncer) VALUES('descrição','1','1','2');
