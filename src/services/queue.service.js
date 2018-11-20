@@ -111,7 +111,7 @@ const insertQueue = async (idAppointment) => {
 			queue.severity = SEVERITY.BLUE;
 		else if (verifyTrauma(appointment,SEVERITY.RED) || verifyPain(appointment,SEVERITY.RED) || appointment.heart_attack || appointment.hypovolemic_shock || appointment.convulsion == QUEUE.CONVULSIONS_ATTACKS || appointment.skin_burn > 1)
 			queue.severity = SEVERITY.RED;
-		else if (verifyTrauma(appointment,SEVERITY.YELLOW) || verifyPain(appointment,SEVERITY.YELLOW) || appointment.heart_attack || appointment.hypovolemic_shock || appointment.convulsion == QUEUE.CONVULSION || appointment.skin_burn == 1 || appointment.apnea)
+		else if (verifyTrauma(appointment,SEVERITY.YELLOW) || verifyPain(appointment,SEVERITY.YELLOW) || appointment.heart_attack || appointment.hypovolemic_shock || appointment.convulsion == QUEUE.CONVULSION || appointment.skin_burn == 1 || appointment.apnea || appointment.fever > 38)
 			queue.severity = SEVERITY.YELLOW;
 		else if (verifyTrauma(appointment,SEVERITY.GREEN) || verifyPain(appointment,SEVERITY.GREEN) || appointment.diarrhea || appointment.is_pregnant || age(appointment.pronouncer[0].patient[0].birthday) > 60 || appointment.asthma || appointment.vomit)
 			queue.severity = SEVERITY.GREEN;
