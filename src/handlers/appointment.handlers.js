@@ -8,7 +8,7 @@ const update = {
   method: 'PUT',
   path: '/appointment/{id}',
   handler: async (request, h) => {
-    
+
     if (request.query.remove) {
       queue.removeInQueue(request.query.remove)
     }
@@ -42,15 +42,15 @@ const list = {
   method: 'GET',
   path: '/appointment/{id?}',
   handler: async (request, h) => {
-    
+
     var method = request.params.id ? 'findOne' : 'findAll';
     var obj = {};
     const {scope, user} = request.auth.credentials;
-    
+
     if (request.params.id) {
-      
+
       obj.id = request.params.id;
-      
+
       //Se não for um usuário de listar qualquer prontuário, listo apenas o dono (medico)
       if (!scope.includes('appointment.view')) {
         obj.user_id = user.id;
@@ -106,7 +106,7 @@ const list = {
         }
       ]
     });
-    
+
     return {errors: false, data: appointment};
 
   },
@@ -136,7 +136,7 @@ const create = {
     }
 
     const appointment = new Appointment();
-    
+
     request.payload.schedule = new Date();
     request.payload.user_id = user.id;
 
@@ -156,7 +156,7 @@ const create = {
   }
 }
 
-const delete = {
+const destroy = {
   method: 'DELETE',
   path: '/appointment/{id}',
   handler: async (request, h) => {
@@ -177,5 +177,5 @@ module.exports = {
   update,
   list,
   create,
-  delete
+  destroy
 }
