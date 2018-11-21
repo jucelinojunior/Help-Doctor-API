@@ -1465,7 +1465,7 @@ INSERT INTO PATIENT("addressId",name,email,"phoneNumber",personal_document,birth
 
 INSERT INTO TYPE_APPOINTMENT(name) VALUES('consulta');
 INSERT INTO TYPE_APPOINTMENT(name) VALUES('emergência');
-INSERT INTO TYPE_APPOINTMENT(name) VALUES('exame'); #NOVO
+INSERT INTO TYPE_APPOINTMENT(name) VALUES('exame'); -- -NOVO
 
 INSERT INTO MEDICAL_CATEGORY(name) VALUES('Clinico geral');
 
@@ -1492,8 +1492,8 @@ insert into hospital_has_user (user_id, hospital_id) values (1,1);
 insert INTO hospital_has_user (user_id, hospital_id) values (2,1);
 insert INTO hospital_has_user (user_id, hospital_id) values (2,3);
 
-#NOVO TAMBÉM PARA O HOSPITAL DE ID 2 //29, 13, 25, 31, 43, 44, 47, 58, 52, 167
-INSERT INTO TYPE_APPOINTMENT(name) VALUES('exame'); #NOVO
+-- NOVO TAMBÉM PARA O HOSPITAL DE ID 2 //29, 13, 25, 31, 43, 44, 47, 58, 52, 167
+INSERT INTO TYPE_APPOINTMENT(name) VALUES('exame'); -- NOVO
 INSERT INTO PRONOUNCER(description,patient_id,hospital_id,type_pronouncer) VALUES('Deu entrada com forte dores na cabeça','29','2','2');
 INSERT INTO PRONOUNCER(description,patient_id,hospital_id,type_pronouncer) VALUES('Deu entrada com forte dores no peito','13','2','2');
 INSERT INTO PRONOUNCER(description,patient_id,hospital_id,type_pronouncer) VALUES('Deu entrada com dores na perna','25','2','2');
@@ -1517,7 +1517,7 @@ INSERT INTO APPOINTMENT(hypovolemic_shock,pronouncer_id,schedule,medical_categor
 INSERT INTO APPOINTMENT(hypovolemic_shock,pronouncer_id,schedule,medical_category_id,type_id,user_id,description,skin_burn,fever,convulsion,asthma,vomit,diarrhea,apnea,heart_attack) VALUES('false','12','11/11/18','1','2','130','Descrição','0','36','0','false','false','false','false','false');
 
 
-#NOVO TAMBÉM PARA O HOSPITAL DE ID 3 //29, 13, 25, 31, 43, 44, 47, 58, 52, 167
+-- NOVO TAMBÉM PARA O HOSPITAL DE ID 3 //29, 13, 25, 31, 43, 44, 47, 58, 52, 167
 INSERT INTO PRONOUNCER(description,patient_id,hospital_id,type_pronouncer) VALUES('Deu entrada com forte dores na cabeça','29','3','2');
 INSERT INTO PRONOUNCER(description,patient_id,hospital_id,type_pronouncer) VALUES('Deu entrada com forte dores no peito','13','3','2');
 INSERT INTO PRONOUNCER(description,patient_id,hospital_id,type_pronouncer) VALUES('Deu entrada com dores na perna','25','2','3');
@@ -1529,21 +1529,21 @@ INSERT INTO PRONOUNCER(description,patient_id,hospital_id,type_pronouncer) VALUE
 INSERT INTO PRONOUNCER(description,patient_id,hospital_id,type_pronouncer) VALUES('Deu entrada com asma','52','3','2');
 INSERT INTO PRONOUNCER(description,patient_id,hospital_id,type_pronouncer) VALUES('Deu entrada com ataques do coração','167','3','2');
 
-INSERT INTO APPOINTMENT(hypovolemic_shock,pronouncer_id,schedule,medical_category_id,type_id,user_id,description,skin_burn,fever,convulsion,asthma,vomit,diarrhea,apnea,heart_attack) VALUES('false','13','11/11/18','1','2','118','Descrição','0','36','0','false','false','false','false','false');
-INSERT INTO APPOINTMENT(hypovolemic_shock,pronouncer_id,schedule,medical_category_id,type_id,user_id,description,skin_burn,fever,convulsion,asthma,vomit,diarrhea,apnea,heart_attack) VALUES('false','14','11/11/18','1','2','130','Descrição','0','36','0','false','false','false','false','false');
-INSERT INTO APPOINTMENT(hypovolemic_shock,pronouncer_id,schedule,medical_category_id,type_id,user_id,description,skin_burn,fever,convulsion,asthma,vomit,diarrhea,apnea,heart_attack) VALUES('false','15','11/11/18','1','2','144','Descrição','0','36','0','false','false','false','false','false');
-INSERT INTO APPOINTMENT(hypovolemic_shock,pronouncer_id,schedule,medical_category_id,type_id,user_id,description,skin_burn,fever,convulsion,asthma,vomit,diarrhea,apnea,heart_attack) VALUES('false','16','11/11/18','1','2','7','Descrição','1','36','0','false','false','false','false','false');
-INSERT INTO APPOINTMENT(hypovolemic_shock,pronouncer_id,schedule,medical_category_id,type_id,user_id,description,skin_burn,fever,convulsion,asthma,vomit,diarrhea,apnea,heart_attack) VALUES('false','17','11/11/18','1','2','118','Descrição','0','38.5','0','false','false','false','false','false');
-INSERT INTO APPOINTMENT(hypovolemic_shock,pronouncer_id,schedule,medical_category_id,type_id,user_id,description,skin_burn,fever,convulsion,asthma,vomit,diarrhea,apnea,heart_attack) VALUES('false','18','11/11/18','1','2','130','Descrição','0','36','0','false','false','false','false','false');
-INSERT INTO APPOINTMENT(hypovolemic_shock,pronouncer_id,schedule,medical_category_id,type_id,user_id,description,skin_burn,fever,convulsion,asthma,vomit,diarrhea,apnea,heart_attack) VALUES('false','19','11/11/18','1','2','144','Descrição','0','36','1','false','false','false','false','false');
-INSERT INTO APPOINTMENT(hypovolemic_shock,pronouncer_id,schedule,medical_category_id,type_id,user_id,description,skin_burn,fever,convulsion,asthma,vomit,diarrhea,apnea,heart_attack) VALUES('false','20','11/11/18','1','2','7','Descrição','0','36','0','false','false','true','false','false');
-INSERT INTO APPOINTMENT(hypovolemic_shock,pronouncer_id,schedule,medical_category_id,type_id,user_id,description,skin_burn,fever,convulsion,asthma,vomit,diarrhea,apnea,heart_attack) VALUES('false','21','11/11/18','1','2','118','Descrição','0','36','0','true','false','false','false','false');
-INSERT INTO APPOINTMENT(hypovolemic_shock,pronouncer_id,schedule,medical_category_id,type_id,user_id,description,skin_burn,fever,convulsion,asthma,vomit,diarrhea,apnea,heart_attack) VALUES('false','22','11/11/18','1','2','130','Descrição','0','36','0','false','false','false','false','true');
+INSERT INTO APPOINTMENT(hypovolemic_shock,pronouncer_id,schedule,medical_category_id,type_id,user_id,description,skin_burn,fever,convulsion,asthma,vomit,diarrhea,apnea,heart_attack) VALUES('false','13','11/11/18','1','2','118','Descrição','0',36,'0','false','false','false','false','false');
+INSERT INTO APPOINTMENT(hypovolemic_shock,pronouncer_id,schedule,medical_category_id,type_id,user_id,description,skin_burn,fever,convulsion,asthma,vomit,diarrhea,apnea,heart_attack) VALUES('false','14','11/11/18','1','2','130','Descrição','0',36,'0','false','false','false','false','false');
+INSERT INTO APPOINTMENT(hypovolemic_shock,pronouncer_id,schedule,medical_category_id,type_id,user_id,description,skin_burn,fever,convulsion,asthma,vomit,diarrhea,apnea,heart_attack) VALUES('false','15','11/11/18','1','2','144','Descrição','0',36,'0','false','false','false','false','false');
+INSERT INTO APPOINTMENT(hypovolemic_shock,pronouncer_id,schedule,medical_category_id,type_id,user_id,description,skin_burn,fever,convulsion,asthma,vomit,diarrhea,apnea,heart_attack) VALUES('false','16','11/11/18','1','2','7','Descrição','1',36,'0','false','false','false','false','false');
+INSERT INTO APPOINTMENT(hypovolemic_shock,pronouncer_id,schedule,medical_category_id,type_id,user_id,description,skin_burn,fever,convulsion,asthma,vomit,diarrhea,apnea,heart_attack) VALUES('false','17','11/11/18','1','2','118','Descrição','0',38.5,'0','false','false','false','false','false');
+INSERT INTO APPOINTMENT(hypovolemic_shock,pronouncer_id,schedule,medical_category_id,type_id,user_id,description,skin_burn,fever,convulsion,asthma,vomit,diarrhea,apnea,heart_attack) VALUES('false','18','11/11/18','1','2','130','Descrição','0',36,'0','false','false','false','false','false');
+INSERT INTO APPOINTMENT(hypovolemic_shock,pronouncer_id,schedule,medical_category_id,type_id,user_id,description,skin_burn,fever,convulsion,asthma,vomit,diarrhea,apnea,heart_attack) VALUES('false','19','11/11/18','1','2','144','Descrição','0',36,'1','false','false','false','false','false');
+INSERT INTO APPOINTMENT(hypovolemic_shock,pronouncer_id,schedule,medical_category_id,type_id,user_id,description,skin_burn,fever,convulsion,asthma,vomit,diarrhea,apnea,heart_attack) VALUES('false','20','11/11/18','1','2','7','Descrição','0',36,'0','false','false','true','false','false');
+INSERT INTO APPOINTMENT(hypovolemic_shock,pronouncer_id,schedule,medical_category_id,type_id,user_id,description,skin_burn,fever,convulsion,asthma,vomit,diarrhea,apnea,heart_attack) VALUES('false','21','11/11/18','1','2','118','Descrição','0',36,'0','true','false','false','false','false');
+INSERT INTO APPOINTMENT(hypovolemic_shock,pronouncer_id,schedule,medical_category_id,type_id,user_id,description,skin_burn,fever,convulsion,asthma,vomit,diarrhea,apnea,heart_attack) VALUES('false','22','11/11/18','1','2','130','Descrição','0',36,'0','false','false','false','false','true');
 
-#NOVO TAMBÉM PARA O HOSPITAL DE ID 4 //29, 13, 25, 31, 43, 44, 47, 58, 52, 167
+-- NOVO TAMBÉM PARA O HOSPITAL DE ID 4 //29, 13, 25, 31, 43, 44, 47, 58, 52, 167
 INSERT INTO PRONOUNCER(description,patient_id,hospital_id,type_pronouncer) VALUES('Deu entrada com forte dores na cabeça','29','4','2');
 INSERT INTO PRONOUNCER(description,patient_id,hospital_id,type_pronouncer) VALUES('Deu entrada com forte dores no peito','13','4','2');
-INSERT INTO PRONOUNCER(description,patient_id,hospital_id,type_pronouncer) VALUES('Deu entrada com dores na perna','25','2','4');
+INSERT INTO PRONOUNCER(description,patient_id,hospital_id,type_pronouncer) VALUES('Deu entrada com dores na perna',25,'2','4');
 INSERT INTO PRONOUNCER(description,patient_id,hospital_id,type_pronouncer) VALUES('Deu entrada com queimaduras','31','4','3');
 INSERT INTO PRONOUNCER(description,patient_id,hospital_id,type_pronouncer) VALUES('Deu entrada com febre alta','43','4','3');
 INSERT INTO PRONOUNCER(description,patient_id,hospital_id,type_pronouncer) VALUES('Deu entrada com dores no braço','44','4','2');
@@ -1589,4 +1589,3 @@ INSERT INTO APPOINTMENT_HAS_PAIN(pain_id,appointment_id) VALUES('5','34');
 
 
 
-  
