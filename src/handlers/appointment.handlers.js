@@ -50,7 +50,6 @@ const list = {
     var method = request.params.id ? 'findOne' : 'findAll';
     var obj = {};
     const {scope, user} = request.auth.credentials;
-    //var scope = ['appointment.list','appointment.view']
     if (request.params.id) {
 
       obj.id = request.params.id;
