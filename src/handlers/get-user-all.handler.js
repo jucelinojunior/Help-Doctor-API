@@ -9,6 +9,11 @@ module.exports = {
   method: 'GET',
   path: '/user',
   handler: async (request) => {
+
+    if(request.query.type) {
+      return userService.getAllRole(request.query.type);
+    }
+
     const {scope, user} = request.auth.credentials
     if (scope.includes('user.all')) return userService.getAll()
     //  Pega o usuario

@@ -112,6 +112,59 @@ const getAll = async () => {
   })
 }
 
+const getAllRole = async (type) => {
+  return User.findAll({
+    attributes: FIELDS,
+    
+    include: [
+      {
+        model: Role,
+        as: 'roles',
+        required: true,
+        where: {
+          name: type
+        },
+        attributes: ['id', 'name', 'label'],
+        through: { attributes: [ /* 'user_id' */ ] },
+        include: {
+          model: Action,
+          as: 'actions',
+          required: false,
+          attributes: ['id', 'name'],
+          through: { attributes: [ ] }
+        }
+      },
+      {
+        model: Address,
+        as: 'address',
+        required: false,
+        attributes: [
+        'id',
+        'address',
+        'neighborhood',
+        'number',
+        'complement',
+        'city',
+        'zipcode',
+        'state',
+        'formatedaddress'
+        ]
+      },
+      {
+        model: Hospital,
+        as: 'hospitals',
+        through: { attributes: [ /* 'user_id' */ ] },
+        required: false,
+        attributes: [
+        'id',
+        'name'
+        ]
+      }
+    ]
+
+  });
+}
+
 /**
  * @desc Valida o CPF passado
  * @param {string} CPF
@@ -185,5 +238,6 @@ module.exports = {
   update,
   destroy,
   addRole,
-  exportField
+  exportField,
+  getAllRole
 }
