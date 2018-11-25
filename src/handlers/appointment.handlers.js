@@ -93,8 +93,8 @@ const list = {
             model: User,
             as: 'user',
             require: true,
-            attributes: userService.FIELDS,
-            include: userService.DEFAULT_INCLUDES
+            attributes: userService.exportField('fields'),
+            include: userService.exportField('DEFAULT_INCLUDES')
         },
         {
           model: medicalRecords,
