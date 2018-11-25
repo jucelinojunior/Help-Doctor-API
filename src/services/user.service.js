@@ -177,5 +177,7 @@ module.exports = {
   find,
   update,
   destroy,
-  addRole
+  addRole,
+  DEFAULT_INCLUDES,
+  FIELDS
 }
