@@ -4,7 +4,7 @@ const Pronouncer = require('./pronouncer');
 const HasPain = require('./has_pain');
 const HasType = require('./type_appointment');
 const HasTrauma = require('./has_trauma');
-const HasCat = require('./medical_Category');
+const HasCat = require('./medical_category');
 const Appointment = global.sequelize.define('appointment', {
   id: {
     type: Sequelize.STRING,
