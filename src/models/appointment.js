@@ -2,7 +2,9 @@ const Sequelize = require('sequelize')
 const User = require('./users')
 const Pronouncer = require('./pronouncer');
 const HasPain = require('./has_pain');
+const HasType = require('./type_appointment');
 const HasTrauma = require('./has_trauma');
+const HasCat = require('./medical_Category');
 const Appointment = global.sequelize.define('appointment', {
   id: {
     type: Sequelize.STRING,
@@ -83,6 +85,12 @@ Appointment.hasMany(User, {
   sourceKey: 'user_id'
 })
 
+Appointment.hasMany(HasType, {
+  as: 'type',
+  foreignKey: 'id',
+  sourceKey: 'type_id'
+})
+
 Appointment.hasMany(HasPain, {
   as: 'has_pain',
   foreignKey: 'appointment_id',
@@ -99,6 +107,12 @@ Appointment.hasMany(Pronouncer, {
   as: 'pronouncer',
   foreignKey: 'id',
   sourceKey: 'pronouncer_id'
+})
+
+Appointment.hasMany(HasCat, {
+  as: 'category',
+  foreignKey: 'id',
+  sourceKey: 'medical_category_id'
 })
 
 module.exports = Appointment

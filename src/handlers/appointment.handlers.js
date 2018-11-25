@@ -1,8 +1,12 @@
 const queue = require('../services/queue.service')
+const userService = require('../services/user.service')
 const Appointment = require('../models/appointment')
 const medicalRecords = require('../models/pronouncer')
 const Hospital = require('../models/hospital');
 const Patient = require('../models/patient');
+const User = require('../models/users');
+const Categories = require('../models/medical_category');
+const Types = require('../models/type_appointment');
 
 const update = {
   method: 'PUT',
@@ -46,7 +50,7 @@ const list = {
     var method = request.params.id ? 'findOne' : 'findAll';
     var obj = {};
     const {scope, user} = request.auth.credentials;
-
+    //var scope = ['appointment.list','appointment.view']
     if (request.params.id) {
 
       obj.id = request.params.id;
@@ -68,6 +72,31 @@ const list = {
     const appointment = await Appointment[method]({
       where: obj,
       include: [
+        {
+            model: Categories,
+            as: 'category',
+            require: true,
+            attributes: [
+              'id',
+              'name'
+            ]
+        },
+        {
+          model: Types,
+          as: 'type',
+          require: true,
+          attributes: [
+            'id',
+            'name'
+          ]
+        },
+        {
+            model: User,
+            as: 'user',
+            require: true,
+            attributes: userService.FIELDS,
+            include: userService.DEFAULT_INCLUDES
+        },
         {
           model: medicalRecords,
           as: 'pronouncer',
@@ -101,7 +130,7 @@ const list = {
               'id',
               'name',
             ]
-          },
+          }
           ]
         }
       ]
