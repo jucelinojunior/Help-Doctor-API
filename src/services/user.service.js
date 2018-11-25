@@ -169,6 +169,13 @@ const addRole = async (userId, roleId) => {
   }).save()
 }
 
+const exportField = (key) => {
+  if(key == 'fields')
+    return FIELDS;
+  else
+    return DEFAULT_INCLUDES;
+}
+
 module.exports = {
   add,
   getAll,
@@ -178,6 +185,5 @@ module.exports = {
   update,
   destroy,
   addRole,
-  DEFAULT_INCLUDES,
-  FIELDS
+  exportField
 }
