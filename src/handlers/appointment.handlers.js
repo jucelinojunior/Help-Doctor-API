@@ -24,7 +24,7 @@ const update = {
     })
 
     return appointment.update(request.payload).then(() => {
-      if (request.query.queue) {
+      if (request.payload.queue) {
         queue.insertQueue(request.params.id)
       }
       return {errors: false, data: appointment}
@@ -169,6 +169,9 @@ const create = {
     request.payload.user_id = user.id;
 
     return appointment.update(request.payload).then(() => {
+      if (request.payload.queue) {
+        queue.insertQueue(request.params.id)
+      }
       return {errors: false, data: appointment}
     });
 
