@@ -29,7 +29,12 @@ module.exports = {
   method: 'POST',
   path: '/patient',
   handler: async (request, reply) => {
-    const {payload} = request
+    try {
+      const {payload} = request
+
+      if (await patientService.findByEmail(payload.email) != null || true) {
+        throw new Error(`E-mail ja cadastrado`)
+      }
 
       //  Tenta encontrar ou recuperar um endereço
       const {address} = payload
@@ -39,6 +44,9 @@ module.exports = {
       payload.addressId = addressAdded.id
 
       return patientService.add(payload)
+    } catch (err) {
+      Boom.badRequest(err.message)
+    }
 
   },
   config: {

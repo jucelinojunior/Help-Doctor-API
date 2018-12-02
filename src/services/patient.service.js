@@ -55,10 +55,18 @@ const destroy = async (id) => {
   })
 }
 
+const findByEmail = async (email) => {
+  return Patient.findOne({
+    where: {email: email}
+  });
+}
+
+
 module.exports = {
   getAll,
   findById,
   update,
   add,
+  findByEmail,
   destroy
 }
