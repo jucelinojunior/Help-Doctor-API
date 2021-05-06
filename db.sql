@@ -1343,7 +1343,6 @@ INSERT INTO PATIENT("addressId",name,email,"phoneNumber",personal_document,birth
 INSERT INTO PATIENT("addressId",name,email,"phoneNumber",personal_document,birthday,genre) VALUES('213','jsgsoares','jsgsoares@yahoo.com.br','(19) 98173-2374','001.110.537-22','1990-03-27','M');
 INSERT INTO PATIENT("addressId",name,email,"phoneNumber",personal_document,birthday,genre) VALUES('214','juliamado','juliamado@gmail.com','(21) 99125-8646','1473152712','1940-01-27','F');
 INSERT INTO PATIENT("addressId",name,email,"phoneNumber",personal_document,birthday,genre) VALUES('215','julio.salgado','julio.salgado@csn.com.br','(24) 98133-2806','74487329787','1953-05-16','M');
-INSERT INTO PATIENT("addressId",name,email,"phoneNumber",personal_document,birthday,genre) VALUES('216','junior.riopreto','junior.riopreto@gmail.com','(17) 3353-7659','285.005.268-07','1969-10-12','M');
 INSERT INTO PATIENT("addressId",name,email,"phoneNumber",personal_document,birthday,genre) VALUES('217','karenzandona','karenzandona@gmail.com','(55) 98433-0313','911.273.780-15','1986-11-11','M');
 INSERT INTO PATIENT("addressId",name,email,"phoneNumber",personal_document,birthday,genre) VALUES('218','katialeonel','katialeonel@uol.com.br','(11) 98175-7582','14372036809','1998-06-04','M');
 INSERT INTO PATIENT("addressId",name,email,"phoneNumber",personal_document,birthday,genre) VALUES('219','kelsen.jus','kelsen.jus@hotmail.com','(85) 99953-0303','024.993.863-47','1996-04-02','M');
